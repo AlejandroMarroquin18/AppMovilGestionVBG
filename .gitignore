@@ -1,0 +1,62 @@
+*.iml
+.gradle
+/local.properties
+/.idea/caches
+/.idea/libraries
+/.idea/modules.xml
+/.idea/workspace.xml
+/.idea/navEditor.xml
+/.idea/assetWizardSettings.xml
+.DS_Store
+/build
+/captures
+.externalNativeBuild
+.cxx
+local.properties
+
+
+
+################################
+
+# Archivos de sistema
+*.iml
+*.hprof
+*.log
+.DS_Store
+Thumbs.db
+
+# Configuración de Android Studio
+/.idea/
+/.gradle/
+/local.properties
+/.cxx/
+/captures/
+/.externalNativeBuild/
+/*.jks
+*.keystore
+
+# Archivos de compilación y dependencias
+/build/
+/app/build/
+/out/
+/*.apk
+/*.aab
+*.dex
+
+# Caché de Gradle
+.gradle
+/local.properties
+/.maven/
+/gradle/
+/gradlew
+/gradlew.bat
+
+# Archivos de usuario
+/.vscode/
+*.sublime-workspace
+
+# Dependencias de Node.js (si usas React Native o herramientas JS)
+/node_modules/
+/npm-debug.log
+/yarn-error.log
+
