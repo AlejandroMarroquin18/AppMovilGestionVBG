@@ -13,6 +13,34 @@
         android:theme="@style/Theme.AppVBG"
         tools:targetApi="31">
         <activity
+            android:name=".ui.quejas.estadisticas_quejas.Estadisticas_quejas"
+            android:exported="false"
+            android:theme="@style/Theme.AppVBG" />
+        <activity
+            android:name=".ui.agenda.estadisticas_agenda.Estadisticas_agenda"
+            android:exported="false"
+            android:theme="@style/Theme.AppVBG" />
+        <activity
+            android:name=".ui.talleres.estadisticas_talleres.Estadisticas_talleres"
+            android:exported="false"
+            android:theme="@style/Theme.AppVBG" />
+        <activity
+            android:name=".ui.talleres.crear_taller.Crear_taller"
+            android:exported="false"
+            android:theme="@style/Theme.AppVBG" />
+        <activity
+            android:name=".ui.talleres.Ver_talleres"
+            android:exported="false"
+            android:theme="@style/Theme.AppVBG" />
+        <activity
+            android:name=".ui.agenda.Agenda"
+            android:exported="false"
+            android:theme="@style/Theme.AppVBG" />
+        <activity
+            android:name=".ui.quejas.Quejas"
+            android:exported="false"
+            android:theme="@style/Theme.AppVBG" />
+        <activity
             android:name=".MainActivity"
             android:exported="true"
             android:label="@string/app_name"

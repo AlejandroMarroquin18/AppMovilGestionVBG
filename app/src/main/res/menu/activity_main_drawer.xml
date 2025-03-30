@@ -8,13 +8,46 @@
             android:id="@+id/nav_home"
             android:icon="@drawable/ic_menu_camera"
             android:title="@string/menu_home" />
+
+
+
+    </group>
+
+    <group android:checkableBehavior="single">
         <item
-            android:id="@+id/nav_gallery"
-            android:icon="@drawable/ic_menu_gallery"
-            android:title="@string/menu_gallery" />
+            android:title="Quejas"
+            android:enabled="false"/>
         <item
-            android:id="@+id/nav_slideshow"
-            android:icon="@drawable/ic_menu_slideshow"
-            android:title="@string/menu_slideshow" />
+            android:id="@+id/estadisticas_quejas"
+            android:title="@string/estadisticas"/>
+        <item
+            android:id="@+id/quejas"
+            android:title="@string/quejas"/>
+        <item
+            android:title="Agenda"
+            android:enabled="false"/>
+
+        <item
+            android:id="@+id/estadisticas_agenda"
+            android:title="@string/estadisticas"/>
+        <item android:id="@+id/agenda"
+            android:title="@string/agenda"/>
+        <item
+            android:title="Talleres"
+            android:enabled="false"/>
+        <item android:id="@+id/estadisticas_taller"
+            android:title="@string/estadisticas"/>
+        <item android:id="@+id/crear_taller"
+            android:title="@string/crear_talleres"/>
+        <item android:id="@+id/lista_talleres"
+            android:title="@string/ver_talleres"/>
+
+        <item
+            android:title=""
+            android:enabled="false"
+            />
+        <item
+            android:id="@+id/logout"
+            android:title="@string/logout"/>
     </group>
 </menu>
