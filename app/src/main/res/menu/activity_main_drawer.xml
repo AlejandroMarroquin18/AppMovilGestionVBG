@@ -9,8 +9,6 @@
             android:icon="@drawable/ic_menu_camera"
             android:title="@string/menu_home" />
 
-
-
     </group>
 
     <group android:checkableBehavior="single">
@@ -18,28 +16,31 @@
             android:title="Quejas"
             android:enabled="false"/>
         <item
-            android:id="@+id/estadisticas_quejas"
+            android:id="@+id/estadisticasQuejasFragment"
             android:title="@string/estadisticas"/>
         <item
-            android:id="@+id/quejas"
+            android:id="@+id/quejasFragment"
             android:title="@string/quejas"/>
         <item
             android:title="Agenda"
             android:enabled="false"/>
 
         <item
-            android:id="@+id/estadisticas_agenda"
+            android:id="@+id/estadisticasAgendaFragment"
             android:title="@string/estadisticas"/>
-        <item android:id="@+id/agenda"
+
+        <item android:id="@+id/agendaFragment"
             android:title="@string/agenda"/>
         <item
             android:title="Talleres"
             android:enabled="false"/>
-        <item android:id="@+id/estadisticas_taller"
+
+
+        <item android:id="@+id/estadisticasTalleresFragment"
             android:title="@string/estadisticas"/>
-        <item android:id="@+id/crear_taller"
+        <item android:id="@+id/crearTallerFragment"
             android:title="@string/crear_talleres"/>
-        <item android:id="@+id/lista_talleres"
+        <item android:id="@+id/verTalleresFragment"
             android:title="@string/ver_talleres"/>
 
         <item

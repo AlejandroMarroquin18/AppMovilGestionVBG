@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/action_search"
+        android:title="Search"
+        app:showAsAction="ifRoom|collapseActionView"
+        app:actionViewClass="androidx.appcompat.widget.SearchView" />
+
+    <group android:id="@+id/sort_group">
+        <item
+            android:id="@+id/sort_by_name_asc"
+            android:title="Sort by Name (A-Z)" />
+        <item
+            android:id="@+id/sort_by_name_desc"
+            android:title="Sort by Name (Z-A)" />
+        <item
+            android:id="@+id/sort_by_school_asc"
+            android:title="Sort by School (A-Z)" />
+        <item
+            android:id="@+id/sort_by_school_desc"
+            android:title="Sort by School (Z-A)" />
+    </group>
+</menu>

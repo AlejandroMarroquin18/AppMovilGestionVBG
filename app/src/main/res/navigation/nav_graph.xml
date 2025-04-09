@@ -3,26 +3,46 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/FirstFragment">
+    app:startDestination="@id/quejasFragment">
+    <fragment
+        android:id="@+id/quejasFragment"
+        android:name="com.example.appvbg.ui.quejas.QuejasFragment"
+        android:label="Quejas"
+        tools:layout="@layout/fragment_quejas"/>
+    <fragment
+        android:id="@+id/estadisticasQuejasFragment"
+        android:name="com.example.appvbg.ui.quejas.estadisticas.EstadisticasQuejasFragment"
+        android:label="Estadísticas Quejas"
+        tools:layout="@layout/fragment_estadisticas_quejas"/>
 
     <fragment
-        android:id="@+id/FirstFragment"
-        android:name="com.example.appvbg.ui.quejas.FirstFragment"
-        android:label="@string/first_fragment_label"
-        tools:layout="@layout/fragment_first" >
+        android:id="@+id/verTalleresFragment"
+        android:name="com.example.appvbg.ui.talleres.ver_talleres.VerTalleresFragment"
+        android:label="Talleres"
+        tools:layout="@layout/fragment_vertalleres"/>
 
-        <action
-            android:id="@+id/action_FirstFragment_to_SecondFragment"
-            app:destination="@id/SecondFragment" />
-    </fragment>
     <fragment
-        android:id="@+id/SecondFragment"
-        android:name="com.example.appvbg.ui.quejas.SecondFragment"
-        android:label="@string/second_fragment_label"
-        tools:layout="@layout/fragment_second" >
+        android:id="@+id/estadisticasTalleresFragment"
+        android:name="com.example.appvbg.ui.talleres.estadisticas_talleres.EstadisticasTalleresFragment"
+        android:label="Estadísticas Taller"
+        tools:layout="@layout/fragment_estadisticas_talleres"/>
+    <fragment
+        android:id="@+id/crearTallerFragment"
+        android:name="com.example.appvbg.ui.talleres.crear_taller.CrearTallerFragment"
+        android:label="Crear Taller"
+        tools:layout="@layout/fragment_crear_taller"/>
 
-        <action
-            android:id="@+id/action_SecondFragment_to_FirstFragment"
-            app:destination="@id/FirstFragment" />
-    </fragment>
+    <fragment
+        android:id="@+id/agendaFragment"
+        android:name="com.example.appvbg.ui.agenda.AgendaFragment"
+        android:label="Agenda"
+        tools:layout="@layout/fragment_agenda"/>
+
+    <fragment
+        android:id="@+id/estadisticasAgendaFragment"
+        android:name="com.example.appvbg.ui.agenda.estadisticas.EstadisticasAgendaFragment"
+        android:label="Estadísticas Agenda"
+        tools:layout="@layout/fragment_estadisticas_agenda"/>
+
+
 </navigation>
