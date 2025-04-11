@@ -13,7 +13,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
 
-        <!-- Título del fragment -->
+
         <TextView
             android:id="@+id/tituloFragment"
             android:layout_width="wrap_content"
@@ -24,7 +24,7 @@
             android:layout_gravity="center_horizontal"
             android:paddingBottom="16dp"/>
 
-        <!-- El resto de tu layout -->
+
 
     </LinearLayout>
 

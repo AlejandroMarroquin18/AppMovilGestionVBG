@@ -74,7 +74,7 @@ class QuejasFragment : Fragment(R.layout.fragment_quejas) {
 
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemViewHolder {
             val view = LayoutInflater.from(parent.context)
-                .inflate(R.layout.item_layout, parent, false) // Create an item layout (item_layout.xml)
+                .inflate(R.layout.queja_item_layout, parent, false) // Create an item layout (item_layout.xml)
             return ItemViewHolder(view)
         }
 
