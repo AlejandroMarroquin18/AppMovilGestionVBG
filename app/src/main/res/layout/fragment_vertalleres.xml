@@ -10,15 +10,10 @@
         android:padding="16dp">
 
 
-        <TextView
-            android:id="@+id/tituloFragment"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Talleres Fragment"
-            android:textSize="24sp"
-            android:textStyle="bold"
-            android:layout_gravity="center_horizontal"
-            android:paddingBottom="16dp"/>
+        <FrameLayout
+            android:id="@+id/filter_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerTallerView"

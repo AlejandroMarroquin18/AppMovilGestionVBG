@@ -8,7 +8,25 @@
         android:id="@+id/quejasFragment"
         android:name="com.example.appvbg.ui.quejas.QuejasFragment"
         android:label="Quejas"
-        tools:layout="@layout/fragment_quejas"/>
+        tools:layout="@layout/fragment_quejas">
+        <action
+            android:id="@+id/action_quejasFragment_to_detallesQueja"
+            app:destination="@id/detallesQueja" />
+    </fragment>
+
+
+    <fragment
+        android:id="@+id/detallesQueja"
+        android:name="com.example.appvbg.ui.quejas.detalles.DetallesQueja"
+        android:label="Detalles de la Queja"
+        tools:layout="@layout/fragment_detalles_queja">
+
+        <argument
+            android:name="quejaJSON"
+            app:argType="string" />
+    </fragment>
+
+
     <fragment
         android:id="@+id/estadisticasQuejasFragment"
         android:name="com.example.appvbg.ui.quejas.estadisticas.EstadisticasQuejasFragment"
@@ -43,6 +61,7 @@
         android:name="com.example.appvbg.ui.agenda.estadisticas.EstadisticasAgendaFragment"
         android:label="Estadísticas Agenda"
         tools:layout="@layout/fragment_estadisticas_agenda"/>
+
 
 
 </navigation>

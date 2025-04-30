@@ -1,0 +1,386 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout   xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    >
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginHorizontal="16dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Nombre"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/nombreAgresorLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Hola"
+            android:visibility="visible"/>
+        <EditText
+            android:id="@+id/nombreAgresorEdit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="Nombre"
+            android:visibility="gone"/>
+    </LinearLayout>
+    <!--holaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa-->
+    <!-- Nombre -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginHorizontal="16dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Sexo"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/sexoAgresorLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Hola"
+            android:visibility="visible"/>
+        <EditText
+            android:id="@+id/sexoAgresorEdit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="Nombre"
+            android:visibility="gone"/>
+    </LinearLayout>
+    <!--holaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa-->
+    <!-- Nombre -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginHorizontal="16dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Edad"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:id="@+id/edadAgresorLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Hola"
+            android:visibility="visible"/>
+        <EditText
+            android:id="@+id/edadAgresorEdit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="Nombre"
+            android:visibility="gone"/>
+    </LinearLayout>
+    <!--holaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa--><!-- Nombre -->
+    
+
+
+    <!-- Nombre -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginHorizontal="16dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Condición étnico racial"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/etniaAgresorLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Hola"
+            android:visibility="visible"/>
+        <EditText
+            android:id="@+id/etniaAgresorEdit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="Nombre"
+            android:visibility="gone"/>
+    </LinearLayout>
+    <!-- Nombre -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginHorizontal="16dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="¿Tiene algún tipo de discapacidad?"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/discapacidadAgresorLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Hola"
+            android:visibility="visible"/>
+        <EditText
+            android:id="@+id/discapacidadAgresorEdit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="Nombre"
+            android:visibility="gone"/>
+    </LinearLayout>
+    <!-- Nombre -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginHorizontal="16dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Tipo de discapacidad"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tipoDiscapacidadAgresorLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Hola"
+            android:visibility="visible"/>
+        <EditText
+            android:id="@+id/tipoDiscapacidadAgresorEdit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="Nombre"
+            android:visibility="gone"/>
+    </LinearLayout>
+    <!-- Nombre -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginHorizontal="16dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Identidad de género"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/identidadGeneroAgresorLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Hola"
+            android:visibility="visible"/>
+        <EditText
+            android:id="@+id/identidadGeneroAgresorEdit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="Nombre"
+            android:visibility="gone"/>
+    </LinearLayout>
+    <!-- Nombre -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginHorizontal="16dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Orientación sexual"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/orientacionSexualAgresorLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Hola"
+            android:visibility="visible"/>
+        <EditText
+            android:id="@+id/orientacionSexualAgresorEdit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="Nombre"
+            android:visibility="gone"/>
+    </LinearLayout>
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginHorizontal="16dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Estamento"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/estamentoAgresorLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Hola"
+            android:visibility="visible"/>
+        <EditText
+            android:id="@+id/estamentoAgresorEdit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="Nombre"
+            android:visibility="gone"/>
+    </LinearLayout>
+    <!--holaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa-->
+    <!-- Nombre -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginHorizontal="16dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Vicerrectoría adscrita"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/viceAgresorLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Hola"
+            android:visibility="visible"/>
+        <EditText
+            android:id="@+id/viceAgresorEdit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="Nombre"
+            android:visibility="gone"/>
+    </LinearLayout>
+    <!--holaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa-->
+    <!-- Nombre -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginHorizontal="16dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Dependencia"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/dependenciaAgresorLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Hola"
+            android:visibility="visible"/>
+        <EditText
+            android:id="@+id/dependenciaAgresorEdit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="Nombre"
+            android:visibility="gone"/>
+    </LinearLayout>
+    <!--holaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa-->
+    <!-- Nombre -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginHorizontal="16dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Programa académico"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/programaAgresorLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Hola"
+            android:visibility="visible"/>
+        <EditText
+            android:id="@+id/programaAgresorEdit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="Nombre"
+            android:visibility="gone"/>
+    </LinearLayout>
+    <!--holaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa-->
+    <!-- Nombre -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginHorizontal="16dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Facultad"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/facultadAgresorLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Hola"
+            android:visibility="visible"/>
+        <EditText
+            android:id="@+id/facultadAgresorEdit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="Facultad"
+            android:visibility="gone"/>
+    </LinearLayout>
+    <!--holaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa-->
+    <!-- Nombre -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginHorizontal="16dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Sede"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/sedeAgresorLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Hola"
+            android:visibility="visible"/>
+        <EditText
+            android:id="@+id/sedeAgresorEdit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="Nombre"
+            android:visibility="gone"/>
+    </LinearLayout>
+    <!--holaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa-->
+    
+
+</LinearLayout>

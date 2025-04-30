@@ -7,12 +7,14 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.appvbg.R
+import com.example.appvbg.ui.quejas.FilterVerTalleresFragment
 
 class VerTalleresFragment: Fragment(R.layout.fragment_vertalleres) {
-
+    private lateinit var viewModel: VerTalleresViewModel
     private lateinit var recyclerView: RecyclerView
     private lateinit var adapter: ItemAdapter
     private val items = mutableListOf<Item>() // Replace with your data source
@@ -26,6 +28,10 @@ class VerTalleresFragment: Fragment(R.layout.fragment_vertalleres) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        childFragmentManager.beginTransaction()
+            .replace(R.id.filter_container, FilterVerTalleresFragment())
+            .commit()
+
 
         recyclerView = view.findViewById(R.id.recyclerTallerView) // Assuming you have a RecyclerView with this ID in your layout
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
@@ -45,7 +51,16 @@ class VerTalleresFragment: Fragment(R.layout.fragment_vertalleres) {
             }
         )
         recyclerView.adapter = adapter
+
+        viewModel = ViewModelProvider(this)[VerTalleresViewModel::class.java]
+
+        viewModel.filtros.observe(viewLifecycleOwner) { filtros ->
+            // Por ejemplo, actualizar RecyclerView
+            aplicarFiltros(filtros)
+        }
+
     }
+    private fun aplicarFiltros(filtros: com.example.appvbg.ui.talleres.ver_talleres.FiltroData) {}
 
 
     private fun generateDummyItems(): List<Item> {

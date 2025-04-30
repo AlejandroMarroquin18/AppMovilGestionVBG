@@ -1,6 +1,11 @@
+
+
 plugins {
+
+
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
+    id("androidx.navigation.safeargs.kotlin")
 }
 
 android {
@@ -35,10 +40,18 @@ android {
     }
     buildFeatures {
         viewBinding = true
+
     }
+
 }
 
+
 dependencies {
+    val navVersion = "2.8.9" // Usa la versión más reciente
+    implementation("androidx.navigation:navigation-fragment-ktx:$navVersion")
+    implementation("androidx.navigation:navigation-ui-ktx:$navVersion")
+    implementation("com.squareup.retrofit2:retrofit:2.9.0")
+    implementation("com.squareup.retrofit2:converter-gson:2.9.0")
     implementation("com.github.kizitonwose:CalendarView:1.0.4")
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
