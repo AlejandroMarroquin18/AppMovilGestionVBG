@@ -33,11 +33,34 @@
         android:label="Estadísticas Quejas"
         tools:layout="@layout/fragment_estadisticas_quejas"/>
 
+
+
+
     <fragment
         android:id="@+id/verTalleresFragment"
         android:name="com.example.appvbg.ui.talleres.ver_talleres.VerTalleresFragment"
         android:label="Talleres"
-        tools:layout="@layout/fragment_vertalleres"/>
+        tools:layout="@layout/fragment_vertalleres">
+        <action
+            android:id="@+id/action_verTalleres_to_detallesTaller"
+            app:destination="@id/detallesTaller" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/detallesTaller"
+        android:name="com.example.appvbg.ui.talleres.detalles.DetallesTalleres"
+        android:label="Detalles de un taller"
+        tools:layout="@layout/fragment_detalles_talleres">
+
+        <argument
+            android:name="tallerJSON"
+            app:argType="string" />
+    </fragment>
+
+
+
+
+
 
     <fragment
         android:id="@+id/estadisticasTalleresFragment"

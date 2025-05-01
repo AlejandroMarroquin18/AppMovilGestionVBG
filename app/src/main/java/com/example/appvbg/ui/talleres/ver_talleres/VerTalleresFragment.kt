@@ -1,23 +1,27 @@
 package com.example.appvbg.ui.talleres.ver_talleres
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.appvbg.R
 import com.example.appvbg.ui.quejas.FilterVerTalleresFragment
+import org.json.JSONObject
 
 class VerTalleresFragment: Fragment(R.layout.fragment_vertalleres) {
     private lateinit var viewModel: VerTalleresViewModel
     private lateinit var recyclerView: RecyclerView
     private lateinit var adapter: ItemAdapter
-    private val items = mutableListOf<Item>() // Replace with your data source
+    private val items = mutableListOf<ItemTalleres>() // Replace with your data source
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -28,6 +32,7 @@ class VerTalleresFragment: Fragment(R.layout.fragment_vertalleres) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
         childFragmentManager.beginTransaction()
             .replace(R.id.filter_container, FilterVerTalleresFragment())
             .commit()
@@ -37,59 +42,65 @@ class VerTalleresFragment: Fragment(R.layout.fragment_vertalleres) {
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
 
         // Initialize your data (replace with your actual data loading)
-        items.addAll(generateDummyItems())
+        //items.addAll(generateDummyItems())
 
         adapter = ItemAdapter(items,
             onDetailsClicked = { item ->
                 // Handle details button click, e.g., navigate to details fragment
                 // You'll need to create a details fragment and implement navigation
+                val itemJson = item.json.toString()
+
+
+                // Dentro de QuejasFragment, cuando hagas clic en un ítem o algo que navegue a DetallesQuejaFragment
+                val action = VerTalleresFragmentDirections.actionVerTalleresToDetallesTaller(itemJson)
+                //val action = VerTalleresFragmentDirections.actionVertalleresFragmentToDetallesTallerFragment(itemJson)
+
+                findNavController().navigate(action)
             },
             onDeleteClicked = { item ->
                 // Handle delete button click
-                items.remove(item)
-                adapter.notifyDataSetChanged() // Or use a more efficient way to update the adapter
+                viewModel.removeItem(item) // Or use a more efficient way to update the adapter
             }
         )
         recyclerView.adapter = adapter
 
         viewModel = ViewModelProvider(this)[VerTalleresViewModel::class.java]
 
-        viewModel.filtros.observe(viewLifecycleOwner) { filtros ->
-            // Por ejemplo, actualizar RecyclerView
-            aplicarFiltros(filtros)
+        viewModel.items.observe(viewLifecycleOwner) { itemList ->
+            adapter.updateItems(itemList)
+        }
+
+        
+
+        viewModel.error.observe(viewLifecycleOwner) { errorMsg ->
+            errorMsg?.let {
+                Log.e("QuejaViewModel", it)
+                Toast.makeText(requireContext(), it, Toast.LENGTH_LONG).show()
+            }
         }
 
     }
     private fun aplicarFiltros(filtros: com.example.appvbg.ui.talleres.ver_talleres.FiltroData) {}
 
-
-    private fun generateDummyItems(): List<Item> {
-        // Replace this with your actual data loading logic
-        return (1..10).map {
-            Item(
-                nombre = "$it",
-                fechaInicio = "$it",
-                horaInicio = "$it",
-                horaFin = "$it",
-                ubicacion = "$it",
-                modalidad = "$it",
-                beneficiarios = "$it",
-                talleristas = "$it",
-                descripcion = "$it",
-                estado = "$it"
-            )
-        }
-    }
-
-
-    data class Item(val nombre: String, val fechaInicio: String, val horaInicio: String, val horaFin: String, val ubicacion: String,
-                    val modalidad: String, val beneficiarios: String, val talleristas: String, val descripcion: String, val estado: String)
-
+    data class ItemTalleres(
+                    val id:Int,
+                    val nombre: String,
+                    val fechaInicio: String,
+                    val horaInicio: String,
+                    val horaFin: String,
+                    val ubicacion: String,
+                    val modalidad: String,
+                    val beneficiarios: String,
+                    val talleristas: String,
+                    val descripcion: String,
+                    val estado: String,
+                    val json: JSONObject?
+    )
 
     private class ItemAdapter(
-        private val items: List<Item>,
-        private val onDetailsClicked: (Item) -> Unit,
-        private val onDeleteClicked: (Item) -> Unit
+        private val items: MutableList<ItemTalleres>,
+        private val onDetailsClicked: (ItemTalleres) -> Unit,
+        private val onDeleteClicked: (ItemTalleres) -> Unit
     ) : RecyclerView.Adapter<ItemAdapter.ItemViewHolder>() {
 
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemViewHolder {
@@ -101,6 +112,13 @@ class VerTalleresFragment: Fragment(R.layout.fragment_vertalleres) {
         override fun onBindViewHolder(holder: ItemViewHolder, position: Int) {
             val item = items[position]
             holder.bind(item, onDetailsClicked, onDeleteClicked)
+        }
+
+        fun updateItems(newItems: List<ItemTalleres>) {
+
+            items.clear()
+            items.addAll(newItems)
+            notifyDataSetChanged()
         }
 
         override fun getItemCount(): Int = items.size
@@ -120,7 +138,7 @@ class VerTalleresFragment: Fragment(R.layout.fragment_vertalleres) {
             private val deleteButton: Button = itemView.findViewById(R.id.eliminarTallerTextView)
 
 
-            fun bind(item: Item, onDetailsClicked: (Item) -> Unit, onDeleteClicked: (Item) -> Unit) {
+            fun bind(item: ItemTalleres, onDetailsClicked: (ItemTalleres) -> Unit, onDeleteClicked: (ItemTalleres) -> Unit) {
                 nombreTallerTextView.text= item.nombre
                 fechaTallerTextView.text = "Fecha: ${item.fechaInicio}"
                 horaInicioTallerTextView.text = "Hora Inicio: ${item.horaInicio}"

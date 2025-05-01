@@ -73,7 +73,7 @@ class FilterVerTalleresFragment : Fragment(R.layout.fragment_filter_ver_talleres
                 estado = estadoSpinner.selectedItem.toString()
             )
 
-            viewModel.filtros.value = filtros
+            viewModel.actualizarFiltros(filtros)
         }
     }
 }
