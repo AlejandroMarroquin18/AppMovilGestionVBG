@@ -83,7 +83,7 @@ class VerTalleresFragment: Fragment(R.layout.fragment_vertalleres) {
     private fun aplicarFiltros(filtros: com.example.appvbg.ui.talleres.ver_talleres.FiltroData) {}
 
     data class ItemTalleres(
-                    val id:Int,
+                    val id:Int?,
                     val nombre: String,
                     val fechaInicio: String,
                     val horaInicio: String,

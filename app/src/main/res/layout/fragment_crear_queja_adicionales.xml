@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    >
+   
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            
+            android:text="¿Desea activar la ruta de atención integral?"
+            android:textStyle="bold" />
+
+        
+        <EditText
+            android:id="@+id/rutaIntegralEdit"
+            android:layout_width="wrap_content"
+            
+            android:layout_height="wrap_content"
+            android:hint="Fecha"
+            />
+    
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            
+            android:text="¿Requiere recibir asesoría y orientación socio-pedagógica?"
+            android:textStyle="bold" />
+
+    
+        <EditText
+            android:id="@+id/asesoriaEdit"
+            android:layout_width="wrap_content"
+            
+            android:layout_height="wrap_content"
+            android:hint="Fecha"
+            />
+   
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            
+            android:text="¿Requiere recibir orientacion psicológica?"
+            android:textStyle="bold" />
+
+  
+        <EditText
+            android:id="@+id/orientacionEdit"
+            android:layout_width="wrap_content"
+            
+            android:layout_height="wrap_content"
+            android:hint="Fecha"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            
+            android:text="¿Requiere reibir asistencia jurídica?"
+            android:textStyle="bold" />
+
+     
+        <EditText
+            android:id="@+id/asistenciaJuridicaEdit"
+            android:layout_width="wrap_content"
+            
+            android:layout_height="wrap_content"
+            android:hint="Fecha"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            
+            android:text="¿Requiere recibir acommpañamiento para solicitud de medidas de protección inicial?"
+            android:textStyle="bold" />
+
+
+        <EditText
+            android:id="@+id/medidasProteccionEdit"
+            android:layout_width="wrap_content"
+            
+            android:layout_height="wrap_content"
+            android:hint="Fecha"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            
+            android:text="¿Requiere recibir acompañamiento ante instancias gubernamentales?"
+            android:textStyle="bold" />
+
+
+        <EditText
+            android:id="@+id/instanciasGubernamentalesEdit"
+            android:layout_width="wrap_content"
+            
+            android:layout_height="wrap_content"
+            android:hint="Fecha"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            
+            android:text="¿Requiere interponer una queja formal al Comité de Asuntos Internos Disciplinarios?"
+            android:textStyle="bold" />
+
+  
+        <EditText
+            android:id="@+id/comiteAsuntosInternosEdit"
+            android:layout_width="wrap_content"
+            
+            android:layout_height="wrap_content"
+            android:hint="Fecha"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+
+            android:layout_height="wrap_content"
+            
+            android:text="Observaciones"
+            android:textStyle="bold" />
+
+        <EditText android:id="@+id/observacionesEdit"
+            android:layout_width="wrap_content"
+            
+            android:layout_height="wrap_content"
+            android:hint="Fecha"
+            />
+    
+</LinearLayout>
+
+

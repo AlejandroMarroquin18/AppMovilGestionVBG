@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout   xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            
+            android:text="Nombre"
+            android:textStyle="bold" />
+
+       
+        <EditText
+            android:id="@+id/nombreAgresorEdit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="Nombre"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            
+            android:text="Sexo"
+            android:textStyle="bold" />
+
+   
+        <EditText
+            android:id="@+id/sexoAgresorEdit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="Nombre"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            
+            android:text="Edad"
+            android:textStyle="bold"/>
+
+
+        <EditText
+            android:id="@+id/edadAgresorEdit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="Nombre"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            
+            android:text="Condición étnico racial"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/etniaAgresorEdit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="Nombre"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            
+            android:text="¿Tiene algún tipo de discapacidad?"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/discapacidadAgresorEdit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="Nombre"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            
+            android:text="Tipo de discapacidad"
+            android:textStyle="bold" />
+
+    
+        <EditText
+            android:id="@+id/tipoDiscapacidadAgresorEdit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="Nombre"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            
+            android:text="Identidad de género"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/identidadGeneroAgresorEdit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="Nombre"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            
+            android:text="Orientación sexual"
+            android:textStyle="bold" />
+
+  
+        <EditText
+            android:id="@+id/orientacionSexualAgresorEdit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="Nombre"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            
+            android:text="Estamento"
+            android:textStyle="bold" />
+
+   
+        <EditText
+            android:id="@+id/estamentoAgresorEdit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="Nombre"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            
+            android:text="Vicerrectoría adscrita"
+            android:textStyle="bold" />
+
+     
+        <EditText
+            android:id="@+id/viceAgresorEdit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="Nombre"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            
+            android:text="Dependencia"
+            android:textStyle="bold" />
+
+  
+        <EditText
+            android:id="@+id/dependenciaAgresorEdit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="Nombre"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            
+            android:text="Programa académico"
+            android:textStyle="bold" />
+
+   
+        <EditText
+            android:id="@+id/programaAgresorEdit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="Nombre"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            
+            android:text="Facultad"
+            android:textStyle="bold" />
+
+  
+        <EditText
+            android:id="@+id/facultadAgresorEdit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="Facultad"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            
+            android:text="Sede"
+            android:textStyle="bold" />
+
+
+        <EditText
+            android:id="@+id/sedeAgresorEdit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="Nombre"
+            />
+
+    <!--holaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa-->
+
+
+</LinearLayout>

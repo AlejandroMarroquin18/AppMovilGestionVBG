@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Fecha de recepcion"
+            android:textStyle="bold" />
+
+
+        <EditText android:id="@+id/fechaReportaEdit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="Fecha"
+            />
+
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Nombre"
+            android:textStyle="bold" />
+
+
+        <EditText android:id="@+id/nombreReportaEdit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="Nombre"
+            />
+
+    <!--holaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa-->
+    <!-- Nombre -->
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Sexo"
+            android:textStyle="bold" />
+
+
+        <EditText android:id="@+id/sexoReportaEdit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="Nombre"
+            />
+
+    <!--holaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa-->
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Edad"
+            android:textStyle="bold" />
+
+        
+        <EditText android:id="@+id/edadReportaEdit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="Nombre"
+            />
+
+    <!--holaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa--><!-- Nombre -->
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Estamento"
+            android:textStyle="bold" />
+
+        
+        <EditText android:id="@+id/estamentoReportaEdit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="Nombre"
+            />
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Vicerrectoría adscrita"
+            android:textStyle="bold" />
+
+
+        <EditText android:id="@+id/viceReportaEdit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="Nombre"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Dependencia"
+            android:textStyle="bold" />
+
+        
+        <EditText android:id="@+id/dependenciaReportaEdit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="Nombre"
+            />
+
+    <!--holaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa-->
+    <!-- Nombre -->
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Programa académico"
+            android:textStyle="bold" />
+
+        
+        <EditText android:id="@+id/programaReportaEdit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="Nombre"
+            />
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Facultad"
+            android:textStyle="bold" />
+
+        
+        <EditText android:id="@+id/facultadReportaEdit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="Facultad"
+            />
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Sede"
+            android:textStyle="bold" />
+
+
+        <EditText android:id="@+id/sedeReportaEdit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="Nombre"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Celular"
+            android:textStyle="bold" />
+
+        
+        <EditText android:id="@+id/celularReportaEdit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="Nombre"
+            />
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Correo electrónico"
+            android:textStyle="bold" />
+
+
+        <EditText android:id="@+id/correoReportaEdit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="Nombre"
+            />
+
+</LinearLayout>

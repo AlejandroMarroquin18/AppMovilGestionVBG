@@ -8,6 +8,8 @@ import android.view.ViewGroup
 import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
+import androidx.compose.ui.text.TextStyle
+import androidx.core.view.children
 import androidx.fragment.app.Fragment
 import com.example.appvbg.R
 import com.example.appvbg.databinding.FragmentAgendaBinding
@@ -38,13 +40,42 @@ class AgendaFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         val calendarView = binding.calendarView
         val currentMonth = YearMonth.now()
+
         val firstDayOfWeek = java.time.DayOfWeek.MONDAY
 
-        calendarView.setup(currentMonth.minusMonths(1), currentMonth.plusMonths(1), firstDayOfWeek)
+        val startMonth = currentMonth.minusMonths(100) // Adjust as needed
+        val endMonth = currentMonth.plusMonths(100) // Adjust as needed
+
+        calendarView.setup(startMonth, endMonth, firstDayOfWeek)
         calendarView.scrollToMonth(currentMonth)
 
+        //calendarView.setup(currentMonth.minusMonths(1), currentMonth.plusMonths(1), firstDayOfWeek)
+        //calendarView.scrollToMonth(currentMonth)
+
+        val daysOfWeek = arrayOf("Lunes", "Martes", "Miercoles" , "Jueves", "Viernes", "Sábado", "Domingo")
+        val titlesContainer = view.findViewById<ViewGroup>(R.id.titlesContainer)
+
+        titlesContainer.children
+            .map { it as TextView }
+            .forEachIndexed { index, textView ->
+                val title = daysOfWeek[index]
+                //val title = dayOfWeek.getDisplayName(TextStyle.SHORT, Locale.getDefault())
+                textView.text = title
+            }
+        /**
+        val titlesContainer = view.findViewById<ViewGroup>(R.id.titlesContainer)
+        titlesContainer.children
+            .map { it as TextView }
+            .forEachIndexed { index, textView ->
+                val dayOfWeek = daysOfWeek[index]
+                val title = dayOfWeek.getDisplayName(TextStyle.SHORT, Locale.getDefault())
+                textView.text = title
+            }
+        */
         class DayViewContainer(view: View) : ViewContainer(view) {
             val textView: TextView = view.findViewById(R.id.calendarDayText)
+
+
             lateinit var day: CalendarDay
 
             init {
