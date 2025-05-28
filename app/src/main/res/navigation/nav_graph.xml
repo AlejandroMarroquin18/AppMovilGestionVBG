@@ -12,6 +12,9 @@
         <action
             android:id="@+id/action_quejasFragment_to_detallesQueja"
             app:destination="@id/detallesQueja" />
+        <action
+            android:id="@+id/action_quejasFragment_to_crearQueja"
+            app:destination="@id/crearQueja" />
     </fragment>
 
 
@@ -25,6 +28,12 @@
             android:name="quejaJSON"
             app:argType="string" />
     </fragment>
+
+    <fragment
+        android:id="@+id/crearQueja"
+        android:name="com.example.appvbg.ui.agenda.crear_queja.CrearQueja"
+        android:label="Crear Queja"
+        tools:layout="@layout/fragment_crear_queja"/>
 
 
     <fragment
@@ -77,7 +86,11 @@
         android:id="@+id/agendaFragment"
         android:name="com.example.appvbg.ui.agenda.AgendaFragment"
         android:label="Agenda"
-        tools:layout="@layout/fragment_agenda"/>
+        tools:layout="@layout/fragment_agenda">
+        <action
+            android:id="@+id/action_agendaFragment_to_crearCita"
+            app:destination="@id/crearCita" />
+    </fragment>
 
     <fragment
         android:id="@+id/estadisticasAgendaFragment"

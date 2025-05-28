@@ -15,12 +15,12 @@
             android:textStyle="bold" />
 
         
-        <EditText
+        <Spinner
             android:id="@+id/rutaIntegralEdit"
             android:layout_width="wrap_content"
             
             android:layout_height="wrap_content"
-            android:hint="Fecha"
+            
             />
     
         <TextView
@@ -31,12 +31,12 @@
             android:textStyle="bold" />
 
     
-        <EditText
+        <Spinner
             android:id="@+id/asesoriaEdit"
             android:layout_width="wrap_content"
             
             android:layout_height="wrap_content"
-            android:hint="Fecha"
+            
             />
    
         <TextView
@@ -47,12 +47,12 @@
             android:textStyle="bold" />
 
   
-        <EditText
+        <Spinner
             android:id="@+id/orientacionEdit"
             android:layout_width="wrap_content"
             
             android:layout_height="wrap_content"
-            android:hint="Fecha"
+            
             />
 
         <TextView
@@ -63,12 +63,12 @@
             android:textStyle="bold" />
 
      
-        <EditText
+        <Spinner
             android:id="@+id/asistenciaJuridicaEdit"
             android:layout_width="wrap_content"
             
             android:layout_height="wrap_content"
-            android:hint="Fecha"
+            
             />
 
         <TextView
@@ -79,12 +79,12 @@
             android:textStyle="bold" />
 
 
-        <EditText
+        <Spinner
             android:id="@+id/medidasProteccionEdit"
             android:layout_width="wrap_content"
             
             android:layout_height="wrap_content"
-            android:hint="Fecha"
+            
             />
 
         <TextView
@@ -95,12 +95,12 @@
             android:textStyle="bold" />
 
 
-        <EditText
+        <Spinner
             android:id="@+id/instanciasGubernamentalesEdit"
             android:layout_width="wrap_content"
             
             android:layout_height="wrap_content"
-            android:hint="Fecha"
+            
             />
 
         <TextView
@@ -111,12 +111,12 @@
             android:textStyle="bold" />
 
   
-        <EditText
+        <Spinner
             android:id="@+id/comiteAsuntosInternosEdit"
             android:layout_width="wrap_content"
             
             android:layout_height="wrap_content"
-            android:hint="Fecha"
+            
             />
 
         <TextView
@@ -131,7 +131,7 @@
             android:layout_width="wrap_content"
             
             android:layout_height="wrap_content"
-            android:hint="Fecha"
+            android:hint="Escriba sus observaciones"
             />
     
 </LinearLayout>

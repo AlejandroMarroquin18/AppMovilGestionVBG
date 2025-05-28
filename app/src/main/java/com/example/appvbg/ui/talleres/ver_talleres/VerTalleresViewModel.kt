@@ -18,6 +18,8 @@ class VerTalleresViewModel: ViewModel()  {
 
     val filtros: LiveData<FiltroData> = _filtros
 
+    private var originalItems: List<ItemTalleres> = emptyList()
+
 
     // LiveData para la lista de quejas (items)
     private val _items = MutableLiveData<List<ItemTalleres>>()
@@ -67,13 +69,29 @@ class VerTalleresViewModel: ViewModel()  {
 
     fun actualizarFiltros(nuevosFiltros: FiltroData) {
         _filtros.value = nuevosFiltros
-        //filtrarItems()
+        filtrarItems()
+    }
+
+    private fun filtrarItems() {
+        val filtros = _filtros.value ?: return
+        val filtered = originalItems.filter { item ->
+            // Filtrar código (contiene)
+            val nombreOk = filtros.nombre.isBlank() || item.nombre.contains(filtros.nombre, true)
+            // Filtrar sede ("Todos" ignora)
+            val fechaOk = filtros.fechaInicio == "Todas" || item.fechaInicio == filtros.fechaInicio
+            // Filtrar tipo
+            val modalidadOk = filtros.modalidad == "Todas" || item.modalidad == filtros.modalidad.toLowerCase()
+            // Filtrar facultad
+            val estadoOk = filtros.estado == "Todos" || item.estado == filtros.estado
+            nombreOk && fechaOk && modalidadOk && estadoOk
+        }
+        _items.postValue(filtered)
     }
 
     fun cargarItems() {
         viewModelScope.launch(Dispatchers.IO) {
             try {
-                val url = URL("http://192.168.0.3:8000/api/talleres/")
+                val url = URL("http://192.168.0.30:8000/api/talleres/")
                 val connection = url.openConnection() as HttpURLConnection
                 connection.requestMethod = "GET"
                 connection.connectTimeout = 5000
@@ -112,7 +130,7 @@ class VerTalleresViewModel: ViewModel()  {
                         )
                         lista.add(item)
                     }
-
+                    originalItems = lista
                     _items.postValue(lista)
                 } else {
                     _error.postValue("Error de conexión: $responseCode")
@@ -135,7 +153,7 @@ class VerTalleresViewModel: ViewModel()  {
 
 data class FiltroData(
     val nombre: String,
-    val fecha: String,
+    val fechaInicio: String,
     val modalidad: String,
     val estado: String
 )

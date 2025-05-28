@@ -1,28 +1,145 @@
-<?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-    <LinearLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:padding="16dp">
 
-        <!-- Título del fragment -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp"
+        android:gravity="center_horizontal">
+
+        <!-- Talleres realizados -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#B3D9FF"
+            android:orientation="vertical"
+            android:padding="16dp"
+            android:layout_marginBottom="16dp"
+            android:gravity="center">
+
         <TextView
-            android:id="@+id/tituloFragment"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Fragment Estadisticas Talleres"
-            android:textSize="24sp"
+            android:text="Talleres realizados en el 2025"
+            android:textSize="18sp"
+            android:textColor="#000000"
+            android:textAlignment="center" />
+
+        <TextView
+            android:id="@+id/talleresRealizados"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="4"
             android:textStyle="bold"
-            android:layout_gravity="center_horizontal"
-            android:paddingBottom="16dp"/>
-
-        <!-- El resto de tu layout -->
-
+            android:textSize="22sp"
+            android:textColor="#000000"
+            android:textAlignment="center" />
     </LinearLayout>
 
+    <!-- Detalles de talleres -->
+    <GridLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:columnCount="3"
+        android:alignmentMode="alignMargins"
+        android:useDefaultMargins="true">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <!-- Talleres virtuales -->
+        <LinearLayout
+            android:orientation="vertical"
+            android:padding="12dp"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_columnWeight="1"
+            android:background="#B3D9FF"
+            android:gravity="center">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Talleres virtuales en el último año"
+                android:textColor="#000000"
+                android:textAlignment="center" />
+
+            <TextView
+                android:id="@+id/talleresVirtuales"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="1"
+                android:textStyle="bold"
+                android:textColor="#000000"
+                android:textAlignment="center" />
+        </LinearLayout>
+
+        <!-- Talleres presenciales -->
+        <LinearLayout
+            android:orientation="vertical"
+            android:padding="12dp"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_columnWeight="1"
+            android:background="#B3D9FF"
+            android:gravity="center">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Talleres presenciales en el último año"
+                android:textColor="#000000"
+                android:textAlignment="center" />
+
+            <TextView
+                android:id="@+id/talleresPresenciales"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="3"
+                android:textStyle="bold"
+                android:textColor="#000000"
+                android:textAlignment="center" />
+        </LinearLayout>
+
+        <!-- Participantes -->
+        <LinearLayout
+            android:orientation="vertical"
+            android:padding="12dp"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_columnWeight="1"
+            android:background="#B3D9FF"
+            android:gravity="center">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Participantes totales en el último año"
+                android:textColor="#000000"
+                android:textAlignment="center" />
+
+            <TextView
+                android:id="@+id/participantes"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0"
+                android:textStyle="bold"
+                android:textColor="#000000"
+                android:textAlignment="center" />
+        </LinearLayout>
+    </GridLayout>
+        <com.github.mikephil.charting.charts.BarChart
+            android:id="@+id/graficoTalleresModalidades"
+            android:layout_width="match_parent"
+            android:layout_height="300dp" />
+        <com.github.mikephil.charting.charts.PieChart
+            android:id="@+id/graficoTalleresGenero"
+            android:layout_width="match_parent"
+            android:layout_height="300dp" />
+        <com.github.mikephil.charting.charts.BarChart
+            android:id="@+id/graficoTalleresDepartamento"
+            android:layout_width="match_parent"
+            android:layout_height="300dp" />
+
+
+        </LinearLayout>
+    </ScrollView>

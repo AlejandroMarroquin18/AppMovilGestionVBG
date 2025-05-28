@@ -66,11 +66,17 @@ class VerTalleresFragment: Fragment(R.layout.fragment_vertalleres) {
 
         viewModel = ViewModelProvider(this)[VerTalleresViewModel::class.java]
 
+
+
+        viewModel.filtros.observe(viewLifecycleOwner) { filtro ->
+            // Aquí ya no es necesario lógica extra; el ViewModel actualiza items
+            // Pero si necesitas UI adicional, puedes usar:
+            adapter.updateItems(viewModel.items.value ?: emptyList())
+        }
+
         viewModel.items.observe(viewLifecycleOwner) { itemList ->
             adapter.updateItems(itemList)
         }
-
-        
 
         viewModel.error.observe(viewLifecycleOwner) { errorMsg ->
             errorMsg?.let {

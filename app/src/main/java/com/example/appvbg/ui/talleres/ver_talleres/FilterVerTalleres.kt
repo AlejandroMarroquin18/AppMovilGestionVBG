@@ -14,6 +14,9 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.appvbg.R
 import com.example.appvbg.ui.talleres.ver_talleres.FiltroData
 import com.example.appvbg.ui.talleres.ver_talleres.VerTalleresViewModel
+import android.widget.AdapterView
+import android.text.TextWatcher
+import android.text.Editable
 
 class FilterVerTalleresFragment : Fragment(R.layout.fragment_filter_ver_talleres) {
 
@@ -24,12 +27,12 @@ class FilterVerTalleresFragment : Fragment(R.layout.fragment_filter_ver_talleres
     private lateinit var searchEditText: EditText
     private lateinit var searchButton: ImageButton
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        // Inflar el layout del fragmento
-        val view = inflater.inflate(R.layout.fragment_filter_ver_talleres, container, false)
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        viewModel = ViewModelProvider(requireParentFragment())[VerTalleresViewModel::class.java]
+
 
         // Inicializar vistas usando el "view"
         fechaSpinner = view.findViewById(R.id.fechaTallerSpinner)
@@ -40,14 +43,46 @@ class FilterVerTalleresFragment : Fragment(R.layout.fragment_filter_ver_talleres
 
         // Configurar los spinners
         val fechas = listOf("Todas")
-        val modalidades = listOf("Presencial", "Virtual")
-        val estados = listOf("Pendiente","Realizado")
+        val modalidades = listOf("Todas","Presencial", "Virtual")
+        val estados = listOf("Todos","Pendiente", "Realizado")
 
-        fechaSpinner.adapter = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_dropdown_item, fechas)
-        modalidadSpinner.adapter = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_dropdown_item, modalidades)
-        estadoSpinner.adapter = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_dropdown_item, estados)
 
-        // Acción del botón de búsqueda
+
+        fechaSpinner.adapter =
+            ArrayAdapter(requireContext(), android.R.layout.simple_spinner_dropdown_item, fechas)
+        modalidadSpinner.adapter = ArrayAdapter(
+            requireContext(),
+            android.R.layout.simple_spinner_dropdown_item,
+            modalidades
+        )
+        estadoSpinner.adapter =
+            ArrayAdapter(requireContext(), android.R.layout.simple_spinner_dropdown_item, estados)
+
+        val spinnerListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(
+                parent: AdapterView<*>,
+                view: View?,
+                position: Int,
+                id: Long
+            ) {
+                applyFilters()
+            }
+
+            override fun onNothingSelected(parent: AdapterView<*>) {}
+        }
+
+        fechaSpinner.onItemSelectedListener = spinnerListener
+        modalidadSpinner.onItemSelectedListener = spinnerListener
+        estadoSpinner.onItemSelectedListener = spinnerListener
+
+        searchEditText.addTextChangedListener(object : TextWatcher {
+            override fun afterTextChanged(s: Editable?) {
+                applyFilters()
+            }
+
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
+        })
         searchButton.setOnClickListener {
             val searchQuery = searchEditText.text.toString()
             val fecha = fechaSpinner.selectedItem.toString()
@@ -57,23 +92,23 @@ class FilterVerTalleresFragment : Fragment(R.layout.fragment_filter_ver_talleres
             Toast.makeText(requireContext(), "Buscando: $searchQuery, $fecha, $modalidad, $estado", Toast.LENGTH_SHORT).show()
         }
 
-        return view
-    }
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
-        viewModel = ViewModelProvider(requireParentFragment())[VerTalleresViewModel::class.java]
 
         // En el botón de búsqueda
         searchButton.setOnClickListener {
+            applyFilters()
+            Toast.makeText(requireContext(), "Filtrando...", Toast.LENGTH_SHORT).show()
+        }
+    }
+
+
+        private fun applyFilters() {
             val filtros = FiltroData(
                 nombre = searchEditText.text.toString(),
-                fecha = fechaSpinner.selectedItem.toString(),
+                fechaInicio = fechaSpinner.selectedItem.toString(),
                 modalidad = modalidadSpinner.selectedItem.toString(),
                 estado = estadoSpinner.selectedItem.toString()
             )
-
             viewModel.actualizarFiltros(filtros)
         }
-    }
+
 }

@@ -47,10 +47,9 @@
             android:textStyle="bold" />
 
 
-        <EditText android:id="@+id/sexoReportaEdit"
+        <Spinner android:id="@+id/sexoReportaEdit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:hint="Nombre"
             />
 
     <!--holaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa-->
@@ -79,10 +78,9 @@
             android:textStyle="bold" />
 
         
-        <EditText android:id="@+id/estamentoReportaEdit"
+        <Spinner android:id="@+id/estamentoReportaEdit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:hint="Nombre"
             />
 
 
@@ -140,10 +138,9 @@
             android:textStyle="bold" />
 
         
-        <EditText android:id="@+id/facultadReportaEdit"
+        <Spinner android:id="@+id/facultadReportaEdit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:hint="Facultad"
             />
 
 
@@ -155,10 +152,9 @@
             android:textStyle="bold" />
 
 
-        <EditText android:id="@+id/sedeReportaEdit"
+        <Spinner android:id="@+id/sedeReportaEdit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:hint="Nombre"
             />
 
         <TextView

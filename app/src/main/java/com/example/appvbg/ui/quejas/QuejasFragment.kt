@@ -15,8 +15,13 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.appvbg.R
+import com.example.appvbg.ui.agenda.crear_queja.CrearQueja
 import com.example.appvbg.ui.quejas.detalles.DetallesQueja
 import org.json.JSONObject
+
+
+
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 class QuejasFragment : Fragment(R.layout.fragment_quejas) {
     private lateinit var viewModel: QuejaViewModel
@@ -73,7 +78,7 @@ class QuejasFragment : Fragment(R.layout.fragment_quejas) {
             adapter.updateItems(itemList)
         }
         viewModel.filtros.observe(viewLifecycleOwner) { filtro ->
-            aplicarFiltros(filtro)
+            adapter.updateItems(viewModel.items.value ?: emptyList())
         }
 
         viewModel.error.observe(viewLifecycleOwner) { errorMsg ->
@@ -82,7 +87,15 @@ class QuejasFragment : Fragment(R.layout.fragment_quejas) {
                 Toast.makeText(requireContext(), it, Toast.LENGTH_LONG).show()
             }
         }
+        val fab = activity?.findViewById<FloatingActionButton>(R.id.fab)
+        //fab?.setImageResource(R.drawable.tu_icono_deseado)
+        fab?.setOnClickListener {
+            // Acción específica para este fragmento
+            val actionCrearQueja = QuejasFragmentDirections.actionQuejasFragmentToCrearQueja()
+            findNavController().navigate(actionCrearQueja)
 
+
+        }
 
 
     }

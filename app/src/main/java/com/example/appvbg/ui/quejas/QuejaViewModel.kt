@@ -20,6 +20,8 @@ class QuejaViewModel: ViewModel() {
 
     val filtros: LiveData<FiltroData> = _filtros
 
+    private var originalItems: List<Item> = emptyList()
+
 
     // LiveData para la lista de quejas (items)
     private val _items = MutableLiveData<List<Item>>()
@@ -66,13 +68,27 @@ class QuejaViewModel: ViewModel() {
 
     fun actualizarFiltros(nuevosFiltros: FiltroData) {
         _filtros.value = nuevosFiltros
-        //filtrarItems()
+        filtrarItems()
     }
-
+    fun filtrarItems() {
+        val filtros = _filtros.value ?: return
+        val filtered = originalItems.filter { item ->
+            // Filtrar código (contiene)
+            val codigoOk = filtros.codigo.isBlank() || item.codigo.contains(filtros.codigo, true)
+            // Filtrar sede ("Todos" ignora)
+            val sedeOk = filtros.sede == "Todos" || item.sede == filtros.sede
+            // Filtrar tipo
+            val tipoOk = filtros.tipo == "Todos" || item.tipo_de_acompanamiento == filtros.tipo
+            // Filtrar facultad
+            val facOk = filtros.facultad == "Todos" || item.facultad == filtros.facultad
+            codigoOk && sedeOk && tipoOk && facOk
+        }
+        _items.postValue(filtered)
+    }
     fun cargarItems() {
         viewModelScope.launch(Dispatchers.IO) {
             try {
-                val url = URL("http://192.168.0.3:8000/api/quejas/")
+                val url = URL("http://192.168.0.30:8000/api/quejas/")
                 val connection = url.openConnection() as HttpURLConnection
                 connection.requestMethod = "GET"
                 connection.connectTimeout = 5000
@@ -109,7 +125,7 @@ class QuejaViewModel: ViewModel() {
                         )
                         lista.add(item)
                     }
-
+                    originalItems = lista
                     _items.postValue(lista)
                 } else {
                     _error.postValue("Error de conexión: $responseCode")

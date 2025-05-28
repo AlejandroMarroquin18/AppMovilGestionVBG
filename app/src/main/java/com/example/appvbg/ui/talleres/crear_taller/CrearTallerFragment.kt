@@ -19,15 +19,14 @@ import java.net.URL
 import java.util.Calendar
 import android.app.DatePickerDialog
 import android.app.TimePickerDialog
-
+import android. util. Log
 
 import android.widget.Toast
 import androidx.lifecycle.lifecycleScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-
-
+import org.json.JSONArray
 
 
 class CrearTallerFragment: Fragment(R.layout.fragment_crear_taller) {
@@ -43,48 +42,25 @@ class CrearTallerFragment: Fragment(R.layout.fragment_crear_taller) {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        val view = inflater.inflate(R.layout.fragment_crear_taller, container, false)
-
+    ): View {
         _binding = FragmentCrearTallerBinding.inflate(inflater, container, false)
-        val modalidades = listOf("Presencial", "Virtual")
 
-        editModalidad = view.findViewById(R.id.editModalidad)
-
+        val modalidades = listOf("presencial", "virtual")
+        editModalidad = binding.editModalidad
         editModalidad.adapter = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_dropdown_item, modalidades)
 
-
         return binding.root
-
     }
+
+
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val textViewFecha = view.findViewById<TextView>(R.id.textViewFecha)
-        val textViewHoraInicio = view.findViewById<TextView>(R.id.horaInicioTallerTextView)
-        val textViewHoraFinalizacion = view.findViewById<TextView>(R.id.textViewHoraFinalizacion)
-        val btnCrear = view.findViewById<TextView>(R.id.btnCrear)
-        val btnReiniciar = view.findViewById<TextView>(R.id.btnReiniciar)
 
-        textViewFecha.setOnClickListener {
-            val calendar = Calendar.getInstance()
-            val year = calendar.get(Calendar.YEAR)
-            val month = calendar.get(Calendar.MONTH)
-            val day = calendar.get(Calendar.DAY_OF_MONTH)
 
-            val datePicker = DatePickerDialog(
-                requireContext(),
-                { _, selectedYear, selectedMonth, selectedDay ->
-
-                    val fecha = String.format("%04d-%02d-%02d", selectedYear, selectedMonth + 1, selectedDay)
-                    textViewFecha.text = fecha
-                },
-                year, month, day
-            )
-            datePicker.show()
-        }
-
-        textViewHoraInicio.setOnClickListener {
+        binding.textViewHoraInicio.setOnClickListener {
+            // ...
             val calendar = Calendar.getInstance()
             val hour = calendar.get(Calendar.HOUR_OF_DAY)
             val minute = calendar.get(Calendar.MINUTE)
@@ -93,14 +69,15 @@ class CrearTallerFragment: Fragment(R.layout.fragment_crear_taller) {
                 requireContext(),
                 { _, selectedHour, selectedMinute ->
                     val hora = String.format("%02d:%02d", selectedHour, selectedMinute)
-                    textViewHoraInicio.text = hora
+                    binding.textViewHoraInicio.text = hora
                 },
                 hour, minute, true
             )
             timePicker.show()
         }
 
-        textViewHoraFinalizacion.setOnClickListener {
+        binding.textViewHoraFinalizacion.setOnClickListener {
+            // ...
             val calendar = Calendar.getInstance()
             val hour = calendar.get(Calendar.HOUR_OF_DAY)
             val minute = calendar.get(Calendar.MINUTE)
@@ -109,36 +86,40 @@ class CrearTallerFragment: Fragment(R.layout.fragment_crear_taller) {
                 requireContext(),
                 { _, selectedHour, selectedMinute ->
                     val hora = String.format("%02d:%02d", selectedHour, selectedMinute)
-                    textViewHoraFinalizacion.text = hora
+                    binding.textViewHoraFinalizacion.text = hora
                 },
                 hour, minute, true
             )
             timePicker.show()
         }
-        btnCrear.setOnClickListener {
+
+        binding.btnCrear.setOnClickListener {
             val jsonData = buildJSON()
-            //val response = enviarWorkshopJson("http://127.0.0.1:8000/api/talleres/", json)
             lifecycleScope.launch {
                 val respuesta = withContext(Dispatchers.IO) {
-                    enviarWorkshopJson("http://127.0.0.1:8000/api/talleres/", jsonData)
+                    enviarWorkshopJson("http://192.168.0.32:8000/api/talleres/", jsonData)
                 }
-
                 Toast.makeText(requireContext(), respuesta, Toast.LENGTH_LONG).show()
                 clearFields()
             }
         }
 
-        btnReiniciar.setOnClickListener {
+        binding.btnReiniciar.setOnClickListener {
             clearFields()
         }
-
-
     }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
+
+
     fun clearFields() {
         binding.editNombre.text.clear()
-        binding.textViewFecha.text = ""
-        binding.textViewHoraInicio.text = ""
-        binding.textViewHoraFinalizacion.text = ""
+        binding.textViewFecha.text = "seleccionar Fecha"
+        binding.textViewHoraInicio.text = "Seleccionar hora"
+        binding.textViewHoraFinalizacion.text = "seleccionar hora"
         binding.editUbicacion.text.clear()
         editModalidad.setSelection(0)
         binding.editCupos.text.clear()
@@ -153,11 +134,21 @@ class CrearTallerFragment: Fragment(R.layout.fragment_crear_taller) {
         json.put("start_time", binding.textViewHoraInicio.text.toString())
         json.put("end_time", binding.textViewHoraFinalizacion.text.toString())
         json.put("location", binding.editUbicacion.text.toString())
-        json.put("modality", editModalidad.selectedItem as String)
-        json.put("slots", binding.editCupos.text.toString())
-        json.put("facilitators", binding.editTallerista.text.toString())
-        json.put("details", binding.editDetalles.text.toString())
 
+
+
+
+        //json.put("modality", editModalidad.selectedItem as String)
+        json.put("slots", binding.editCupos.text.toString())
+        //val facilitatorsArray = JSONArray().put(1)  // idDelTallerista debe ser un Int
+        //json.put("facilitators", facilitatorsArray)
+        json.put("details", binding.editDetalles.text.toString())
+        json.put("participants", JSONArray())
+
+
+// Facilitators (debe ser un ID válido)
+        val facilitatorsArray = JSONArray().put(1)
+        json.put("facilitators", facilitatorsArray)
 
         return json;
 
@@ -189,6 +180,7 @@ class CrearTallerFragment: Fragment(R.layout.fragment_crear_taller) {
             }
 
             val response = inputStream.bufferedReader().use { it.readText() }
+            Log.e("WorkshopError", response)
             conn.disconnect()
 
             return response

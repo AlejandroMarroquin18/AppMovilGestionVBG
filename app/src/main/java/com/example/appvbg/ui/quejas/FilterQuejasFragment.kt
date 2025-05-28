@@ -1,9 +1,11 @@
 package com.example.appvbg.ui.quejas
 
 import android.os.Bundle
+import android.text.Editable
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.EditText
 import android.widget.ImageButton
@@ -12,6 +14,7 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.appvbg.R
+import android.text.TextWatcher
 
 class FilterQuejasFragment : Fragment(R.layout.fragment_filter_quejas) {
 
@@ -22,21 +25,17 @@ class FilterQuejasFragment : Fragment(R.layout.fragment_filter_quejas) {
     private lateinit var searchEditText: EditText
     private lateinit var searchButton: ImageButton
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        // Inflar el layout del fragmento
-        val view = inflater.inflate(R.layout.fragment_filter_quejas, container, false)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
-        // Inicializar vistas usando el "view"
+        viewModel = ViewModelProvider(requireParentFragment())[QuejaViewModel::class.java]
+
         sedeSpinner = view.findViewById(R.id.sedeQuejaSpinner)
         tipoSpinner = view.findViewById(R.id.tipoQuejaSpinner)
         facultadSpinner = view.findViewById(R.id.facultadQuejaSpinner)
         searchEditText = view.findViewById(R.id.searchQuejaText)
         searchButton = view.findViewById(R.id.searchQuejaButton)
 
-        // Configurar los spinners
         val sedes = listOf("Todos","Melendez","San Fernando","Santander de Quilichao","Buenaventura","Buga","Zarzal","Otra")
         val tipos = listOf("Todos", "Acompañamiento integral", "Acompañamiento psicológico")
         val facultades = listOf("Todos","Artes Integradas","Ciencias Naturales y Exactas","Ciencias de la Administración",
@@ -46,37 +45,39 @@ class FilterQuejasFragment : Fragment(R.layout.fragment_filter_quejas) {
         tipoSpinner.adapter = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_dropdown_item, tipos)
         facultadSpinner.adapter = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_dropdown_item, facultades)
 
-        // Acción del botón de búsqueda
-        searchButton.setOnClickListener {
-            val searchQuery = searchEditText.text.toString()
-            val sede = sedeSpinner.selectedItem.toString()
-            val tipo = tipoSpinner.selectedItem.toString()
-            val facultad = facultadSpinner.selectedItem.toString()
-
-            Toast.makeText(requireContext(), "Buscando: $searchQuery, $sede, $tipo, $facultad", Toast.LENGTH_SHORT).show()
+        // Un único listener para todos los spinners:
+        val spinnerListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(parent: AdapterView<*>, view: View?, position: Int, id: Long) {
+                applyFilters()
+            }
+            override fun onNothingSelected(parent: AdapterView<*>) { }
         }
+        sedeSpinner.onItemSelectedListener = spinnerListener
+        tipoSpinner.onItemSelectedListener = spinnerListener
+        facultadSpinner.onItemSelectedListener = spinnerListener
 
-        return view
-    }
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
+        // Además, si quieres filtrar sobre la marcha al escribir:
+        searchEditText.addTextChangedListener(object : TextWatcher {
+            override fun afterTextChanged(s: Editable?) { applyFilters() }
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) { }
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) { }
+        })
 
-        viewModel = ViewModelProvider(requireParentFragment())[QuejaViewModel::class.java]
-
-        // En el botón de búsqueda
+        // (Opcional) mantener el botón de búsqueda para el usuario:
         searchButton.setOnClickListener {
-            val filtros = FiltroData(
-                codigo = searchEditText.text.toString(),
-                sede = sedeSpinner.selectedItem.toString(),
-                tipo = tipoSpinner.selectedItem.toString(),
-                facultad = facultadSpinner.selectedItem.toString(),
-                id = 2
-            )
-
-
-            viewModel.actualizarFiltros(filtros)
+            applyFilters()
+            Toast.makeText(requireContext(), "Filtrando...", Toast.LENGTH_SHORT).show()
         }
     }
 
-
+    private fun applyFilters() {
+        val filtros = FiltroData(
+            id = 0, // si no lo usas puedes ignorar este campo
+            codigo = searchEditText.text.toString(),
+            sede = sedeSpinner.selectedItem.toString(),
+            tipo = tipoSpinner.selectedItem.toString(),
+            facultad = facultadSpinner.selectedItem.toString()
+        )
+        viewModel.actualizarFiltros(filtros)
+    }
 }

@@ -28,11 +28,10 @@
             android:textStyle="bold" />
 
 
-        <EditText
+        <Spinner
             android:id="@+id/sexoAfectadaEdit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:hint="Nombre"
             />
     
     <!--holaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa-->
@@ -94,11 +93,10 @@
             android:textStyle="bold" />
 
 
-        <EditText
+        <Spinner
             android:id="@+id/etniaAfectadaEdit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:hint="Nombre"
             />
     
         <TextView
@@ -109,11 +107,10 @@
             android:textStyle="bold" />
 
 
-        <EditText
+        <Spinner
             android:id="@+id/discapacidadAfectadaEdit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:hint="Nombre"
             />
   
         <TextView
@@ -139,11 +136,10 @@
             android:textStyle="bold" />
 
 
-        <EditText
+        <Spinner
             android:id="@+id/identidadGeneroAfectadaEdit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:hint="Nombre"
             />
    
         <TextView
@@ -154,11 +150,10 @@
             android:textStyle="bold" />
 
 
-        <EditText
+        <Spinner
             android:id="@+id/orientacionSexualAfectadaEdit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:hint="Nombre"
             />
    
 
@@ -172,11 +167,10 @@
             android:textStyle="bold" />
 
    
-        <EditText
+        <Spinner
             android:id="@+id/estamentoAfectadaEdit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:hint="Nombre"
             />
     
         <TextView
@@ -232,11 +226,10 @@
             android:textStyle="bold" />
 
 
-        <EditText
+        <Spinner
             android:id="@+id/facultadAfectadaEdit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:hint="Facultad"
             />
     
         <TextView
@@ -247,11 +240,10 @@
             android:textStyle="bold" />
 
         
-        <EditText
+        <Spinner
             android:id="@+id/sedeAfectadaEdit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:hint="Nombre"
             />
     
         <TextView
@@ -292,11 +284,10 @@
             android:textStyle="bold" />
 
        
-        <EditText
+        <Spinner
             android:id="@+id/tipoVBGAfectadaEdit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:hint="Nombre"
             />
     
 

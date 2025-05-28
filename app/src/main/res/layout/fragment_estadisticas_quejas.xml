@@ -1,28 +1,263 @@
-<?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
+
     <LinearLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="16dp">
+        android:padding="16dp"
+        android:gravity="center_horizontal">
 
-        <!-- Título del fragment -->
-        <TextView
-            android:id="@+id/tituloFragment"
-            android:layout_width="wrap_content"
+        <!-- Quejas recibidas -->
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Fragment Estadisticas quejas"
-            android:textSize="24sp"
-            android:textStyle="bold"
-            android:layout_gravity="center_horizontal"
-            android:paddingBottom="16dp"/>
+            android:background="#80BFFF"
+            android:orientation="vertical"
+            android:padding="16dp"
+            android:layout_marginBottom="8dp"
+            android:gravity="center">
 
-        <!-- El resto de tu layout -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Quejas recibidas en el último año"
+                android:textSize="18sp"
+                android:textColor="#000000" />
+
+            <TextView
+                android:id="@+id/quejasRecibidas"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="32"
+                android:textStyle="bold"
+                android:textSize="22sp"
+                android:textColor="#000000" />
+        </LinearLayout>
+
+        <!-- Detalle quejas recibidas -->
+        <GridLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:columnCount="3"
+            android:alignmentMode="alignMargins"
+            android:useDefaultMargins="true"
+            android:layout_marginBottom="16dp">
+
+            <!-- Estudiantes -->
+            <LinearLayout
+                android:orientation="vertical"
+                android:padding="12dp"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_columnWeight="1"
+                android:background="#80BFFF"
+                android:gravity="center">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Quejas de estudiantes"
+                    android:textColor="#000000" />
+
+                <TextView
+                    android:id="@+id/quejasEstudiantes"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="18"
+                    android:textStyle="bold"
+                    android:textColor="#000000" />
+            </LinearLayout>
+
+            <!-- Profesores -->
+            <LinearLayout
+                android:orientation="vertical"
+                android:padding="12dp"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_columnWeight="1"
+                android:background="#80BFFF"
+                android:gravity="center">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Quejas de profesores"
+                    android:textColor="#000000" />
+
+                <TextView
+                    android:id="@+id/quejasProfesores"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="10"
+                    android:textStyle="bold"
+                    android:textColor="#000000" />
+            </LinearLayout>
+
+            <!-- Funcionarios -->
+            <LinearLayout
+                android:orientation="vertical"
+                android:padding="12dp"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_columnWeight="1"
+                android:background="#80BFFF"
+                android:gravity="center">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Quejas de funcionarios"
+                    android:textColor="#000000" />
+
+                <TextView
+                    android:id="@+id/quejasFuncionarios"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="4"
+                    android:textStyle="bold"
+                    android:textColor="#000000" />
+            </LinearLayout>
+        </GridLayout>
+
+        <!-- Quejas remitidas -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#B2FFD9"
+            android:orientation="vertical"
+            android:padding="16dp"
+            android:layout_marginBottom="8dp"
+            android:gravity="center">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Quejas remitidas en el último año"
+                android:textSize="18sp"
+                android:textColor="#000000" />
+
+            <TextView
+                android:id="@+id/quejasRemitidas"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="32"
+                android:textStyle="bold"
+                android:textSize="22sp"
+                android:textColor="#000000" />
+        </LinearLayout>
+
+        <!-- Detalle quejas remitidas -->
+        <GridLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:columnCount="3"
+            android:alignmentMode="alignMargins"
+            android:useDefaultMargins="true">
+
+            <!-- Remisiones estudiantes -->
+            <LinearLayout
+                android:orientation="vertical"
+                android:padding="12dp"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_columnWeight="1"
+                android:background="#B2FFD9"
+                android:gravity="center">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Remisiones de estudiantes"
+                    android:textColor="#000000" />
+
+                <TextView
+                    android:id="@+id/remisionEstudiantes"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="18"
+                    android:textStyle="bold"
+                    android:textColor="#000000" />
+            </LinearLayout>
+
+            <!-- Remisiones profesores -->
+            <LinearLayout
+                android:orientation="vertical"
+                android:padding="12dp"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_columnWeight="1"
+                android:background="#B2FFD9"
+                android:gravity="center">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Remisiones de profesores"
+                    android:textColor="#000000" />
+
+                <TextView
+                    android:id="@+id/remisionProfesores"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="10"
+                    android:textStyle="bold"
+                    android:textColor="#000000" />
+            </LinearLayout>
+
+            <!-- Remisiones funcionarios -->
+            <LinearLayout
+                android:orientation="vertical"
+                android:padding="12dp"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_columnWeight="1"
+                android:background="#B2FFD9"
+                android:gravity="center">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Remisiones de funcionarios"
+                    android:textColor="#000000" />
+
+                <TextView
+                    android:id="@+id/remisionFuncionarios"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="4"
+                    android:textStyle="bold"
+                    android:textColor="#000000" />
+            </LinearLayout>
+        </GridLayout>
+
+        <include layout="@layout/grafico_queja_genero" />
+
+
+        <com.github.mikephil.charting.charts.BarChart
+            android:id="@+id/graficoQuejaSede"
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            android:layout_margin="16dp"
+            />
+
+        <com.github.mikephil.charting.charts.BarChart
+            android:id="@+id/graficoQuejaAnio"
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            android:layout_margin="16dp"
+            />
+
+        <com.github.mikephil.charting.charts.PieChart
+            android:id="@+id/graficoQuejaDepartamento"
+            android:layout_width="match_parent"
+            android:layout_height="300dp" />
+
+        <com.github.mikephil.charting.charts.PieChart
+            android:id="@+id/graficoQuejaXGenero"
+            android:layout_width="match_parent"
+            android:layout_height="300dp" />
 
     </LinearLayout>
-
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

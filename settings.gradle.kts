@@ -11,6 +11,7 @@ pluginManagement {
         gradlePluginPortal()
     }
 }
+
 dependencyResolutionManagement {
     repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
     repositories {
@@ -18,8 +19,14 @@ dependencyResolutionManagement {
         mavenCentral()
         maven { url = uri("https://jitpack.io") }
     }
+
+    // ✅ Use this only if you need to include another file.
+    versionCatalogs {
+        create("libs") {
+            //from(files("gradle/libs.versions.toml"))
+        }
+    }
 }
 
 rootProject.name = "AppVBG"
 include(":app")
- 

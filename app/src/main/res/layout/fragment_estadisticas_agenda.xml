@@ -1,28 +1,286 @@
-<?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
+
     <LinearLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="16dp">
+        android:padding="16dp"
+        android:gravity="center_horizontal">
 
-        <!-- Título del fragment -->
-        <TextView
-            android:id="@+id/tituloFragment"
-            android:layout_width="wrap_content"
+        <!-- Citas pedidas -->
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Fragment Estadisticas Agenda"
-            android:textSize="24sp"
-            android:textStyle="bold"
-            android:layout_gravity="center_horizontal"
-            android:paddingBottom="16dp"/>
+            android:background="#80BFFF"
+            android:orientation="vertical"
+            android:padding="16dp"
+            android:layout_marginBottom="8dp"
+            android:gravity="center">
 
-        <!-- El resto de tu layout -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Citas pedidas en el último año"
+                android:textSize="18sp"
+                android:textColor="#000000" />
+
+            <TextView
+                android:id="@+id/citasPedidas"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0"
+                android:textStyle="bold"
+                android:textSize="22sp"
+                android:textColor="#000000" />
+        </LinearLayout>
+
+        <!-- Citas pedidas por tipo -->
+        <GridLayout
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:columnCount="3"
+            android:rowCount="1"
+            android:alignmentMode="alignMargins"
+            android:useDefaultMargins="true"
+            android:layout_marginBottom="16dp">
+
+            <!-- Estudiantes -->
+            <LinearLayout
+                android:orientation="vertical"
+                android:padding="12dp"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_columnWeight="1"
+                android:background="#80BFFF"
+                android:gravity="center">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Citas de estudiantes"
+                    android:textColor="#000000" />
+
+                <TextView
+                    android:id="@+id/citasEstudiantes"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="0"
+                    android:textStyle="bold"
+                    android:textColor="#000000" />
+            </LinearLayout>
+
+            <!-- Profesores -->
+            <LinearLayout
+                android:orientation="vertical"
+                android:padding="12dp"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_columnWeight="1"
+                android:background="#80BFFF"
+                android:gravity="center">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Citas de profesores"
+                    android:textColor="#000000" />
+
+                <TextView
+                    android:id="@+id/citasProfesores"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="0"
+                    android:textStyle="bold"
+                    android:textColor="#000000" />
+            </LinearLayout>
+
+            <!-- Funcionarios -->
+            <LinearLayout
+                android:orientation="vertical"
+                android:padding="12dp"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_columnWeight="1"
+                android:background="#80BFFF"
+                android:gravity="center">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Citas de funcionarios"
+                    android:textColor="#000000" />
+
+                <TextView
+                    android:id="@+id/citasFuncionarios"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="0"
+                    android:textStyle="bold"
+                    android:textColor="#000000" />
+            </LinearLayout>
+        </GridLayout>
+
+        <!-- Citas atendidas -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#B2FFD9"
+            android:orientation="vertical"
+            android:padding="16dp"
+            android:layout_marginBottom="8dp"
+            android:gravity="center">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Citas atendidas en el último año"
+                android:textSize="18sp"
+                android:textColor="#000000" />
+
+            <TextView
+                android:id="@+id/citasAtendidas"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0"
+                android:textStyle="bold"
+                android:textSize="22sp"
+                android:textColor="#000000" />
+        </LinearLayout>
+
+        <!-- Citas atendidas por tipo -->
+        <GridLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:columnCount="3"
+            android:rowCount="1"
+            android:alignmentMode="alignMargins"
+            android:useDefaultMargins="true">
+
+            <!-- Estudiantes -->
+            <LinearLayout
+                android:orientation="vertical"
+                android:padding="12dp"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_columnWeight="1"
+                android:background="#B2FFD9"
+                android:gravity="center">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Citas de estudiantes"
+                    android:textColor="#000000" />
+
+                <TextView
+                    android:id="@+id/citasEstudiantesAtendidas"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="0"
+                    android:textStyle="bold"
+                    android:textColor="#000000" />
+            </LinearLayout>
+
+            <!-- Profesores -->
+            <LinearLayout
+                android:orientation="vertical"
+                android:padding="12dp"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_columnWeight="1"
+                android:background="#B2FFD9"
+                android:gravity="center">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Citas de profesores"
+                    android:textColor="#000000" />
+
+                <TextView
+                    android:id="@+id/citasProfesoresAtendidas"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="0"
+                    android:textStyle="bold"
+                    android:textColor="#000000" />
+            </LinearLayout>
+
+            <!-- Funcionarios -->
+            <LinearLayout
+                android:orientation="vertical"
+                android:padding="12dp"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_columnWeight="1"
+                android:background="#B2FFD9"
+                android:gravity="center">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Citas de funcionarios"
+                    android:textColor="#000000" />
+
+                <TextView
+                    android:id="@+id/citasFuncionariosAtendidas"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="0"
+                    android:textStyle="bold"
+                    android:textColor="#000000" />
+            </LinearLayout>
+        </GridLayout>
+
+        <com.github.mikephil.charting.charts.BarChart
+            android:id="@+id/graficoCitasAnio"
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            android:layout_margin="16dp"
+            />
+
+        <com.github.mikephil.charting.charts.BarChart
+            android:id="@+id/graficoCitasCumplimiento"
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            android:layout_margin="16dp"
+            />
+
+        <com.github.mikephil.charting.charts.BarChart
+            android:id="@+id/graficoCitasFacultad"
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            android:layout_margin="16dp"
+            />
+
+
+        <com.github.mikephil.charting.charts.PieChart
+            android:id="@+id/graficoCitasDepartamento"
+            android:layout_width="match_parent"
+            android:layout_height="300dp" />
+
+        <com.github.mikephil.charting.charts.PieChart
+            android:id="@+id/graficoCitasRazones"
+            android:layout_width="match_parent"
+            android:layout_height="300dp" />
+
+
+        <com.github.mikephil.charting.charts.BarChart
+            android:id="@+id/graficoCitasFrecuencia"
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            android:layout_margin="16dp"
+            />
+
+        <com.github.mikephil.charting.charts.PieChart
+            android:id="@+id/graficoCitasGenero"
+            android:layout_width="match_parent"
+            android:layout_height="300dp" />
+
+
 
     </LinearLayout>
-
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

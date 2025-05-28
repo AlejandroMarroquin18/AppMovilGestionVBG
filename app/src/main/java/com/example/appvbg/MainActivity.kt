@@ -11,7 +11,10 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.appcompat.app.AppCompatActivity
+import androidx.navigation.fragment.findNavController
 import com.example.appvbg.databinding.ActivityMainBinding
+import com.example.appvbg.ui.quejas.QuejasFragmentDirections
+import com.example.appvbg.ui.agenda.crear_cita.CrearCita
 
 class MainActivity : AppCompatActivity() {
 
@@ -26,14 +29,47 @@ class MainActivity : AppCompatActivity() {
 
         setSupportActionBar(binding.appBarMain.toolbar)
 
-        binding.appBarMain.fab.setOnClickListener { view ->
-            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                .setAction("Action", null)
-                .setAnchorView(R.id.fab).show()
-        }
+
         val drawerLayout: DrawerLayout = binding.drawerLayout
         val navView: NavigationView = binding.navView
         val navController = findNavController(R.id.nav_host_fragment_content_main)
+
+
+
+        // Detectar el fragmento activo y cambiar el FAB según corresponda
+        navController.addOnDestinationChangedListener { _, destination, _ ->
+            val fab = binding.appBarMain.fab
+
+            when (destination.id) {
+                R.id.quejasFragment -> {
+                    //fab.setImageResource(R.drawable.ic_add)
+                    fab.show()
+                    fab.setOnClickListener {
+                        // Acción para quejasFragment
+                        findNavController(R.id.nav_host_fragment_content_main)
+                            .navigate(R.id.action_quejasFragment_to_crearQueja)
+                        //Snackbar.make(fab, "Añadir queja", Snackbar.LENGTH_SHORT).show()
+                    }
+                }
+
+                R.id.agendaFragment -> {
+                    //fab.setImageResource(R.drawable.ic_event)
+                    fab.show()
+                    fab.setOnClickListener {
+                        // Acción para agendaFragment
+                        val bottomSheet = CrearCita()
+                        bottomSheet.show(supportFragmentManager, bottomSheet.tag)
+                    }
+                }
+
+                else -> {
+                    fab.hide()
+                }
+            }
+        }
+
+
+
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         appBarConfiguration = AppBarConfiguration(
