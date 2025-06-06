@@ -47,7 +47,7 @@ Thumbs.db
 .gradle
 /local.properties
 /.maven/
-/gradle/
+
 /gradlew
 /gradlew.bat
 

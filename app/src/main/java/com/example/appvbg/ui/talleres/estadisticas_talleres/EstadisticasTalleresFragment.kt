@@ -17,6 +17,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import com.example.appvbg.R
 
 class EstadisticasTalleresFragment: Fragment(R.layout.fragment_estadisticas_talleres) {
@@ -24,6 +25,7 @@ class EstadisticasTalleresFragment: Fragment(R.layout.fragment_estadisticas_tall
     private lateinit var modalidadesChart:BarChart
     private lateinit var generoChart: PieChart
     private lateinit var departamentoChart: BarChart
+    private val viewModel: EstadisticasTalleresViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -36,9 +38,12 @@ class EstadisticasTalleresFragment: Fragment(R.layout.fragment_estadisticas_tall
         generoChart = view.findViewById(R.id.graficoTalleresGenero)
         departamentoChart = view.findViewById(R.id.graficoTalleresDepartamento)
 
+
+
         setUpModalidades()
         setUpGenero()
         setUpDepartamento()
+
 
         return view
     }
@@ -129,5 +134,88 @@ class EstadisticasTalleresFragment: Fragment(R.layout.fragment_estadisticas_tall
 
         departamentoChart.invalidate()
     }
+
+
+    /**
+    private fun setUpModalidades(valores: List<Float>) {
+        val entries = valores.mapIndexed { index, value -> BarEntry(index.toFloat(), value) }
+        val labels = listOf("Talleres Virtuales", "Talleres Presenciales")
+
+        val dataSet = BarDataSet(entries, "Distribución de talleres virtuales vs presenciales")
+        dataSet.color = resources.getColor(R.color.red, null)
+
+        val barData = BarData(dataSet)
+        barData.barWidth = 0.9f
+
+        modalidadesChart.apply {
+            data = barData
+            setFitBars(true)
+            description.isEnabled = false
+            animateY(1000)
+            xAxis.apply {
+                valueFormatter = IndexAxisValueFormatter(labels)
+                position = XAxis.XAxisPosition.BOTTOM
+                setDrawGridLines(false)
+                granularity = 1f
+                labelCount = labels.size
+            }
+            axisRight.isEnabled = false
+            invalidate()
+        }
+    }
+
+    private fun setUpGenero(valores: List<Float>) {
+        val entries = listOf(
+            PieEntry(valores[0], "Masculino"),
+            PieEntry(valores[1], "Femenino")
+        )
+
+        val dataSet = PieDataSet(entries, "Distribución de género")
+        dataSet.colors = ColorTemplate.MATERIAL_COLORS.toList()
+
+        val pieData = PieData(dataSet).apply {
+            setValueTextSize(12f)
+            setValueTextColor(Color.WHITE)
+        }
+
+        generoChart.apply {
+            data = pieData
+            setUsePercentValues(true)
+            description.isEnabled = false
+            centerText = "Distribución de género"
+            setCenterTextSize(18f)
+            animateY(1000)
+            invalidate()
+        }
+    }
+
+    private fun setUpDepartamento(valores: List<Float>) {
+        val entries = valores.mapIndexed { index, value -> BarEntry(index.toFloat(), value) }
+        val labels = listOf("Talleres Virtuales", "Talleres Presenciales")
+
+        val dataSet = BarDataSet(entries, "Distribución por departamento")
+        dataSet.color = resources.getColor(R.color.red, null)
+
+        val barData = BarData(dataSet)
+        barData.barWidth = 0.9f
+
+        departamentoChart.apply {
+            data = barData
+            setFitBars(true)
+            description.isEnabled = false
+            animateY(1000)
+            xAxis.apply {
+                valueFormatter = IndexAxisValueFormatter(labels)
+                position = XAxis.XAxisPosition.BOTTOM
+                setDrawGridLines(false)
+                granularity = 1f
+                labelCount = labels.size
+            }
+            axisRight.isEnabled = false
+            invalidate()
+        }
+    }*/
+
+
 
 }
