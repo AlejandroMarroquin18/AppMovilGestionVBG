@@ -7,6 +7,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
 import androidx.lifecycle.*
+import com.example.appvbg.APIConstant
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import org.json.JSONArray
@@ -88,7 +89,7 @@ class QuejaViewModel: ViewModel() {
     fun cargarItems() {
         viewModelScope.launch(Dispatchers.IO) {
             try {
-                val url = URL("http://192.168.0.30:8000/api/quejas/")
+                val url = URL(APIConstant.BACKEND_URL + "api/quejas/")
                 val connection = url.openConnection() as HttpURLConnection
                 connection.requestMethod = "GET"
                 connection.connectTimeout = 5000

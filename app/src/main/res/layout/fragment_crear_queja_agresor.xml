@@ -1,210 +1,189 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout   xmlns:android="http://schemas.android.com/apk/res/android"
+
+        <LinearLayout
+            xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    >
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:gravity="center_horizontal"
+            android:paddingBottom="16dp">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            
-            android:text="Nombre"
-            android:textStyle="bold" />
+                <!-- Nombre -->
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:hint="Nombre">
 
-       
-        <EditText
-            android:id="@+id/nombreAgresorEdit"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:hint="Nombre"
-            />
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/nombreAgresorEdit"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"/>
+                </com.google.android.material.textfield.TextInputLayout>
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            
-            android:text="Sexo"
-            android:textStyle="bold" />
+                <!-- Sexo -->
+                <TextView
+tools:viewBindingIgnore="true"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="Sexo"
+                    android:textStyle="bold"
+                    android:layout_marginTop="12dp"/>
+                <Spinner
+                    android:id="@+id/sexoAgresorEdit"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"/>
 
-   
-        <Spinner
-            android:id="@+id/sexoAgresorEdit"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            />
+                <!-- Edad -->
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:hint="Edad"
+                    android:layout_marginTop="12dp">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            
-            android:text="Edad"
-            android:textStyle="bold"/>
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/edadAgresorEdit"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:inputType="number" />
+                </com.google.android.material.textfield.TextInputLayout>
 
+                <!-- Condición étnico racial -->
+                <TextView
+tools:viewBindingIgnore="true" android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="Condición étnico racial"
+                    android:textStyle="bold"
+                    android:layout_marginTop="12dp"/>
+                <Spinner
+                    android:id="@+id/etniaAgresorEdit"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"/>
 
-        <EditText
-            android:id="@+id/edadAgresorEdit"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:hint="Nombre"
-            />
+                <!-- Discapacidad -->
+                <TextView
+tools:viewBindingIgnore="true" android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="¿Tiene algún tipo de discapacidad?"
+                    android:textStyle="bold"
+                    android:layout_marginTop="12dp"/>
+                <Spinner
+                    android:id="@+id/discapacidadAgresorEdit"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"/>
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            
-            android:text="Condición étnico racial"
-            android:textStyle="bold" />
+                <!-- Tipo de discapacidad -->
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:hint="Tipo de discapacidad"
+                    android:layout_marginTop="12dp">
 
-        <Spinner
-            android:id="@+id/etniaAgresorEdit"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            />
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/tipoDiscapacidadAgresorEdit"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"/>
+                </com.google.android.material.textfield.TextInputLayout>
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            
-            android:text="¿Tiene algún tipo de discapacidad?"
-            android:textStyle="bold" />
+                <!-- Identidad de género -->
+                <TextView
+tools:viewBindingIgnore="true" android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="Identidad de género"
+                    android:textStyle="bold"
+                    android:layout_marginTop="12dp"/>
+                <Spinner
+                    android:id="@+id/identidadGeneroAgresorEdit"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"/>
 
-        <Spinner
-            android:id="@+id/discapacidadAgresorEdit"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            />
+                <!-- Orientación sexual -->
+                <TextView
+tools:viewBindingIgnore="true" android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="Orientación sexual"
+                    android:textStyle="bold"
+                    android:layout_marginTop="12dp"/>
+                <Spinner
+                    android:id="@+id/orientacionSexualAgresorEdit"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"/>
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            
-            android:text="Tipo de discapacidad"
-            android:textStyle="bold" />
+                <!-- Estamento -->
+                <TextView
+tools:viewBindingIgnore="true" android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="Estamento"
+                    android:textStyle="bold"
+                    android:layout_marginTop="12dp"/>
+                <Spinner
+                    android:id="@+id/estamentoAgresorEdit"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"/>
 
-    
-        <EditText
-            android:id="@+id/tipoDiscapacidadAgresorEdit"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:hint="Nombre"
-            />
+                <!-- Vicerrectoría adscrita -->
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:hint="Vicerrectoría adscrita"
+                    android:layout_marginTop="12dp">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            
-            android:text="Identidad de género"
-            android:textStyle="bold" />
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/viceAgresorEdit"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"/>
+                </com.google.android.material.textfield.TextInputLayout>
 
-        <Spinner
-            android:id="@+id/identidadGeneroAgresorEdit"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            />
+                <!-- Dependencia -->
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:hint="Dependencia"
+                    android:layout_marginTop="12dp">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            
-            android:text="Orientación sexual"
-            android:textStyle="bold" />
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/dependenciaAgresorEdit"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"/>
+                </com.google.android.material.textfield.TextInputLayout>
 
-  
-        <Spinner
-            android:id="@+id/orientacionSexualAgresorEdit"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            />
+                <!-- Programa académico -->
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:hint="Programa académico"
+                    android:layout_marginTop="12dp">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            
-            android:text="Estamento"
-            android:textStyle="bold" />
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/programaAgresorEdit"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"/>
+                </com.google.android.material.textfield.TextInputLayout>
 
-   
-        <Spinner
-            android:id="@+id/estamentoAgresorEdit"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            />
+                <!-- Facultad -->
+                <TextView
+tools:viewBindingIgnore="true" android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="Facultad"
+                    android:textStyle="bold"
+                    android:layout_marginTop="12dp"/>
+                <Spinner
+                    android:id="@+id/facultadAgresorEdit"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"/>
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            
-            android:text="Vicerrectoría adscrita"
-            android:textStyle="bold" />
+                <!-- Sede -->
+                <TextView
+tools:viewBindingIgnore="true" android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="Sede"
+                    android:textStyle="bold"
+                    android:layout_marginTop="12dp"/>
+                <Spinner
+                    android:id="@+id/sedeAgresorEdit"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"/>
 
-     
-        <EditText
-            android:id="@+id/viceAgresorEdit"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:hint="Nombre"
-            />
+        </LinearLayout>
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            
-            android:text="Dependencia"
-            android:textStyle="bold" />
-
-  
-        <EditText
-            android:id="@+id/dependenciaAgresorEdit"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:hint="Nombre"
-            />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            
-            android:text="Programa académico"
-            android:textStyle="bold" />
-
-   
-        <EditText
-            android:id="@+id/programaAgresorEdit"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:hint="Nombre"
-            />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            
-            android:text="Facultad"
-            android:textStyle="bold" />
-
-  
-        <Spinner
-            android:id="@+id/facultadAgresorEdit"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            
-            android:text="Sede"
-            android:textStyle="bold" />
-
-
-        <Spinner
-            android:id="@+id/sedeAgresorEdit"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            />
-
-    <!--holaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa-->
-
-
-</LinearLayout>

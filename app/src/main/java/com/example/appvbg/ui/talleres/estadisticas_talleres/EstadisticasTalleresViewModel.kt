@@ -11,6 +11,7 @@ import java.net.HttpURLConnection
 import java.net.URL
 import kotlinx.coroutines.launch
 import androidx.lifecycle.viewModelScope
+import com.example.appvbg.APIConstant
 
 
 class EstadisticasTalleresViewModel : ViewModel() {
@@ -27,7 +28,7 @@ class EstadisticasTalleresViewModel : ViewModel() {
     val estadisticas: LiveData<EstadisticasTalleres> = _estadisticas
 
     init {
-        fetchEstadisticas("https://tudominio.com/api")
+        fetchEstadisticas(APIConstant.BACKEND_URL)
     }
 
 

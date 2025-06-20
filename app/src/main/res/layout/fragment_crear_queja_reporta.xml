@@ -1,189 +1,223 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+
+
+        <LinearLayout
+            xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            >
 
+                <!-- Fecha de recepción -->
+                <TextView
+tools:viewBindingIgnore="true"
+                    android:text="Fecha de recepción"
+                    android:textStyle="bold"
+                    android:layout_marginTop="8dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Fecha de recepcion"
-            android:textStyle="bold" />
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/fechaReportaEdit"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:hint="Fecha" />
+                </com.google.android.material.textfield.TextInputLayout>
 
+                <!-- Nombre -->
+                <TextView
+tools:viewBindingIgnore="true"
+                    android:text="Nombre"
+                    android:textStyle="bold"
+                    android:layout_marginTop="12dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
 
-        <EditText android:id="@+id/fechaReportaEdit"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:hint="Fecha"
-            />
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/nombreReportaEdit"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:hint="Nombre" />
+                </com.google.android.material.textfield.TextInputLayout>
 
+                <!-- Sexo -->
+                <TextView
+tools:viewBindingIgnore="true"
+                    android:text="Sexo"
+                    android:textStyle="bold"
+                    android:layout_marginTop="12dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
 
+                <Spinner
+                    android:id="@+id/sexoReportaEdit"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Nombre"
-            android:textStyle="bold" />
+                <!-- Edad -->
+                <TextView
+tools:viewBindingIgnore="true"
+                    android:text="Edad"
+                    android:textStyle="bold"
+                    android:layout_marginTop="12dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
 
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/edadReportaEdit"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:hint="Edad" />
+                </com.google.android.material.textfield.TextInputLayout>
 
-        <EditText android:id="@+id/nombreReportaEdit"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:hint="Nombre"
-            />
+                <!-- Estamento -->
+                <TextView
+tools:viewBindingIgnore="true"
+                    android:text="Estamento"
+                    android:textStyle="bold"
+                    android:layout_marginTop="12dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
 
-    <!--holaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa-->
-    <!-- Nombre -->
+                <Spinner
+                    android:id="@+id/estamentoReportaEdit"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Sexo"
-            android:textStyle="bold" />
+                <!-- Vicerrectoría adscrita -->
+                <TextView
+tools:viewBindingIgnore="true"
+                    android:text="Vicerrectoría adscrita"
+                    android:textStyle="bold"
+                    android:layout_marginTop="12dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
 
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/viceReportaEdit"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:hint="Vicerrectoría" />
+                </com.google.android.material.textfield.TextInputLayout>
 
-        <Spinner android:id="@+id/sexoReportaEdit"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            />
+                <!-- Dependencia -->
+                <TextView
+tools:viewBindingIgnore="true"
+                    android:text="Dependencia"
+                    android:textStyle="bold"
+                    android:layout_marginTop="12dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
 
-    <!--holaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa-->
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/dependenciaReportaEdit"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:hint="Dependencia" />
+                </com.google.android.material.textfield.TextInputLayout>
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Edad"
-            android:textStyle="bold" />
+                <!-- Programa académico -->
+                <TextView
+tools:viewBindingIgnore="true"
+                    android:text="Programa académico"
+                    android:textStyle="bold"
+                    android:layout_marginTop="12dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
 
-        
-        <EditText android:id="@+id/edadReportaEdit"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:hint="Nombre"
-            />
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/programaReportaEdit"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:hint="Programa académico" />
+                </com.google.android.material.textfield.TextInputLayout>
 
-    <!--holaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa--><!-- Nombre -->
+                <!-- Facultad -->
+                <TextView
+tools:viewBindingIgnore="true"
+                    android:text="Facultad"
+                    android:textStyle="bold"
+                    android:layout_marginTop="12dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Estamento"
-            android:textStyle="bold" />
+                <Spinner
+                    android:id="@+id/facultadReportaEdit"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
 
-        
-        <Spinner android:id="@+id/estamentoReportaEdit"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            />
+                <!-- Sede -->
+                <TextView
+tools:viewBindingIgnore="true"
+                    android:text="Sede"
+                    android:textStyle="bold"
+                    android:layout_marginTop="12dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
 
+                <Spinner
+                    android:id="@+id/sedeReportaEdit"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Vicerrectoría adscrita"
-            android:textStyle="bold" />
+                <!-- Celular -->
+                <TextView
+tools:viewBindingIgnore="true"
+                    android:text="Celular"
+                    android:textStyle="bold"
+                    android:layout_marginTop="12dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
 
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/celularReportaEdit"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:hint="Celular" />
+                </com.google.android.material.textfield.TextInputLayout>
 
-        <EditText android:id="@+id/viceReportaEdit"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:hint="Nombre"
-            />
+                <!-- Correo electrónico -->
+                <TextView
+tools:viewBindingIgnore="true"
+                    android:text="Correo electrónico"
+                    android:textStyle="bold"
+                    android:layout_marginTop="12dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Dependencia"
-            android:textStyle="bold" />
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/correoReportaEdit"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:hint="Correo electrónico"
+                            android:inputType="textEmailAddress" />
+                </com.google.android.material.textfield.TextInputLayout>
 
-        
-        <EditText android:id="@+id/dependenciaReportaEdit"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:hint="Nombre"
-            />
+        </LinearLayout>
 
-    <!--holaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa-->
-    <!-- Nombre -->
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Programa académico"
-            android:textStyle="bold" />
-
-        
-        <EditText android:id="@+id/programaReportaEdit"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:hint="Nombre"
-            />
-
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Facultad"
-            android:textStyle="bold" />
-
-        
-        <Spinner android:id="@+id/facultadReportaEdit"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            />
-
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Sede"
-            android:textStyle="bold" />
-
-
-        <Spinner android:id="@+id/sedeReportaEdit"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Celular"
-            android:textStyle="bold" />
-
-        
-        <EditText android:id="@+id/celularReportaEdit"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:hint="Nombre"
-            />
-
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Correo electrónico"
-            android:textStyle="bold" />
-
-
-        <EditText android:id="@+id/correoReportaEdit"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:hint="Nombre"
-            />
-
-</LinearLayout>

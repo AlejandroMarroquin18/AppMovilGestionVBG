@@ -11,6 +11,7 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import androidx.lifecycle.lifecycleScope
+import com.example.appvbg.APIConstant
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -75,7 +76,7 @@ class CrearCita : BottomSheetDialogFragment() {
             val jsonData = buildJSON()
             lifecycleScope.launch {
                 val respuesta = withContext(Dispatchers.IO) {
-                    enviarWorkshopJson("http://192.168.0.32:8000/api/talleres/", jsonData)
+                    enviarWorkshopJson(APIConstant.BACKEND_URL+ "http://192.168.0.32:8000/api/talleres/", jsonData)
                 }
                 Toast.makeText(requireContext(), "Cita creada", Toast.LENGTH_LONG).show()
                 clearFields()

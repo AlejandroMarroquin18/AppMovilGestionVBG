@@ -4,8 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:padding="16dp">
+    android:orientation="vertical">
 
 
     <LinearLayout
@@ -32,12 +31,23 @@
         android:id="@+id/titlesContainer"
         layout="@layout/calendar_day_titles_container" />
 
-    <com.kizitonwose.calendarview.CalendarView
-        android:id="@+id/calendarView"
+
+    <ScrollView
+        android:id="@+id/scrollContainer"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:cv_dayViewResource="@layout/calendar_day_view"
-        app:cv_orientation="vertical" />
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+        android:background="@android:color/white">
+
+        <com.example.appvbg.ui.agenda.GridTouchView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/gridTouchView" />
+    </ScrollView>
+
+
+
+
 
 
 

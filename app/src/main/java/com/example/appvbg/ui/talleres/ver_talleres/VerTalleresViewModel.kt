@@ -12,6 +12,7 @@ import java.io.BufferedReader
 import java.io.InputStreamReader
 import java.net.HttpURLConnection
 import java.net.URL
+import com.example.appvbg.APIConstant
 
 class VerTalleresViewModel: ViewModel()  {
     private val _filtros = MutableLiveData<FiltroData>()
@@ -91,7 +92,7 @@ class VerTalleresViewModel: ViewModel()  {
     fun cargarItems() {
         viewModelScope.launch(Dispatchers.IO) {
             try {
-                val url = URL("http://192.168.0.30:8000/api/talleres/")
+                val url = URL(APIConstant.BACKEND_URL+"api/talleres/")
                 val connection = url.openConnection() as HttpURLConnection
                 connection.requestMethod = "GET"
                 connection.connectTimeout = 5000

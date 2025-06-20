@@ -9,6 +9,7 @@ import com.example.appvbg.R
 import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.lifecycle.lifecycleScope
+import com.example.appvbg.APIConstant
 
 import com.example.appvbg.databinding.FragmentCrearQuejaBinding
 import kotlinx.coroutines.Dispatchers
@@ -66,6 +67,9 @@ class CrearQueja : Fragment(R.layout.fragment_crear_queja) {
         binding.includeReporta.sexoReportaEdit.adapter = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_dropdown_item, sexo)
         //binding.includeReporta.etniaReportaEdit.adapter = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_dropdown_item, condicion_etnica)
         binding.includeReporta.estamentoReportaEdit.adapter = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_dropdown_item, estamento)
+        binding.includeReporta.facultadReportaEdit.adapter = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_dropdown_item, facultades)
+        binding.includeReporta.sedeReportaEdit.adapter = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_dropdown_item, sedes)
+
 
         binding.includeAfectada.sedeAfectadaEdit.adapter = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_dropdown_item, sedes)
         binding.includeAfectada.facultadAfectadaEdit.adapter = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_dropdown_item, facultades)
@@ -76,8 +80,7 @@ class CrearQueja : Fragment(R.layout.fragment_crear_queja) {
         binding.includeAfectada.estamentoAfectadaEdit.adapter = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_dropdown_item, estamento)
         binding.includeAfectada.discapacidadAfectadaEdit.adapter = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_dropdown_item, sino)
         binding.includeAfectada.tipoVBGAfectadaEdit.adapter = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_dropdown_item, tipoVBG_opt)
-        binding.includeReporta.facultadReportaEdit.adapter = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_dropdown_item, facultades)
-        binding.includeReporta.sedeReportaEdit.adapter = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_dropdown_item, sedes)
+
 
 
 
@@ -114,7 +117,7 @@ class CrearQueja : Fragment(R.layout.fragment_crear_queja) {
             val jsonData = buildJSON()
             lifecycleScope.launch {
                 val respuesta = withContext(Dispatchers.IO) {
-                    enviarQuejaJson("http://192.168.0.32:8000/api/quejas/", jsonData)
+                    enviarQuejaJson(APIConstant.BACKEND_URL + "api/quejas/", jsonData)
                 }
                 //Toast.makeText(requireContext(), respuesta, Toast.LENGTH_LONG).show()
                 //clearFields()
@@ -170,7 +173,7 @@ class CrearQueja : Fragment(R.layout.fragment_crear_queja) {
 
         json.put("afectado_facultad", binding.includeAfectada.facultadAfectadaEdit.selectedItem as String)
 
-        json.put("afectado_sede", binding.includeAfectada.sedeAfectadaEdit.selectedItem as String)
+        //json.put("afectado_sede", binding.includeAfectada.sedeAfectadaEdit.selectedItem as String)
         json.put("afectado_celular", binding.includeAfectada.celularAfectadaEdit.text.toString())
         json.put("afectado_correo", binding.includeAfectada.correoAfectadaEdit.text.toString())
         json.put("afectado_tipo_vbg_os", binding.includeAfectada.tipoVBGAfectadaEdit.selectedItem as String)
