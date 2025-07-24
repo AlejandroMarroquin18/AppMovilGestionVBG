@@ -32,18 +32,13 @@
         layout="@layout/calendar_day_titles_container" />
 
 
-    <ScrollView
-        android:id="@+id/scrollContainer"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:fillViewport="true"
-        android:background="@android:color/white">
 
-        <com.example.appvbg.ui.agenda.GridTouchView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:id="@+id/gridTouchView" />
-    </ScrollView>
+
+        <com.example.appvbg.ui.agenda.estadisticas.CustomGRID
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/calendarGrid" />
+
 
 
 

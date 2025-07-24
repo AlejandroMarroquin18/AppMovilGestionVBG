@@ -13,8 +13,10 @@ import androidx.drawerlayout.widget.DrawerLayout
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.fragment.findNavController
 import com.example.appvbg.databinding.ActivityMainBinding
+import com.example.appvbg.ui.agenda.AgendaFragment
 import com.example.appvbg.ui.quejas.QuejasFragmentDirections
 import com.example.appvbg.ui.agenda.crear_cita.CrearCita
+import com.example.appvbg.ui.agenda.crear_cita.NewEvent
 
 class MainActivity : AppCompatActivity() {
 
@@ -55,6 +57,21 @@ class MainActivity : AppCompatActivity() {
                 R.id.agendaFragment -> {
                     //fab.setImageResource(R.drawable.ic_event)
                     fab.show()
+                    // Registrar el listener aquí
+                    supportFragmentManager.setFragmentResultListener("crearCitaRequestKey", this) { _, bundle ->
+                        val nuevoEvento = bundle.getParcelable<NewEvent>("nuevo_evento")
+                        if (nuevoEvento != null) {
+                            // Buscar el fragmento actual en el NavHost
+                            val currentFragment = supportFragmentManager
+                                .findFragmentById(R.id.nav_host_fragment_content_main)
+                                ?.childFragmentManager
+                                ?.fragments
+                                ?.firstOrNull() as? AgendaFragment
+
+                            currentFragment?.recibirNuevoEvento(nuevoEvento)
+                        }
+                    }
+
                     fab.setOnClickListener {
                         // Acción para agendaFragment
                         val bottomSheet = CrearCita()

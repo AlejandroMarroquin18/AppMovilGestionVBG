@@ -1,34 +1,30 @@
 package com.example.appvbg.ui.agenda
 
-import android.app.AlertDialog
+import AgendaViewModel
 import android.os.Bundle
-import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
-import android.widget.EditText
-import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
-import androidx.compose.ui.text.TextStyle
-import androidx.core.content.ContextCompat
+import androidx.navigation.fragment.findNavController
 import androidx.core.view.children
 import androidx.fragment.app.Fragment
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
+import androidx.fragment.app.viewModels
 import com.example.appvbg.R
 import com.example.appvbg.databinding.FragmentAgendaBinding
+import com.example.appvbg.ui.agenda.crear_cita.NewEvent
+
+import com.example.appvbg.ui.agenda.estadisticas.CustomGRID
+import com.example.appvbg.ui.agenda.estadisticas.Event
+import com.example.appvbg.ui.agenda.estadisticas.obtenerRangoSemanaActual
 import com.kizitonwose.calendarview.model.CalendarDay
-import com.kizitonwose.calendarview.model.DayOwner
-import com.kizitonwose.calendarview.ui.DayBinder
-import com.kizitonwose.calendarview.ui.ViewContainer
-import java.time.DayOfWeek
 import java.time.LocalDate
+import java.time.OffsetDateTime
 import java.time.YearMonth
-import java.time.format.DateTimeFormatter
-import java.util.*
+
 
 class AgendaFragment : Fragment() {
 
@@ -38,7 +34,7 @@ class AgendaFragment : Fragment() {
     private var selectedDate: LocalDate? = null
     private val eventMap = mutableMapOf<LocalDate, String>() // eventos simples
     private val calendarDayMap = mutableMapOf<LocalDate, CalendarDay>()
-
+    private val agendaViewModel: AgendaViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -71,6 +67,7 @@ class AgendaFragment : Fragment() {
         val firstDayOfWeek = java.time.DayOfWeek.MONDAY
 
         val startMonth = currentMonth.minusMonths(100) // Adjust as needed
+
         val endMonth = currentMonth.plusMonths(100) // Adjust as needed
 
 
@@ -98,22 +95,69 @@ class AgendaFragment : Fragment() {
 
 
 
-        //creacion del calendario
-        val gridTouchView = view.findViewById<GridTouchView>(R.id.gridTouchView)
 
-        // Agrega un evento en la columna 3, entre las filas 20 y 28
-        gridTouchView.addEvent(
-            startRow = 20,
-            endRow = 28,
-            column = 3,
-            title = "Consulta médica"
+
+        val customGRID = view.findViewById<CustomGRID>(R.id.calendarGrid)
+
+
+
+
+
+
+        customGRID.setEventClickListener { json ->
+
+            // Handle details button click, e.g., navigate to details fragment
+            // You'll need to create a details fragment and implement navigation
+            // Dentro de AgendaFragment, cuando hagas clic en un ítem o algo que navegue a DetallesAgendaFragment
+            val action = AgendaFragmentDirections.actionAgendaFragmentToDetallesAgenda(json.toString())
+            findNavController().navigate(action)
+
+
+        }
+
+
+        customGRID.addEvent(
+            "10:00",
+            "14:20",
+            date = "2025-07-18T15:30:00-05:00",//LocalDate.of(2025, 7, 2),
+            "Hola como estas? Yo bien y tu? Esta es una reunion de prueba"
+        )
+        customGRID.setEventsFromViewModel(agendaViewModel.getAllEvents())
+
+        agendaViewModel.events.observe(viewLifecycleOwner) { allEvents ->
+            //val currentRange = agendaViewModel.currentWeek.value ?: obtenerRangoSemanaActual(LocalDate.now())
+            val newEventList = agendaViewModel.getAllEvents()
+            customGRID.setEventsFromViewModel(allEvents)
+            //customGRID.resetLayout()
+        }
+
+        customGRID.resetLayout()
+
+
+
+    }
+
+    fun recibirNuevoEvento(evento: NewEvent) {
+
+
+
+        val nuevoEvento = Event(
+            evento.title,
+            OffsetDateTime.parse(evento.date).toLocalDate(),//fecha
+            evento.startHour,
+            evento.endHour,
+            evento.location,
+            evento.IDCaso,
+            evento.details,
+            evento.emails,
+            evento.color
         )
 
+        agendaViewModel.addEvent(nuevoEvento)
 
-
-
-
-
+        //Toast.makeText(requireContext(), evento.date, Toast.LENGTH_SHORT).show()
+        val grid = view?.findViewById<CustomGRID>(R.id.calendarGrid) ?: return
+        //grid.resetLayout()
     }
 
     private fun mostrarVistaMensual() {

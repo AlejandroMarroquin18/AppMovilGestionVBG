@@ -90,7 +90,22 @@
         <action
             android:id="@+id/action_agendaFragment_to_crearCita"
             app:destination="@id/crearCita" />
+        <action
+            android:id="@+id/action_agendaFragment_to_detallesAgenda"
+            app:destination="@id/detallesAgenda" />
     </fragment>
+
+    <fragment
+        android:id="@+id/detallesAgenda"
+        android:name="com.example.appvbg.ui.agenda.detalles.DetallesAgenda"
+        android:label="Detalles de las reuniones en la agenda"
+        tools:layout="@layout/fragment_detalles_agenda">
+
+        <argument
+            android:name="agendaJSON"
+            app:argType="string" />
+    </fragment>
+
 
     <fragment
         android:id="@+id/estadisticasAgendaFragment"

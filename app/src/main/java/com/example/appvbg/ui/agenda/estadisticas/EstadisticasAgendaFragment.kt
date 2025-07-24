@@ -159,7 +159,7 @@ class EstadisticasAgendaFragment: Fragment(R.layout.fragment_estadisticas_agenda
         )
 
         val dataSet = PieDataSet(entries, "Citas de funcionarios por departamento")
-        dataSet.colors = ColorTemplate.MATERIAL_COLORS.toList()
+        dataSet.colors = com.github.mikephil.charting.utils.ColorTemplate.MATERIAL_COLORS.toList()
         dataSet.sliceSpace = 3f
         dataSet.selectionShift = 5f
 
@@ -186,7 +186,7 @@ class EstadisticasAgendaFragment: Fragment(R.layout.fragment_estadisticas_agenda
         )
 
         val dataSet = PieDataSet(entries, "Razones más comunes para agendar cita")
-        dataSet.colors = ColorTemplate.MATERIAL_COLORS.toList()
+        dataSet.colors = com.github.mikephil.charting.utils.ColorTemplate.MATERIAL_COLORS.toList()
         dataSet.sliceSpace = 3f
         dataSet.selectionShift = 5f
 
@@ -255,7 +255,7 @@ class EstadisticasAgendaFragment: Fragment(R.layout.fragment_estadisticas_agenda
         )
 
         val dataSet = PieDataSet(entries, "Razones más comunes para agendar cita")
-        dataSet.colors = ColorTemplate.MATERIAL_COLORS.toList()
+        dataSet.colors = com.github.mikephil.charting.utils.ColorTemplate.MATERIAL_COLORS.toList()
         dataSet.sliceSpace = 3f
         dataSet.selectionShift = 5f
 

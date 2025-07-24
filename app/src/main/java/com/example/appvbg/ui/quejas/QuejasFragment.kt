@@ -15,8 +15,6 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.appvbg.R
-import com.example.appvbg.ui.agenda.crear_queja.CrearQueja
-import com.example.appvbg.ui.quejas.detalles.DetallesQueja
 import org.json.JSONObject
 
 
