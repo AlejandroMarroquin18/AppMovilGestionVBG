@@ -17,6 +17,7 @@ import com.example.appvbg.ui.talleres.ver_talleres.VerTalleresViewModel
 import android.widget.AdapterView
 import android.text.TextWatcher
 import android.text.Editable
+import android.widget.Button
 
 class FilterVerTalleresFragment : Fragment(R.layout.fragment_filter_ver_talleres) {
 
@@ -25,7 +26,7 @@ class FilterVerTalleresFragment : Fragment(R.layout.fragment_filter_ver_talleres
     private lateinit var modalidadSpinner: Spinner
     private lateinit var estadoSpinner: Spinner
     private lateinit var searchEditText: EditText
-    private lateinit var searchButton: ImageButton
+    private lateinit var searchButton: Button
 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

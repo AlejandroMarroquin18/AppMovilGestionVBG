@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/nav_home"
+        android:icon="@drawable/ic_menu_camera"
+        android:title="@string/menu_home" />
+
+    <item
+        android:id="@+id/quejasFragment"
+        android:icon="@drawable/ic_menu_slideshow"
+        android:title="@string/quejas" />
+
+    <item
+        android:id="@+id/agendaFragment"
+        android:icon="@drawable/ic_menu_slideshow"
+        android:title="@string/agenda" />
+
+    <item
+        android:id="@+id/talleresMainFragment"
+        android:icon="@drawable/ic_menu_slideshow"
+        android:title="Talleres" />
+</menu>

@@ -13,7 +13,6 @@ import com.example.appvbg.R
 import com.example.appvbg.databinding.FragmentDetallesQuejaBinding
 import org.json.JSONObject
 
-
 class DetallesQueja : Fragment(R.layout.fragment_detalles_queja) {
     private val args: DetallesQuejaArgs by navArgs()
     private var _binding: FragmentDetallesQuejaBinding? = null
@@ -22,7 +21,6 @@ class DetallesQueja : Fragment(R.layout.fragment_detalles_queja) {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
     }
 
     override fun onCreateView(
@@ -32,95 +30,93 @@ class DetallesQueja : Fragment(R.layout.fragment_detalles_queja) {
         _binding = FragmentDetallesQuejaBinding.inflate(inflater, container, false)
         return binding.root
     }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         val quejaJsonString = args.quejaJSON
         val quejaJson = JSONObject(quejaJsonString)
-        setFieldsFromJSON(quejaJson)
 
-        // Ya puedes acceder a todos los elementos del layout, incluidos los de los includes
+        // Mostrar ID de la queja
+        binding.tvQuejaId.text = "ID: #${quejaJson.optString("id", "N/A")}"
+
+        setFieldsFromJSON(quejaJson)
+        setEditMode(false) // Iniciar en modo visualización
+
         binding.editButton.setOnClickListener {
             if (editMode) {
-                val json=buildJSON();
-                //se envía
-                //se recarga
+                val json = buildJSON()
+                // Aquí iría el código para enviar los datos
+                Toast.makeText(requireContext(), "Datos guardados", Toast.LENGTH_SHORT).show()
+                // Después de guardar, volver a modo visualización
+                editMode = false
+                binding.editButton.text = "Editar"
+                setEditMode(false)
+            } else {
+                editMode = true
+                binding.editButton.text = "Guardar"
+                setEditMode(true)
             }
-            editMode=!editMode
-            binding.editButton.text = if (editMode) "Guardar" else "Editar"
-            setEditMode(editMode)
         }
-        ///funcion fetch
-        //val newData=fetchData()
-        ////funcion para recargar
-        //setFieldsFromJSON(newData)
 
+        binding.btnImprimir.setOnClickListener {
+            Toast.makeText(requireContext(), "Funcionalidad de impresión", Toast.LENGTH_SHORT).show()
+            // Aquí puedes implementar la funcionalidad de impresión/exportación
+        }
     }
 
-        override fun onDestroyView() {
+    override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
     }
 
-
-
-
-
-
     private fun setEditMode(enabled: Boolean) {
         val visibility = if (enabled) View.VISIBLE else View.GONE
-        val enabledAndVisible = { et: EditText ->
-            et.isEnabled = enabled
-            et.visibility = visibility
-        }
+        val labelVisibility = if (enabled) View.GONE else View.VISIBLE
 
-        fun applyTo(container: ViewGroup) {
+        // Función recursiva para aplicar a todos los elementos
+        fun applyToViewGroup(container: ViewGroup) {
             for (i in 0 until container.childCount) {
                 val child = container.getChildAt(i)
                 when (child) {
-                    is EditText -> enabledAndVisible(child)
-                    is ViewGroup -> applyTo(child)
-                }
-            }
-        }
-        applyTo(binding.includeReporta.root as ViewGroup)
-        applyTo(binding.includeAfectada.root as ViewGroup)
-        applyTo(binding.includeAgresor.root as ViewGroup)
-        applyTo(binding.includeAdicionales.root as ViewGroup)
-        fun setLabelTextViewsVisibility(container: ViewGroup, visible: Boolean) {
-            val visibility = if (visible) View.VISIBLE else View.GONE
-            for (i in 0 until container.childCount) {
-                val child = container.getChildAt(i)
-                if (child is TextView && child !is EditText) {
-                    val resId = child.id
-                    if (resId != View.NO_ID) {
-                        val name = try {
-                            resources.getResourceEntryName(resId)
-                        } catch (e: Exception) {
-                            null
-                        }
-                        if (name != null && name.endsWith("Label", ignoreCase = true)) {
-                            child.visibility = visibility
+                    is EditText -> {
+                        child.visibility = visibility
+                        child.isEnabled = enabled
+                    }
+                    is TextView -> {
+                        if (child.id != View.NO_ID) {
+                            try {
+                                val resName = resources.getResourceEntryName(child.id)
+                                if (resName.endsWith("Label", ignoreCase = true)) {
+                                    child.visibility = labelVisibility
+                                }
+                            } catch (e: Exception) {
+                                // Ignorar si no se puede obtener el nombre del recurso
+                            }
                         }
                     }
-                } else if (child is ViewGroup) {
-                    setLabelTextViewsVisibility(child, visible) // recursividad
+                    is ViewGroup -> applyToViewGroup(child)
                 }
             }
         }
-        setLabelTextViewsVisibility(binding.includeReporta.root as ViewGroup, !enabled)
-        setLabelTextViewsVisibility(binding.includeAfectada.root as ViewGroup, !enabled)
-        setLabelTextViewsVisibility(binding.includeAgresor.root as ViewGroup, !enabled)
-        setLabelTextViewsVisibility(binding.includeAdicionales.root as ViewGroup, !enabled)
+
+        // Aplicar a todos los includes
+        applyToViewGroup(binding.includeReporta.root)
+        applyToViewGroup(binding.includeAfectada.root)
+        applyToViewGroup(binding.includeAgresor.root)
+        applyToViewGroup(binding.includeAdicionales.root)
     }
-    private fun fetchData(): JSONObject{
-        val newJSON=JSONObject()
-        //fetch y demás cosas
+
+    private fun fetchData(): JSONObject {
+        val newJSON = JSONObject()
+        // Implementar lógica para fetch de datos si es necesario
         return newJSON
     }
 
     private fun buildJSON(): JSONObject {
         val json = JSONObject()
+
+        // Reporta
         json.put("fecha_recepcion", binding.includeReporta.fechaReportaEdit.text.toString())
         json.put("reporta_nombre", binding.includeReporta.nombreReportaEdit.text.toString())
         json.put("reporta_sexo", binding.includeReporta.sexoReportaEdit.text.toString())
@@ -134,6 +130,7 @@ class DetallesQueja : Fragment(R.layout.fragment_detalles_queja) {
         json.put("reporta_celular", binding.includeReporta.celularReportaEdit.text.toString())
         json.put("reporta_correo", binding.includeReporta.correoReportaEdit.text.toString())
 
+        // Afectada
         json.put("afectado_nombre", binding.includeAfectada.nombreAfectadaEdit.text.toString())
         json.put("afectado_sexo", binding.includeAfectada.sexoAfectadaEdit.text.toString())
         json.put("afectado_edad", binding.includeAfectada.edadAfectadaEdit.text.toString())
@@ -153,8 +150,8 @@ class DetallesQueja : Fragment(R.layout.fragment_detalles_queja) {
         json.put("afectado_celular", binding.includeAfectada.celularAfectadaEdit.text.toString())
         json.put("afectado_correo", binding.includeAfectada.correoAfectadaEdit.text.toString())
         json.put("afectado_tipo_vbg_os", binding.includeAfectada.tipoVBGAfectadaEdit.text.toString())
-        //falta detalles
-        //21
+
+        // Agresor
         json.put("agresor_nombre", binding.includeAgresor.nombreAgresorEdit.text.toString())
         json.put("agresor_sexo", binding.includeAgresor.sexoAgresorEdit.text.toString())
         json.put("agresor_edad", binding.includeAgresor.edadAgresorEdit.text.toString())
@@ -170,7 +167,7 @@ class DetallesQueja : Fragment(R.layout.fragment_detalles_queja) {
         json.put("agresor_facultad", binding.includeAgresor.facultadAgresorEdit.text.toString())
         json.put("agresor_sede", binding.includeAgresor.sedeAgresorEdit.text.toString())
 
-
+        // Adicionales
         json.put("desea_activar_ruta_atencion_integral", binding.includeAdicionales.rutaIntegralEdit.text.toString())
         json.put("recibir_asesoria_orientacion_sociopedagogica", binding.includeAdicionales.asesoriaEdit.text.toString())
         json.put("orientacion_psicologica", binding.includeAdicionales.orientacionEdit.text.toString())
@@ -179,135 +176,131 @@ class DetallesQueja : Fragment(R.layout.fragment_detalles_queja) {
         json.put("acompañamiento_ante_instancias_gubernamentales", binding.includeAdicionales.instanciasGubernamentalesEdit.text.toString())
         json.put("interponer_queja_al_comite_asusntos_internos_disciplinarios", binding.includeAdicionales.comiteAsuntosInternosEdit.text.toString())
         json.put("observaciones", binding.includeAdicionales.observacionesEdit.text.toString())
-        
-        return json;
+
+        return json
     }
 
-
     private fun setFieldsFromJSON(json: JSONObject) {
-        // Reporta
-        binding.includeReporta.fechaReportaLabel.setText(json.optString("fecha_recepcion"))
-        binding.includeReporta.nombreReportaLabel.setText(json.optString("reporta_nombre"))
-        binding.includeReporta.sexoReportaLabel.setText(json.optString("reporta_sexo"))
-        binding.includeReporta.edadReportaLabel.setText(json.optString("reporta_edad"))
-        binding.includeReporta.estamentoReportaLabel.setText(json.optString("reporta_estamento"))
-        binding.includeReporta.viceReportaLabel.setText(json.optString("reporta_vicerrectoria_adscrito"))
-        binding.includeReporta.dependenciaReportaLabel.setText(json.optString("reporta_dependencia"))
-        binding.includeReporta.programaReportaLabel.setText(json.optString("reporta_programa_academico"))
-        binding.includeReporta.facultadReportaLabel.setText(json.optString("reporta_facultad"))
-        binding.includeReporta.sedeReportaLabel.setText(json.optString("reporta_sede"))
-        binding.includeReporta.celularReportaLabel.setText(json.optString("reporta_celular"))
-        binding.includeReporta.correoReportaLabel.setText(json.optString("reporta_correo"))
+        // Reporta - Labels
+        binding.includeReporta.fechaReportaLabel.text = json.optString("fecha_recepcion", "No especificado")
+        binding.includeReporta.nombreReportaLabel.text = json.optString("reporta_nombre", "No especificado")
+        binding.includeReporta.sexoReportaLabel.text = json.optString("reporta_sexo", "No especificado")
+        binding.includeReporta.edadReportaLabel.text = json.optString("reporta_edad", "No especificado")
+        binding.includeReporta.estamentoReportaLabel.text = json.optString("reporta_estamento", "No especificado")
+        binding.includeReporta.viceReportaLabel.text = json.optString("reporta_vicerrectoria_adscrito", "No especificado")
+        binding.includeReporta.dependenciaReportaLabel.text = json.optString("reporta_dependencia", "No especificado")
+        binding.includeReporta.programaReportaLabel.text = json.optString("reporta_programa_academico", "No especificado")
+        binding.includeReporta.facultadReportaLabel.text = json.optString("reporta_facultad", "No especificado")
+        binding.includeReporta.sedeReportaLabel.text = json.optString("reporta_sede", "No especificado")
+        binding.includeReporta.celularReportaLabel.text = json.optString("reporta_celular", "No especificado")
+        binding.includeReporta.correoReportaLabel.text = json.optString("reporta_correo", "No especificado")
 
-        // Afectada
-        binding.includeAfectada.nombreAfectadaLabel.setText(json.optString("afectado_nombre"))
-        binding.includeAfectada.sexoAfectadaLabel.setText(json.optString("afectado_sexo"))
-        binding.includeAfectada.edadAfectadaLabel.setText(json.optString("afectado_edad"))
-        binding.includeAfectada.comunaAfectadaLabel.setText(json.optString("afectado_comuna"))
-        binding.includeAfectada.estratoAfectadaLabel.setText(json.optString("afectado_estrato_socioeconomico"))
-        binding.includeAfectada.etniaAfectadaLabel.setText(json.optString("afectado_condicion_etnico_racial"))
-        binding.includeAfectada.discapacidadAfectadaLabel.setText(json.optString("afectado_tiene_discapacidad"))
-        binding.includeAfectada.tipoDiscapacidadAfectadaLabel.setText(json.optString("afectado_tipo_discapacidad"))
-        binding.includeAfectada.identidadGeneroAfectadaLabel.setText(json.optString("afectado_identidad_genero"))
-        binding.includeAfectada.orientacionSexualAfectadaLabel.setText(json.optString("afectado_orientacion_sexual"))
-        binding.includeAfectada.estamentoAfectadaLabel.setText(json.optString("afectado_estamento"))
-        binding.includeAfectada.viceAfectadaLabel.setText(json.optString("afectado_vicerrectoria_adscrito"))
-        binding.includeAfectada.dependenciaAfectadaLabel.setText(json.optString("afectado_dependencia"))
-        binding.includeAfectada.programaAfectadaLabel.setText(json.optString("afectado_programa_academico"))
-        binding.includeAfectada.facultadAfectadaLabel.setText(json.optString("afectado_facultad"))
-        binding.includeAfectada.sedeAfectadaLabel.setText(json.optString("afectado_sede"))
-        binding.includeAfectada.celularAfectadaLabel.setText(json.optString("afectado_celular"))
-        binding.includeAfectada.correoAfectadaLabel.setText(json.optString("afectado_correo"))
-        binding.includeAfectada.tipoVBGAfectadaLabel.setText(json.optString("afectado_tipo_vbg_os"))
+        // Reporta - EditTexts
+        binding.includeReporta.fechaReportaEdit.setText(json.optString("fecha_recepcion", ""))
+        binding.includeReporta.nombreReportaEdit.setText(json.optString("reporta_nombre", ""))
+        binding.includeReporta.sexoReportaEdit.setText(json.optString("reporta_sexo", ""))
+        binding.includeReporta.edadReportaEdit.setText(json.optString("reporta_edad", ""))
+        binding.includeReporta.estamentoReportaEdit.setText(json.optString("reporta_estamento", ""))
+        binding.includeReporta.viceReportaEdit.setText(json.optString("reporta_vicerrectoria_adscrito", ""))
+        binding.includeReporta.dependenciaReportaEdit.setText(json.optString("reporta_dependencia", ""))
+        binding.includeReporta.programaReportaEdit.setText(json.optString("reporta_programa_academico", ""))
+        binding.includeReporta.facultadReportaEdit.setText(json.optString("reporta_facultad", ""))
+        binding.includeReporta.sedeReportaEdit.setText(json.optString("reporta_sede", ""))
+        binding.includeReporta.celularReportaEdit.setText(json.optString("reporta_celular", ""))
+        binding.includeReporta.correoReportaEdit.setText(json.optString("reporta_correo", ""))
 
-        // Agresor
-        binding.includeAgresor.nombreAgresorLabel.setText(json.optString("agresor_nombre"))
-        binding.includeAgresor.sexoAgresorLabel.setText(json.optString("agresor_sexo"))
-        binding.includeAgresor.edadAgresorLabel.setText(json.optString("agresor_edad"))
-        binding.includeAgresor.etniaAgresorLabel.setText(json.optString("agresor_condicion_etnico_racial"))
-        binding.includeAgresor.discapacidadAgresorLabel.setText(json.optString("agresor_tiene_discapacidad"))
-        binding.includeAgresor.tipoDiscapacidadAgresorLabel.setText(json.optString("agresor_tipo_discapacidad"))
-        binding.includeAgresor.identidadGeneroAgresorLabel.setText(json.optString("agresor_identidad_genero"))
-        binding.includeAgresor.orientacionSexualAgresorLabel.setText(json.optString("agresor_orientacion_sexual"))
-        binding.includeAgresor.estamentoAgresorLabel.setText(json.optString("agresor_estamento"))
-        binding.includeAgresor.viceAgresorLabel.setText(json.optString("agresor_vicerrectoria_adscrito"))
-        binding.includeAgresor.dependenciaAgresorLabel.setText(json.optString("agresor_dependencia"))
-        binding.includeAgresor.programaAgresorLabel.setText(json.optString("agresor_programa_academico"))
-        binding.includeAgresor.facultadAgresorLabel.setText(json.optString("agresor_facultad"))
-        binding.includeAgresor.sedeAgresorLabel.setText(json.optString("agresor_sede"))
+        // Afectada - Labels
+        binding.includeAfectada.nombreAfectadaLabel.text = json.optString("afectado_nombre", "No especificado")
+        binding.includeAfectada.sexoAfectadaLabel.text = json.optString("afectado_sexo", "No especificado")
+        binding.includeAfectada.edadAfectadaLabel.text = json.optString("afectado_edad", "No especificado")
+        binding.includeAfectada.comunaAfectadaLabel.text = json.optString("afectado_comuna", "No especificado")
+        binding.includeAfectada.estratoAfectadaLabel.text = json.optString("afectado_estrato_socioeconomico", "No especificado")
+        binding.includeAfectada.etniaAfectadaLabel.text = json.optString("afectado_condicion_etnico_racial", "No especificado")
+        binding.includeAfectada.discapacidadAfectadaLabel.text = json.optString("afectado_tiene_discapacidad", "No especificado")
+        binding.includeAfectada.tipoDiscapacidadAfectadaLabel.text = json.optString("afectado_tipo_discapacidad", "No especificado")
+        binding.includeAfectada.identidadGeneroAfectadaLabel.text = json.optString("afectado_identidad_genero", "No especificado")
+        binding.includeAfectada.orientacionSexualAfectadaLabel.text = json.optString("afectado_orientacion_sexual", "No especificado")
+        binding.includeAfectada.estamentoAfectadaLabel.text = json.optString("afectado_estamento", "No especificado")
+        binding.includeAfectada.viceAfectadaLabel.text = json.optString("afectado_vicerrectoria_adscrito", "No especificado")
+        binding.includeAfectada.dependenciaAfectadaLabel.text = json.optString("afectado_dependencia", "No especificado")
+        binding.includeAfectada.programaAfectadaLabel.text = json.optString("afectado_programa_academico", "No especificado")
+        binding.includeAfectada.facultadAfectadaLabel.text = json.optString("afectado_facultad", "No especificado")
+        binding.includeAfectada.sedeAfectadaLabel.text = json.optString("afectado_sede", "No especificado")
+        binding.includeAfectada.celularAfectadaLabel.text = json.optString("afectado_celular", "No especificado")
+        binding.includeAfectada.correoAfectadaLabel.text = json.optString("afectado_correo", "No especificado")
+        binding.includeAfectada.tipoVBGAfectadaLabel.text = json.optString("afectado_tipo_vbg_os", "No especificado")
 
-        // Adicionales
-        binding.includeAdicionales.rutaIntegralLabel.setText(json.optString("desea_activar_ruta_atencion_integral"))
-        binding.includeAdicionales.asesoriaLabel.setText(json.optString("recibir_asesoria_orientacion_sociopedagogica"))
-        binding.includeAdicionales.orientacionLabel.setText(json.optString("orientacion_psicologica"))
-        binding.includeAdicionales.asistenciaJuridicaLabel.setText(json.optString("asistencia_juridica"))
-        binding.includeAdicionales.medidasProteccionLabel.setText(json.optString("acompañamiento_solicitud_medidas_proteccion_inicial"))
-        binding.includeAdicionales.instanciasGubernamentalesLabel.setText(json.optString("acompañamiento_ante_instancias_gubernamentales"))
-        binding.includeAdicionales.comiteAsuntosInternosLabel.setText(json.optString("interponer_queja_al_comite_asusntos_internos_disciplinarios"))
-        binding.includeAdicionales.observacionesLabel.setText(json.optString("observaciones"))
+        // Afectada - EditTexts
+        binding.includeAfectada.nombreAfectadaEdit.setText(json.optString("afectado_nombre", ""))
+        binding.includeAfectada.sexoAfectadaEdit.setText(json.optString("afectado_sexo", ""))
+        binding.includeAfectada.edadAfectadaEdit.setText(json.optString("afectado_edad", ""))
+        binding.includeAfectada.comunaAfectadaEdit.setText(json.optString("afectado_comuna", ""))
+        binding.includeAfectada.estratoAfectadaEdit.setText(json.optString("afectado_estrato_socioeconomico", ""))
+        binding.includeAfectada.etniaAfectadaEdit.setText(json.optString("afectado_condicion_etnico_racial", ""))
+        binding.includeAfectada.discapacidadAfectadaEdit.setText(json.optString("afectado_tiene_discapacidad", ""))
+        binding.includeAfectada.tipoDiscapacidadAfectadaEdit.setText(json.optString("afectado_tipo_discapacidad", ""))
+        binding.includeAfectada.identidadGeneroAfectadaEdit.setText(json.optString("afectado_identidad_genero", ""))
+        binding.includeAfectada.orientacionSexualAfectadaEdit.setText(json.optString("afectado_orientacion_sexual", ""))
+        binding.includeAfectada.estamentoAfectadaEdit.setText(json.optString("afectado_estamento", ""))
+        binding.includeAfectada.viceAfectadaEdit.setText(json.optString("afectado_vicerrectoria_adscrito", ""))
+        binding.includeAfectada.dependenciaAfectadaEdit.setText(json.optString("afectado_dependencia", ""))
+        binding.includeAfectada.programaAfectadaEdit.setText(json.optString("afectado_programa_academico", ""))
+        binding.includeAfectada.facultadAfectadaEdit.setText(json.optString("afectado_facultad", ""))
+        binding.includeAfectada.sedeAfectadaEdit.setText(json.optString("afectado_sede", ""))
+        binding.includeAfectada.celularAfectadaEdit.setText(json.optString("afectado_celular", ""))
+        binding.includeAfectada.correoAfectadaEdit.setText(json.optString("afectado_correo", ""))
+        binding.includeAfectada.tipoVBGAfectadaEdit.setText(json.optString("afectado_tipo_vbg_os", ""))
 
+        // Agresor - Labels
+        binding.includeAgresor.nombreAgresorLabel.text = json.optString("agresor_nombre", "No especificado")
+        binding.includeAgresor.sexoAgresorLabel.text = json.optString("agresor_sexo", "No especificado")
+        binding.includeAgresor.edadAgresorLabel.text = json.optString("agresor_edad", "No especificado")
+        binding.includeAgresor.etniaAgresorLabel.text = json.optString("agresor_condicion_etnico_racial", "No especificado")
+        binding.includeAgresor.discapacidadAgresorLabel.text = json.optString("agresor_tiene_discapacidad", "No especificado")
+        binding.includeAgresor.tipoDiscapacidadAgresorLabel.text = json.optString("agresor_tipo_discapacidad", "No especificado")
+        binding.includeAgresor.identidadGeneroAgresorLabel.text = json.optString("agresor_identidad_genero", "No especificado")
+        binding.includeAgresor.orientacionSexualAgresorLabel.text = json.optString("agresor_orientacion_sexual", "No especificado")
+        binding.includeAgresor.estamentoAgresorLabel.text = json.optString("agresor_estamento", "No especificado")
+        binding.includeAgresor.viceAgresorLabel.text = json.optString("agresor_vicerrectoria_adscrito", "No especificado")
+        binding.includeAgresor.dependenciaAgresorLabel.text = json.optString("agresor_dependencia", "No especificado")
+        binding.includeAgresor.programaAgresorLabel.text = json.optString("agresor_programa_academico", "No especificado")
+        binding.includeAgresor.facultadAgresorLabel.text = json.optString("agresor_facultad", "No especificado")
+        binding.includeAgresor.sedeAgresorLabel.text = json.optString("agresor_sede", "No especificado")
 
+        // Agresor - EditTexts
+        binding.includeAgresor.nombreAgresorEdit.setText(json.optString("agresor_nombre", ""))
+        binding.includeAgresor.sexoAgresorEdit.setText(json.optString("agresor_sexo", ""))
+        binding.includeAgresor.edadAgresorEdit.setText(json.optString("agresor_edad", ""))
+        binding.includeAgresor.etniaAgresorEdit.setText(json.optString("agresor_condicion_etnico_racial", ""))
+        binding.includeAgresor.discapacidadAgresorEdit.setText(json.optString("agresor_tiene_discapacidad", ""))
+        binding.includeAgresor.tipoDiscapacidadAgresorEdit.setText(json.optString("agresor_tipo_discapacidad", ""))
+        binding.includeAgresor.identidadGeneroAgresorEdit.setText(json.optString("agresor_identidad_genero", ""))
+        binding.includeAgresor.orientacionSexualAgresorEdit.setText(json.optString("agresor_orientacion_sexual", ""))
+        binding.includeAgresor.estamentoAgresorEdit.setText(json.optString("agresor_estamento", ""))
+        binding.includeAgresor.viceAgresorEdit.setText(json.optString("agresor_vicerrectoria_adscrito", ""))
+        binding.includeAgresor.dependenciaAgresorEdit.setText(json.optString("agresor_dependencia", ""))
+        binding.includeAgresor.programaAgresorEdit.setText(json.optString("agresor_programa_academico", ""))
+        binding.includeAgresor.facultadAgresorEdit.setText(json.optString("agresor_facultad", ""))
+        binding.includeAgresor.sedeAgresorEdit.setText(json.optString("agresor_sede", ""))
 
-        /////////////////Edits
-        // Reporta
-        binding.includeReporta.fechaReportaEdit.setText(json.optString("fecha_recepcion"))
-        binding.includeReporta.nombreReportaEdit.setText(json.optString("reporta_nombre"))
-        binding.includeReporta.sexoReportaEdit.setText(json.optString("reporta_sexo"))
-        binding.includeReporta.edadReportaEdit.setText(json.optString("reporta_edad"))
-        binding.includeReporta.estamentoReportaEdit.setText(json.optString("reporta_estamento"))
-        binding.includeReporta.viceReportaEdit.setText(json.optString("reporta_vicerrectoria_adscrito"))
-        binding.includeReporta.dependenciaReportaEdit.setText(json.optString("reporta_dependencia"))
-        binding.includeReporta.programaReportaEdit.setText(json.optString("reporta_programa_academico"))
-        binding.includeReporta.facultadReportaEdit.setText(json.optString("reporta_facultad"))
-        binding.includeReporta.sedeReportaEdit.setText(json.optString("reporta_sede"))
-        binding.includeReporta.celularReportaEdit.setText(json.optString("reporta_celular"))
-        binding.includeReporta.correoReportaEdit.setText(json.optString("reporta_correo"))
+        // Adicionales - Labels
+        binding.includeAdicionales.rutaIntegralLabel.text = json.optString("desea_activar_ruta_atencion_integral", "No especificado")
+        binding.includeAdicionales.asesoriaLabel.text = json.optString("recibir_asesoria_orientacion_sociopedagogica", "No especificado")
+        binding.includeAdicionales.orientacionLabel.text = json.optString("orientacion_psicologica", "No especificado")
+        binding.includeAdicionales.asistenciaJuridicaLabel.text = json.optString("asistencia_juridica", "No especificado")
+        binding.includeAdicionales.medidasProteccionLabel.text = json.optString("acompañamiento_solicitud_medidas_proteccion_inicial", "No especificado")
+        binding.includeAdicionales.instanciasGubernamentalesLabel.text = json.optString("acompañamiento_ante_instancias_gubernamentales", "No especificado")
+        binding.includeAdicionales.comiteAsuntosInternosLabel.text = json.optString("interponer_queja_al_comite_asusntos_internos_disciplinarios", "No especificado")
+        binding.includeAdicionales.observacionesLabel.text = json.optString("observaciones", "No especificado")
 
-        // Afectada
-        binding.includeAfectada.nombreAfectadaEdit.setText(json.optString("afectado_nombre"))
-        binding.includeAfectada.sexoAfectadaEdit.setText(json.optString("afectado_sexo"))
-        binding.includeAfectada.edadAfectadaEdit.setText(json.optString("afectado_edad"))
-        binding.includeAfectada.comunaAfectadaEdit.setText(json.optString("afectado_comuna"))
-        binding.includeAfectada.estratoAfectadaEdit.setText(json.optString("afectado_estrato_socioeconomico"))
-        binding.includeAfectada.etniaAfectadaEdit.setText(json.optString("afectado_condicion_etnico_racial"))
-        binding.includeAfectada.discapacidadAfectadaEdit.setText(json.optString("afectado_tiene_discapacidad"))
-        binding.includeAfectada.tipoDiscapacidadAfectadaEdit.setText(json.optString("afectado_tipo_discapacidad"))
-        binding.includeAfectada.identidadGeneroAfectadaEdit.setText(json.optString("afectado_identidad_genero"))
-        binding.includeAfectada.orientacionSexualAfectadaEdit.setText(json.optString("afectado_orientacion_sexual"))
-        binding.includeAfectada.estamentoAfectadaEdit.setText(json.optString("afectado_estamento"))
-        binding.includeAfectada.viceAfectadaEdit.setText(json.optString("afectado_vicerrectoria_adscrito"))
-        binding.includeAfectada.dependenciaAfectadaEdit.setText(json.optString("afectado_dependencia"))
-        binding.includeAfectada.programaAfectadaEdit.setText(json.optString("afectado_programa_academico"))
-        binding.includeAfectada.facultadAfectadaEdit.setText(json.optString("afectado_facultad"))
-        binding.includeAfectada.sedeAfectadaEdit.setText(json.optString("afectado_sede"))
-        binding.includeAfectada.celularAfectadaEdit.setText(json.optString("afectado_celular"))
-        binding.includeAfectada.correoAfectadaEdit.setText(json.optString("afectado_correo"))
-        binding.includeAfectada.tipoVBGAfectadaEdit.setText(json.optString("afectado_tipo_vbg_os"))
-
-        // Agresor
-        binding.includeAgresor.nombreAgresorEdit.setText(json.optString("agresor_nombre"))
-        binding.includeAgresor.sexoAgresorEdit.setText(json.optString("agresor_sexo"))
-        binding.includeAgresor.edadAgresorEdit.setText(json.optString("agresor_edad"))
-        binding.includeAgresor.etniaAgresorEdit.setText(json.optString("agresor_condicion_etnico_racial"))
-        binding.includeAgresor.discapacidadAgresorEdit.setText(json.optString("agresor_tiene_discapacidad"))
-        binding.includeAgresor.tipoDiscapacidadAgresorEdit.setText(json.optString("agresor_tipo_discapacidad"))
-        binding.includeAgresor.identidadGeneroAgresorEdit.setText(json.optString("agresor_identidad_genero"))
-        binding.includeAgresor.orientacionSexualAgresorEdit.setText(json.optString("agresor_orientacion_sexual"))
-        binding.includeAgresor.estamentoAgresorEdit.setText(json.optString("agresor_estamento"))
-        binding.includeAgresor.viceAgresorEdit.setText(json.optString("agresor_vicerrectoria_adscrito"))
-        binding.includeAgresor.dependenciaAgresorEdit.setText(json.optString("agresor_dependencia"))
-        binding.includeAgresor.programaAgresorEdit.setText(json.optString("agresor_programa_academico"))
-        binding.includeAgresor.facultadAgresorEdit.setText(json.optString("agresor_facultad"))
-        binding.includeAgresor.sedeAgresorEdit.setText(json.optString("agresor_sede"))
-
-        // Adicionales
-        binding.includeAdicionales.rutaIntegralEdit.setText(json.optString("desea_activar_ruta_atencion_integral"))
-        binding.includeAdicionales.asesoriaEdit.setText(json.optString("recibir_asesoria_orientacion_sociopedagogica"))
-        binding.includeAdicionales.orientacionEdit.setText(json.optString("orientacion_psicologica"))
-        binding.includeAdicionales.asistenciaJuridicaEdit.setText(json.optString("asistencia_juridica"))
-        binding.includeAdicionales.medidasProteccionEdit.setText(json.optString("acompañamiento_solicitud_medidas_proteccion_inicial"))
-        binding.includeAdicionales.instanciasGubernamentalesEdit.setText(json.optString("acompañamiento_ante_instancias_gubernamentales"))
-        binding.includeAdicionales.comiteAsuntosInternosEdit.setText(json.optString("interponer_queja_al_comite_asusntos_internos_disciplinarios"))
-        binding.includeAdicionales.observacionesEdit.setText(json.optString("observaciones"))
+        // Adicionales - EditTexts
+        binding.includeAdicionales.rutaIntegralEdit.setText(json.optString("desea_activar_ruta_atencion_integral", ""))
+        binding.includeAdicionales.asesoriaEdit.setText(json.optString("recibir_asesoria_orientacion_sociopedagogica", ""))
+        binding.includeAdicionales.orientacionEdit.setText(json.optString("orientacion_psicologica", ""))
+        binding.includeAdicionales.asistenciaJuridicaEdit.setText(json.optString("asistencia_juridica", ""))
+        binding.includeAdicionales.medidasProteccionEdit.setText(json.optString("acompañamiento_solicitud_medidas_proteccion_inicial", ""))
+        binding.includeAdicionales.instanciasGubernamentalesEdit.setText(json.optString("acompañamiento_ante_instancias_gubernamentales", ""))
+        binding.includeAdicionales.comiteAsuntosInternosEdit.setText(json.optString("interponer_queja_al_comite_asusntos_internos_disciplinarios", ""))
+        binding.includeAdicionales.observacionesEdit.setText(json.optString("observaciones", ""))
     }
 }

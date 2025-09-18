@@ -1,36 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:padding="16dp">
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:fillViewport="true">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:padding="16dp">
+            android:padding="8dp">
 
-            <!-- Título -->
+            <!-- Título en negro -->
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Crear Taller"
-                android:textSize="20sp"
+                android:textSize="24sp"
                 android:textStyle="bold"
                 android:layout_gravity="center_horizontal"
-                android:paddingBottom="16dp"/>
+                android:layout_marginBottom="24dp"
+                android:textColor="@color/red"/>
 
-            <!-- Contenedor horizontal con 2 columnas -->
+            <!-- Contenedor de 2 columnas -->
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
-                android:baselineAligned="false"
-                android:orientation="horizontal">
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="2">
 
                 <!-- Columna izquierda -->
                 <LinearLayout
@@ -38,56 +42,135 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:orientation="vertical"
-                    android:paddingEnd="8dp"
-                    tools:ignore="NestedWeights,RtlSymmetry">
+                    android:paddingEnd="8dp">
 
+                    <!-- Nombre del taller -->
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Nombre del taller" />
+                        android:text="Nombre del taller"
+                        android:textSize="14sp"
+                        android:textColor="@color/black"
+                        android:layout_marginBottom="4dp"/>
 
-                    <EditText
-                        android:id="@+id/editNombre"
+                    <com.google.android.material.card.MaterialCardView
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:hint="Nombre del taller"/>
+                        android:layout_height="48dp"
+                        android:layout_marginBottom="16dp"
+                        app:cardCornerRadius="12dp"
+                        app:strokeColor="@color/black"
+                        app:strokeWidth="1dp">
 
+                        <EditText
+                            android:id="@+id/editNombre"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:hint="Nombre del taller"
+                            android:paddingStart="16dp"
+                            android:paddingEnd="16dp"
+                            android:paddingTop="0dp"
+                            android:paddingBottom="0dp"
+                            android:background="@android:color/transparent"
+                            android:textSize="16sp"
+                            android:gravity="center_vertical"/>
+
+                    </com.google.android.material.card.MaterialCardView>
+
+                    <!-- Hora de inicio -->
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Hora de inicio" />
+                        android:text="Hora de inicio"
+                        android:textSize="14sp"
+                        android:textColor="@color/black"
+                        android:layout_marginBottom="4dp"/>
 
-                    <TextView
-                        android:id="@+id/textViewHoraInicio"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Seleccionar hora"
-                        android:textSize="18sp"
-                        android:padding="16dp"
-                        android:clickable="true"
-                        android:focusable="true"
-                        android:background="?attr/selectableItemBackground" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Modalidad" />
-
-                    <Spinner
-                        android:id="@+id/editModalidad"
+                    <com.google.android.material.card.MaterialCardView
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
+                        android:layout_height="48dp"
+                        android:layout_marginBottom="16dp"
+                        app:cardCornerRadius="12dp"
+                        app:strokeColor="@color/black"
+                        app:strokeWidth="1dp">
 
+                        <TextView
+                            android:id="@+id/textViewHoraInicio"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:text="Seleccionar hora"
+                            android:textSize="16sp"
+                            android:gravity="center_vertical|start"
+                            android:paddingStart="16dp"
+                            android:paddingEnd="16dp"
+                            android:paddingTop="0dp"
+                            android:paddingBottom="0dp"
+                            android:clickable="true"
+                            android:focusable="true"
+                            android:background="?attr/selectableItemBackground"/>
+
+                    </com.google.android.material.card.MaterialCardView>
+
+                    <!-- Modalidad -->
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Cupos disponibles" />
+                        android:text="Modalidad"
+                        android:textSize="14sp"
+                        android:textColor="@color/black"
+                        android:layout_marginBottom="4dp"/>
 
-                    <EditText
-                        android:id="@+id/editCupos"
+                    <com.google.android.material.card.MaterialCardView
                         android:layout_width="match_parent"
+                        android:layout_height="48dp"
+                        android:layout_marginBottom="16dp"
+                        app:cardCornerRadius="12dp"
+                        app:strokeColor="@color/black"
+                        app:strokeWidth="1dp">
+
+                        <Spinner
+                            android:id="@+id/editModalidad"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:paddingStart="16dp"
+                            android:paddingEnd="16dp"
+                            android:background="@android:color/transparent"
+                            android:textSize="16sp"/>
+
+                    </com.google.android.material.card.MaterialCardView>
+
+                    <!-- Cupos disponibles -->
+                    <TextView
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:hint="Escribe algo aquí" />
+                        android:text="Cupos disponibles"
+                        android:textSize="14sp"
+                        android:textColor="@color/black"
+                        android:layout_marginBottom="4dp"/>
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:layout_width="match_parent"
+                        android:layout_height="48dp"
+                        android:layout_marginBottom="16dp"
+                        app:cardCornerRadius="12dp"
+                        app:strokeColor="@color/black"
+                        app:strokeWidth="1dp">
+
+                        <EditText
+                            android:id="@+id/editCupos"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:hint="Cupos disponibles"
+                            android:inputType="number"
+                            android:paddingStart="16dp"
+                            android:paddingEnd="16dp"
+                            android:paddingTop="0dp"
+                            android:paddingBottom="0dp"
+                            android:background="@android:color/transparent"
+                            android:textSize="16sp"
+                            android:gravity="center_vertical"/>
+
+                    </com.google.android.material.card.MaterialCardView>
+
                 </LinearLayout>
 
                 <!-- Columna derecha -->
@@ -96,110 +179,218 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:orientation="vertical"
-                    android:paddingStart="8dp"
-                    tools:ignore="RtlSymmetry">
+                    android:paddingStart="8dp">
 
+                    <!-- Fecha del taller -->
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Fecha del taller" />
+                        android:text="Fecha del taller"
+                        android:textSize="14sp"
+                        android:textColor="@color/black"
+                        android:layout_marginBottom="4dp"/>
 
-                    <TextView
-                        android:id="@+id/textViewFecha"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Seleccionar fecha"
-                        android:textSize="18sp"
-                        android:padding="16dp"
-                        android:clickable="true"
-                        android:focusable="true"
-                        android:background="?attr/selectableItemBackground" />
-
-
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Hora de finalización" />
-
-                    <TextView
-                        android:id="@+id/textViewHoraFinalizacion"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Seleccionar hora"
-                        android:textSize="18sp"
-                        android:padding="16dp"
-                        android:clickable="true"
-                        android:focusable="true"
-                        android:background="?attr/selectableItemBackground" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Ubicación" />
-
-                    <EditText
-                        android:id="@+id/editUbicacion"
+                    <com.google.android.material.card.MaterialCardView
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:hint="Escribe algo aquí" />
+                        android:layout_height="48dp"
+                        android:layout_marginBottom="16dp"
+                        app:cardCornerRadius="12dp"
+                        app:strokeColor="@color/black"
+                        app:strokeWidth="1dp">
 
+                        <TextView
+                            android:id="@+id/textViewFecha"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:text="Seleccionar fecha"
+                            android:textSize="16sp"
+                            android:gravity="center_vertical|start"
+                            android:paddingStart="16dp"
+                            android:paddingEnd="16dp"
+                            android:paddingTop="0dp"
+                            android:paddingBottom="0dp"
+                            android:clickable="true"
+                            android:focusable="true"
+                            android:background="?attr/selectableItemBackground"/>
 
+                    </com.google.android.material.card.MaterialCardView>
+
+                    <!-- Hora de finalización -->
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Tallerista" />
+                        android:text="Hora de finalización"
+                        android:textSize="14sp"
+                        android:textColor="@color/black"
+                        android:layout_marginBottom="4dp"/>
 
-                    <EditText
-                        android:id="@+id/editTallerista"
+                    <com.google.android.material.card.MaterialCardView
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:hint="Escribe algo aquí" />
+                        android:layout_height="48dp"
+                        android:layout_marginBottom="16dp"
+                        app:cardCornerRadius="12dp"
+                        app:strokeColor="@color/black"
+                        app:strokeWidth="1dp">
 
-                    <Button
+                        <TextView
+                            android:id="@+id/textViewHoraFinalizacion"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:text="Seleccionar hora"
+                            android:textSize="16sp"
+                            android:gravity="center_vertical|start"
+                            android:paddingStart="16dp"
+                            android:paddingEnd="16dp"
+                            android:paddingTop="0dp"
+                            android:paddingBottom="0dp"
+                            android:clickable="true"
+                            android:focusable="true"
+                            android:background="?attr/selectableItemBackground"/>
+
+                    </com.google.android.material.card.MaterialCardView>
+
+                    <!-- Ubicación -->
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Ubicación"
+                        android:textSize="14sp"
+                        android:textColor="@color/black"
+                        android:layout_marginBottom="4dp"/>
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:layout_width="match_parent"
+                        android:layout_height="48dp"
+                        android:layout_marginBottom="16dp"
+                        app:cardCornerRadius="12dp"
+                        app:strokeColor="@color/black"
+                        app:strokeWidth="1dp">
+
+                        <EditText
+                            android:id="@+id/editUbicacion"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:hint="Ubicación"
+                            android:paddingStart="16dp"
+                            android:paddingEnd="16dp"
+                            android:paddingTop="0dp"
+                            android:paddingBottom="0dp"
+                            android:background="@android:color/transparent"
+                            android:textSize="16sp"
+                            android:gravity="center_vertical"/>
+
+                    </com.google.android.material.card.MaterialCardView>
+
+                    <!-- Tallerista -->
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Tallerista"
+                        android:textSize="14sp"
+                        android:textColor="@color/black"
+                        android:layout_marginBottom="4dp"/>
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:layout_width="match_parent"
+                        android:layout_height="48dp"
+                        android:layout_marginBottom="16dp"
+                        app:cardCornerRadius="12dp"
+                        app:strokeColor="@color/black"
+                        app:strokeWidth="1dp">
+
+                        <EditText
+                            android:id="@+id/editTallerista"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:hint="Tallerista"
+                            android:paddingStart="16dp"
+                            android:paddingEnd="16dp"
+                            android:paddingTop="0dp"
+                            android:paddingBottom="0dp"
+                            android:background="@android:color/transparent"
+                            android:textSize="16sp"
+                            android:gravity="center_vertical"/>
+
+                    </com.google.android.material.card.MaterialCardView>
+
+                    <!-- Botón Añadir (en rojo) -->
+                    <com.google.android.material.button.MaterialButton
                         android:id="@+id/btnAñadir"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Añadir" />
+                        android:layout_height="48dp"
+                        android:text="Añadir"
+                        app:cornerRadius="12dp"
+                        app:backgroundTint="@color/red"
+                        android:textColor="@color/white"
+                        android:layout_marginBottom="16dp"/>
+
                 </LinearLayout>
             </LinearLayout>
 
-            <!-- Separador visual -->
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="16dp"
-                android:background="@android:color/transparent" />
-
-            <!-- Campo adicional -->
+            <!-- Detalles -->
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Detalles"/>
+                android:text="Detalles"
+                android:textSize="14sp"
+                android:textColor="@color/black"
+                android:layout_marginBottom="4dp"/>
 
-            <EditText
-                android:id="@+id/editDetalles"
+            <com.google.android.material.card.MaterialCardView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Escribe algo aquí"
-                />
+                android:layout_height="120dp"
+                android:layout_marginBottom="24dp"
+                app:cardCornerRadius="12dp"
+                app:strokeColor="@color/black"
+                app:strokeWidth="1dp">
 
-            <!-- Botón Crear -->
-            <Button
-                android:id="@+id/btnCrear"
+                <EditText
+                    android:id="@+id/editDetalles"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:hint="Detalles del taller"
+                    android:padding="16dp"
+                    android:gravity="top"
+                    android:inputType="textMultiLine"
+                    android:background="@android:color/transparent"
+                    android:textSize="16sp"/>
+
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- Botones (solo botones en rojo) -->
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Crear"
-                android:layout_weight="0"
-                android:layout_marginTop="16dp"
-                />
-            <Button
-                android:id="@+id/btnReiniciar"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Reiniciar"
-                android:layout_weight="0"
-                android:layout_marginTop="16dp"
-                />
+                android:orientation="horizontal"
+                android:weightSum="2">
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnReiniciar"
+                    android:layout_width="0dp"
+                    android:layout_height="48dp"
+                    android:layout_weight="1"
+                    android:text="Reiniciar"
+                    app:cornerRadius="12dp"
+                    app:strokeColor="@color/red"
+                    app:strokeWidth="1dp"
+                    app:backgroundTint="@android:color/transparent"
+                    android:textColor="@color/red"
+                    android:layout_marginEnd="8dp"/>
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnCrear"
+                    android:layout_width="0dp"
+                    android:layout_height="48dp"
+                    android:layout_weight="1"
+                    android:text="Crear"
+                    app:cornerRadius="12dp"
+                    app:backgroundTint="@color/red"
+                    android:textColor="@color/white"
+                    android:layout_marginStart="8dp"/>
+
+            </LinearLayout>
+
         </LinearLayout>
     </ScrollView>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

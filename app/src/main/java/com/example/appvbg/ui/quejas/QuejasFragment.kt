@@ -8,98 +8,106 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
-//import androidx.compose.ui.semantics.text
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.appvbg.R
-import org.json.JSONObject
-
-
-
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import org.json.JSONObject
 
 class QuejasFragment : Fragment(R.layout.fragment_quejas) {
     private lateinit var viewModel: QuejaViewModel
     private lateinit var recyclerView: RecyclerView
     private lateinit var adapter: ItemAdapter
-    private val items = mutableListOf<Item>() // Replace with your data source
+    private lateinit var tvTotalQuejas: TextView
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         return inflater.inflate(R.layout.fragment_quejas, container, false)
-
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        if (childFragmentManager.findFragmentById(R.id.filter_container) == null) {
-            childFragmentManager.beginTransaction()
-                .replace(R.id.filter_container, FilterQuejasFragment())
-                .commit()
-        }
-        recyclerView = view.findViewById(R.id.recyclerView) // Assuming you have a RecyclerView with this ID in your layout
-        recyclerView.layoutManager = LinearLayoutManager(requireContext())
+        try {
+            // Inicializar vistas
+            tvTotalQuejas = view.findViewById(R.id.tvTotalQuejas)
+            recyclerView = view.findViewById(R.id.recyclerView)
 
-        // Initialize your data (replace with your actual data loading)
-        //items.addAll(generateDummyItems())
+            // Configurar RecyclerView
+            recyclerView.layoutManager = LinearLayoutManager(requireContext())
 
-        adapter = ItemAdapter(
-            mutableListOf(),
-            onDetailsClicked = { item ->
-                // Handle details button click, e.g., navigate to details fragment
-                // You'll need to create a details fragment and implement navigation
-                val itemJson = item.json.toString()
+            // Inicializar adapter
+            adapter = ItemAdapter(
+                mutableListOf(),
+                onDetailsClicked = { item ->
+                    try {
+                        val itemJson = item.json?.toString() ?: "{}"
+                        val action = QuejasFragmentDirections.actionQuejasFragmentToDetallesQueja(itemJson)
+                        findNavController().navigate(action)
+                    } catch (e: Exception) {
+                        Log.e("QuejasFragment", "Error al navegar a detalles", e)
+                        Toast.makeText(requireContext(), "Error al abrir detalles", Toast.LENGTH_SHORT).show()
+                    }
+                },
+                onDeleteClicked = { item ->
+                    viewModel.removeItem(item)
+                }
+            )
+            recyclerView.adapter = adapter
 
+            // Configurar ViewModel
+            viewModel = ViewModelProvider(this)[QuejaViewModel::class.java]
 
-                // Dentro de QuejasFragment, cuando hagas clic en un ítem o algo que navegue a DetallesQuejaFragment
-                val action = QuejasFragmentDirections.actionQuejasFragmentToDetallesQueja(itemJson)
-                findNavController().navigate(action)
-
-
-
-            },
-            onDeleteClicked = { item ->
-                viewModel.removeItem(item)
+            // Observadores
+            viewModel.items.observe(viewLifecycleOwner) { itemList ->
+                adapter.updateItems(itemList)
+                tvTotalQuejas.text = "Total: ${itemList.size} quejas"
             }
-        )
-        recyclerView.adapter = adapter
 
-        viewModel = ViewModelProvider(this)[QuejaViewModel::class.java]
-
-        viewModel.items.observe(viewLifecycleOwner) { itemList ->
-            adapter.updateItems(itemList)
-        }
-        viewModel.filtros.observe(viewLifecycleOwner) { filtro ->
-            adapter.updateItems(viewModel.items.value ?: emptyList())
-        }
-
-        viewModel.error.observe(viewLifecycleOwner) { errorMsg ->
-            errorMsg?.let {
-                Log.e("QuejaViewModel", it)
-                Toast.makeText(requireContext(), it, Toast.LENGTH_LONG).show()
+            viewModel.filtros.observe(viewLifecycleOwner) { filtro ->
+                adapter.updateItems(viewModel.items.value ?: emptyList())
             }
+
+            viewModel.error.observe(viewLifecycleOwner) { errorMsg ->
+                errorMsg?.let {
+                    Log.e("QuejaViewModel", it)
+                    Toast.makeText(requireContext(), it, Toast.LENGTH_LONG).show()
+                }
+            }
+
+            // Configurar FAB
+            val fab = activity?.findViewById<FloatingActionButton>(R.id.fab)
+            fab?.setOnClickListener {
+                try {
+                    val actionCrearQueja = QuejasFragmentDirections.actionQuejasFragmentToCrearQueja()
+                    findNavController().navigate(actionCrearQueja)
+                } catch (e: Exception) {
+                    Log.e("QuejasFragment", "Error al navegar a crear queja", e)
+                    Toast.makeText(requireContext(), "Error al crear queja", Toast.LENGTH_SHORT).show()
+                }
+            }
+
+            // Configurar fragmento de filtros
+            if (childFragmentManager.findFragmentById(R.id.filter_container) == null) {
+                try {
+                    childFragmentManager.beginTransaction()
+                        .replace(R.id.filter_container, FilterQuejasFragment())
+                        .commit()
+                } catch (e: Exception) {
+                    Log.e("QuejasFragment", "Error al cargar filtros", e)
+                }
+            }
+
+        } catch (e: Exception) {
+            Log.e("QuejasFragment", "Error en onViewCreated", e)
+            Toast.makeText(requireContext(), "Error al cargar la vista", Toast.LENGTH_LONG).show()
         }
-        val fab = activity?.findViewById<FloatingActionButton>(R.id.fab)
-        //fab?.setImageResource(R.drawable.tu_icono_deseado)
-        fab?.setOnClickListener {
-            // Acción específica para este fragmento
-            val actionCrearQueja = QuejasFragmentDirections.actionQuejasFragmentToCrearQueja()
-            findNavController().navigate(actionCrearQueja)
-
-
-        }
-
-
     }
-    private fun aplicarFiltros(filtros: FiltroData) {}
-
-
 
     data class Item(
         val id: Int,
@@ -113,7 +121,6 @@ class QuejasFragment : Fragment(R.layout.fragment_quejas) {
         val facultad: String?,
         val unidad: String?,
         val json: JSONObject?
-
     )
 
     private class ItemAdapter(
@@ -124,13 +131,15 @@ class QuejasFragment : Fragment(R.layout.fragment_quejas) {
 
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemViewHolder {
             val view = LayoutInflater.from(parent.context)
-                .inflate(R.layout.queja_item_layout, parent, false) // Create an item layout (item_layout.xml)
+                .inflate(R.layout.queja_item_layout, parent, false)
             return ItemViewHolder(view)
         }
 
         override fun onBindViewHolder(holder: ItemViewHolder, position: Int) {
-            val item = items[position]
-            holder.bind(item, onDetailsClicked, onDeleteClicked)
+            val item = items.getOrNull(position)
+            item?.let {
+                holder.bind(it, onDetailsClicked, onDeleteClicked)
+            }
         }
 
         fun updateItems(newItems: List<Item>) {
@@ -147,6 +156,8 @@ class QuejasFragment : Fragment(R.layout.fragment_quejas) {
             private val codeTextView: TextView = itemView.findViewById(R.id.codeTextView)
             private val facultadTextView: TextView = itemView.findViewById(R.id.facultadTextView)
             private val sedeTextView: TextView = itemView.findViewById(R.id.sedeTextView)
+            private val estadoTextView: TextView = itemView.findViewById(R.id.estadoTextView)
+            private val fechaTextView: TextView = itemView.findViewById(R.id.fechaTextView)
             private val detailsButton: Button = itemView.findViewById(R.id.detailsButton)
             private val deleteButton: Button = itemView.findViewById(R.id.deleteButton)
 
@@ -154,8 +165,10 @@ class QuejasFragment : Fragment(R.layout.fragment_quejas) {
                 nameTextView.text = item.nombre
                 idTextView.text = "ID: ${item.id}"
                 codeTextView.text = "Código: ${item.codigo}"
-                facultadTextView.text = "Facultad: ${item.facultad}"
+                facultadTextView.text = "Facultad: ${item.facultad ?: "No especificado"}"
                 sedeTextView.text = "Sede: ${item.sede}"
+                estadoTextView.text = item.estado
+                fechaTextView.text = "Fecha: ${item.fecha}"
 
                 detailsButton.setOnClickListener { onDetailsClicked(item) }
                 deleteButton.setOnClickListener { onDeleteClicked(item) }
