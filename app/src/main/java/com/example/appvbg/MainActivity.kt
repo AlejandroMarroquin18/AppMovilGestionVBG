@@ -52,6 +52,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 R.id.quejasFragment,
                 R.id.agendaFragment,
                 R.id.verTalleresFragment,
+                R.id.estadisticasMainFragment,
                 R.id.estadisticasQuejasFragment,
                 R.id.estadisticasAgendaFragment,
                 R.id.estadisticasTalleresFragment,

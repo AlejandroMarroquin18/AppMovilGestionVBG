@@ -130,6 +130,25 @@
         android:label="Estadísticas Agenda"
         tools:layout="@layout/fragment_estadisticas_agenda"/>
 
+    <fragment
+        android:id="@+id/estadisticasMainFragment"
+        android:name="com.example.appvbg.ui.estadisticas.EstadisticasMainFragment"
+        android:label="Estadísticas"
+        tools:layout="@layout/fragment_estadisticas_main">
+
+        <action
+            android:id="@+id/action_estadisticasMain_to_estadisticasQuejas"
+            app:destination="@id/estadisticasQuejasFragment" />
+
+        <action
+            android:id="@+id/action_estadisticasMain_to_estadisticasAgenda"
+            app:destination="@id/estadisticasAgendaFragment" />
+
+        <action
+            android:id="@+id/action_estadisticasMain_to_estadisticasTalleres"
+            app:destination="@id/estadisticasTalleresFragment" />
+    </fragment>
+
 
 
 </navigation>

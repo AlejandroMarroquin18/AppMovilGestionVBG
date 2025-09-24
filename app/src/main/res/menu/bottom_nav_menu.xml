@@ -19,4 +19,9 @@
         android:id="@+id/talleresMainFragment"
         android:icon="@drawable/ic_menu_slideshow"
         android:title="Talleres" />
+
+    <item
+        android:id="@+id/estadisticasMainFragment"
+        android:icon="@drawable/ic_launcher"
+        android:title="Estadísticas" />
 </menu>
