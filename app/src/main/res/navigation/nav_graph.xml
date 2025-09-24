@@ -27,6 +27,9 @@
         <argument
             android:name="quejaJSON"
             app:argType="string" />
+        <action
+            android:id="@+id/action_detallesQueja_to_quejasFragment"
+            app:destination="@id/quejasFragment" />
     </fragment>
 
     <fragment
@@ -64,6 +67,9 @@
         <argument
             android:name="tallerJSON"
             app:argType="string" />
+        <action
+            android:id="@+id/action_detallesTaller_to_verTalleres"
+            app:destination="@id/verTalleresFragment" />
     </fragment>
 
 
@@ -104,6 +110,9 @@
         <argument
             android:name="agendaJSON"
             app:argType="string" />
+        <action
+            android:id="@+id/action_detallesAgenda_to_agendaFragment"
+            app:destination="@id/agendaFragment" />
     </fragment>
 
 

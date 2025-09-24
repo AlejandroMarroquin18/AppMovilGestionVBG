@@ -163,6 +163,7 @@ class CustomGRID (context: Context, attrs: AttributeSet?) : ViewGroup(context, a
 
         // Línea vertical al final de la semana
         paint.color = Color.LTGRAY
+
         canvas.drawLine(
             7 * boxWidth - animatedOffsetX,
             0f,
@@ -284,6 +285,10 @@ class CustomGRID (context: Context, attrs: AttributeSet?) : ViewGroup(context, a
                     put("details", event.details)
                     put("emails", event.emails)
                     put("color", event.color)
+                    put("id", event.id)
+                    put("link", event.link)
+                    put("json", event.json)
+
 
                 }
 
@@ -397,7 +402,13 @@ class CustomGRID (context: Context, attrs: AttributeSet?) : ViewGroup(context, a
 
     }
 
-
+    /**
+     * Crea un evento y lo agrega a la lista de eventos para que sse renderice
+     * en el calendario
+     * startHour: "HH:mm"
+     * endHour: "HH:mm"
+     * date: "YYYY-MM-DDTHH:mm:00-HH:mm" LocalDate en String
+     */
     fun addEvent(startHour: String, endHour: String, date: String, title: String) {
         val formattedDate=OffsetDateTime.parse(date).toLocalDate()
         val newEvent = Event( title, formattedDate, startHour, endHour)
@@ -470,4 +481,7 @@ data class Event( val title: String,
                   val IDCaso:String?=null,
                   val details: String?=null,
                   val emails:String?=null,
-                  val color:String?=null)
+                  val color:String?=null,
+                  val id:String?=null,
+                  val link:String?=null,
+                  val json:JSONObject? = null)

@@ -12,46 +12,39 @@ import com.example.appvbg.api.makeRequest
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-class EstadisticasTalleresViewModel : ViewModel() {
+class EstadisticasQuejasViewModel : ViewModel() {
 
     // JSON completo
-    private val _talleres = MutableLiveData<JSONObject>()
-    val talleres: LiveData<JSONObject> = _talleres
+    private val _quejas = MutableLiveData<JSONObject>()
+    val quejas: LiveData<JSONObject> = _quejas
 
     // Substats individuales como LiveData
-    private val _total_talleres = MutableLiveData<Int>()
-    val totalTalleres: LiveData<Int> = _total_talleres
+    private val _conteoQuejaEstudiantes = MutableLiveData<Int>()
+    val conteoQuejaEstudiantes: LiveData<Int> = _conteoQuejaEstudiantes
 
-    private val _conteoModalidades = MutableLiveData<List<PieEntry>>()
-    val conteoModalidades: LiveData<List<PieEntry>> = _conteoModalidades
+    private val _conteoQuejaProfesores = MutableLiveData<Int>()
+    val conteoQuejaProfesores: LiveData<Int> = _conteoQuejaProfesores
 
-    private val _conteoVirtuales = MutableLiveData<Int>()
-    val totalVirtuales: LiveData<Int> = _conteoVirtuales
+    private val _conteoQuejaFuncionarios = MutableLiveData<Int>()
+    val conteoQuejaFuncionarios: LiveData<Int> = _conteoQuejaFuncionarios
 
-    private val _conteoPresenciales = MutableLiveData<Int>()
-    val totalPresenciales: LiveData<Int> = _conteoPresenciales
+    private val _conteoQuejaAnio = MutableLiveData<Pair<List<BarEntry>, List<String>>>()
+    val conteoQuejaAnio: LiveData<Pair<List<BarEntry>, List<String>>> = _conteoQuejaAnio
 
-    private val _total_participantes = MutableLiveData<Int>()
-    val totalParticipantes: LiveData<Int> = _total_participantes
+    private val _conteoQuejaMes = MutableLiveData<Pair<List<BarEntry>, List<String>>>()
+    val conteoQuejaMes: LiveData<Pair<List<BarEntry>, List<String>>> = _conteoQuejaMes
 
-    private val _promedio_participantes = MutableLiveData<Double>()
-    val promedioParticipantes: LiveData<Double> = _promedio_participantes
+    private val _conteoQuejasFacultad = MutableLiveData<Pair<List<BarEntry>, List<String>>>()
+    val conteoQuejasFacultad: LiveData<Pair<List<BarEntry>, List<String>>> = _conteoQuejasFacultad
+
+    private val _conteoQuejasSede = MutableLiveData<Pair<List<BarEntry>, List<String>>>()
+    val conteoQuejasSede: LiveData<Pair<List<BarEntry>, List<String>>> = _conteoQuejasSede
+
+    private val _conteoVice = MutableLiveData<List<PieEntry>>()
+    val conteoVice: LiveData<List<PieEntry>> = _conteoVice
 
     private val _conteoGenero = MutableLiveData<List<PieEntry>>()
     val conteoGenero: LiveData<List<PieEntry>> = _conteoGenero
-
-    private val _conteoPrograma = MutableLiveData<Pair<List<BarEntry>, List<String>>>()
-    val conteoPrograma: LiveData<Pair<List<BarEntry>, List<String>>> = _conteoPrograma
-
-
-    private val _conteoEtnico = MutableLiveData<List<PieEntry>>()
-    val conteoEtnico: LiveData<List<PieEntry>> = _conteoEtnico
-
-    private val _conteoEdades = MutableLiveData<Pair<List<BarEntry>, List<String>>>()
-    val conteoEdades: LiveData<Pair<List<BarEntry>, List<String>>> = _conteoEdades
-
-    private val _conteoDiscapacidades = MutableLiveData<Pair<List<BarEntry>, List<String>>>()
-    val conteoDiscapacidades: LiveData<Pair<List<BarEntry>, List<String>>> = _conteoDiscapacidades
 
 
     /**
@@ -61,7 +54,7 @@ class EstadisticasTalleresViewModel : ViewModel() {
         viewModelScope.launch(Dispatchers.IO) {
             try {
                 val response = makeRequest(
-                    """${APIConstant.BACKEND_URL}api/talleres/statistics/""",
+                    """${APIConstant.BACKEND_URL}api/quejas/statistics/""",
                     "GET",
                     PrefsHelper.getDRFToken(context).toString()
                 )
@@ -70,27 +63,24 @@ class EstadisticasTalleresViewModel : ViewModel() {
                 Log.d("EstadisticasQuejasViewModel", "JSON completo: $json")
 
                 // actualizar los LiveData en hilo seguro
-                _talleres.postValue(json)
-
-
-                val modalidadVirtual=json.getInt("talleres_virtuales")
-                val modalidadPresencial=json.getInt("talleres_presenciales")
-                val modalidadesEntries = listOf(
-                    PieEntry(modalidadVirtual.toFloat(), "Modalidad Virtual"),
-                    PieEntry(modalidadPresencial.toFloat(), "Modalidad Presencial")
+                _quejas.postValue(json)
+                _conteoQuejaEstudiantes.postValue(json.getInt("afectado_estudiantes"))
+                _conteoQuejaProfesores.postValue(json.getInt("afectado_profesores"))
+                _conteoQuejaFuncionarios.postValue(json.getInt("afectado_funcionarios"))
+                _conteoQuejaAnio.postValue(transformarJSONAEntries(json.getJSONObject("conteo_por_anio")))
+                //_conteoQuejaMes.postValue(transformarJSONAEntries(json.getJSONObject("conteo_por_mes")))
+                _conteoQuejasFacultad.postValue(
+                    transformarABarEntries(json.getJSONArray("conteo_por_facultad_afectado"), "afectado_facultad", "total")
                 )
-                _conteoModalidades.postValue(modalidadesEntries)
-
-                _conteoPrograma.postValue(transformarABarEntries(json.getJSONArray("conteo_por_programa"), "program", "total"))
-
-                _conteoGenero.postValue(transformarAPieEntries(json.getJSONArray("conteo_por_genero"), "gender_identity", "total"))
-
-                _total_talleres.postValue(json.getInt("total_workshops"))
-                _conteoVirtuales.postValue(json.getInt("virtual_workshops"))
-                _conteoPresenciales.postValue(json.getInt("in_person_workshops"))
-                _total_participantes.postValue(json.getInt("total_participants"))
-
-
+                _conteoQuejasSede.postValue(
+                    transformarABarEntries(json.getJSONArray("conteo_por_sede_afectado"), "afectado_sede", "total")
+                )
+                _conteoVice.postValue(
+                    transformarAPieEntries(json.getJSONArray("conteo_por_vicerrectoria_adscrita_afectado"), "afectado_vicerrectoria_adscrito", "total")
+                )
+                _conteoGenero.postValue(
+                    transformarAPieEntries(json.getJSONArray("conteo_por_genero_afectado"), "afectado_identidad_genero", "total")
+                )
 
             } catch (e: Exception) {
                 e.printStackTrace()

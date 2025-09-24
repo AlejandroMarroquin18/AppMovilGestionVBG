@@ -1,16 +1,20 @@
 package com.example.appvbg.ui.agenda.crear_cita
 import android.app.DatePickerDialog
 import android.app.TimePickerDialog
+import android.content.Context
+import android.graphics.drawable.GradientDrawable
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import android.os.Bundle
 import android.os.Parcelable
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ArrayAdapter
 import com.example.appvbg.R
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
+
 import androidx.lifecycle.lifecycleScope
 import com.example.appvbg.APIConstant
 import kotlinx.coroutines.Dispatchers
@@ -25,6 +29,9 @@ import java.time.LocalDate
 import java.time.LocalDateTime
 import java.time.ZoneId
 import java.time.format.DateTimeFormatter
+import android.graphics.Color
+import android.widget.Spinner
+
 
 class CrearCita : BottomSheetDialogFragment() {
 
@@ -41,6 +48,19 @@ class CrearCita : BottomSheetDialogFragment() {
     lateinit var detallesValue: String;
     //lateinit var invitadosValue: String;
     lateinit var colorValue: String;
+    private val eventColors: Map<String, String> = mapOf(
+        "1" to "#a4bdfc",
+        "2" to "#7ae7bf",
+        "3" to "#dbadff",
+        "4" to "#ff887c",
+        "5" to "#fbd75b",
+        "6" to "#ffb878",
+        "7" to "#46d6db",
+        "8" to "#e1e1e1",
+        "9" to "#5484ed",
+        "10" to "#51b749",
+        "11" to "#dc2127"
+    )
 
 
 
@@ -109,19 +129,26 @@ class CrearCita : BottomSheetDialogFragment() {
             timePicker.show()
         }
 
+
+
+        val spinner: Spinner = view.findViewById(R.id.colorSpinner)
+        val adapter = ColorSpinnerAdapter(requireContext(), eventColors.values.toList())
+        spinner.adapter = adapter
+
         binding.btnCrear.setOnClickListener {
+
+            val colorList = eventColors.toList()
+            val position = spinner.selectedItemPosition
+            val (colorId, colorHex) = colorList[position]
             val jsonData = buildJSON()
-            lifecycleScope.launch {
-                val respuesta = withContext(Dispatchers.IO) {
-                    enviarWorkshopJson(APIConstant.BACKEND_URL+ "http://192.168.0.32:8000/api/talleres/", jsonData)
-                }
-                Toast.makeText(requireContext(), "Cita creada", Toast.LENGTH_LONG).show()
-                clearFields()
-            }
+
+
+
+
 
             // Empaquetar los datos que quieres enviar
             val result = Bundle().apply {
-                putParcelable("nuevo_evento", sendData())  // NewEvent debe implementar Parcelable
+                putParcelable("nuevo_evento", sendData(colorId))  // NewEvent debe implementar Parcelable
             }
 
             // Enviar el resultado al fragmento que lo pidió
@@ -147,16 +174,14 @@ class CrearCita : BottomSheetDialogFragment() {
         return JSONObject()
     }
 
-    private fun enviarWorkshopJson(url: String, jsonObject: JSONObject) {
-        // Implementación real aquí
-    }
+
 
     private fun clearFields() {
         // Implementación real aquí
     }
 
 
-    fun sendData():NewEvent{
+    fun sendData(color: String):NewEvent{
 
         horaInicioValue=binding.textViewHoraInicio.text.toString();
         horaFinalizacionValue=binding.textViewHoraFinalizacion.text.toString();
@@ -165,8 +190,10 @@ class CrearCita : BottomSheetDialogFragment() {
         lugarValue=binding.location.text.toString();
         detallesValue=binding.details.text.toString();
         idCasoValue=binding.IDCaso.text.toString();
-        colorValue="Green";
+        colorValue=color;
         //colorValue=binding.editTextColor.text.toString();
+
+
 
 
         val localDate = LocalDate.parse(fechaValue) // parsea "YYYY-MM-DD"
@@ -178,16 +205,29 @@ class CrearCita : BottomSheetDialogFragment() {
         val zonedDateTime = localDateTime.atZone(zona)
         val finalDate=zonedDateTime.format(DateTimeFormatter.ISO_OFFSET_DATE_TIME)
 
+        val hhf= horaFinalizacionValue.split(":")[0].toInt()
+        val mmf= horaInicioValue.split(":")[1].toInt()
+        val localDateTimef = LocalDateTime.of(localDate.year, localDate.month, localDate.dayOfMonth, hhf, mmf)
+        val zonaf = ZoneId.systemDefault() // zona horaria del dispositivo, ej: -05:00
+        val zonedDateTimef = localDateTimef.atZone(zonaf)
+        val endDate=zonedDateTimef.format(DateTimeFormatter.ISO_OFFSET_DATE_TIME)
 
 
-        val newEvent= NewEvent(tituloValue,
-            finalDate,
-            horaInicioValue,
-            horaFinalizacionValue,
-            lugarValue,
-            idCasoValue,
-            detallesValue,
-            colorValue);
+
+
+        val newEvent= NewEvent(
+            title=tituloValue,
+            date=finalDate,
+            startHour=horaInicioValue,
+            endHour=horaFinalizacionValue,
+            location=lugarValue,
+            IDCaso=idCasoValue,
+            details=detallesValue,
+            emails="",
+            color=colorValue,
+            start=finalDate,
+            end=endDate
+            );
         return newEvent;
 
 
@@ -195,6 +235,32 @@ class CrearCita : BottomSheetDialogFragment() {
 
 
 }
+class ColorSpinnerAdapter(
+    context: Context,
+    private val colors: List<String>
+) : ArrayAdapter<String>(context, 0, colors) {
+
+    override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
+        return createColorView(position, convertView, parent)
+    }
+
+    override fun getDropDownView(position: Int, convertView: View?, parent: ViewGroup): View {
+        return createColorView(position, convertView, parent)
+    }
+
+    private fun createColorView(position: Int, convertView: View?, parent: ViewGroup): View {
+        val view = LayoutInflater.from(context).inflate(R.layout.color_spinner, parent, false)
+        val colorCircle = view.findViewById<View>(R.id.colorCircle)
+
+        val drawable = colorCircle.background.mutate() as GradientDrawable
+        drawable.setColor(Color.parseColor(colors[position]))
+
+        return view
+    }
+}
+
+
+
 
 @Parcelize
 data class NewEvent(val title: String,
@@ -205,5 +271,10 @@ data class NewEvent(val title: String,
                     val IDCaso:String?=null,
                     val details: String?=null,
                     val emails:String?=null,
-                    val color:String?=null):
+                    val color:String?=null,
+                    val organizer: String? = null,
+                    val createMeet: Boolean? = null,
+                    val type: String? = null,
+                    val start: String? = null,
+                    val end: String?=null,):
     Parcelable;

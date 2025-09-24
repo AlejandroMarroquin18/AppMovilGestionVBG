@@ -1,6 +1,7 @@
 package com.example.appvbg.ui.quejas.detalles
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -8,10 +9,18 @@ import android.view.ViewGroup
 import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import com.example.appvbg.APIConstant
 import com.example.appvbg.R
+import com.example.appvbg.api.PrefsHelper
+import com.example.appvbg.api.makeRequest
 import com.example.appvbg.databinding.FragmentDetallesQuejaBinding
 import org.json.JSONObject
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 
 class DetallesQueja : Fragment(R.layout.fragment_detalles_queja) {
@@ -19,6 +28,7 @@ class DetallesQueja : Fragment(R.layout.fragment_detalles_queja) {
     private var _binding: FragmentDetallesQuejaBinding? = null
     private val binding get() = _binding!!
     private var editMode = false
+    private var data= JSONObject();
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,8 +46,8 @@ class DetallesQueja : Fragment(R.layout.fragment_detalles_queja) {
         super.onViewCreated(view, savedInstanceState)
 
         val quejaJsonString = args.quejaJSON
-        val quejaJson = JSONObject(quejaJsonString)
-        setFieldsFromJSON(quejaJson)
+        data = JSONObject(quejaJsonString)
+        setFieldsFromJSON(data)
 
         // Ya puedes acceder a todos los elementos del layout, incluidos los de los includes
         binding.editButton.setOnClickListener {
@@ -50,10 +60,32 @@ class DetallesQueja : Fragment(R.layout.fragment_detalles_queja) {
             binding.editButton.text = if (editMode) "Guardar" else "Editar"
             setEditMode(editMode)
         }
-        ///funcion fetch
-        //val newData=fetchData()
-        ////funcion para recargar
-        //setFieldsFromJSON(newData)
+
+
+
+        binding.cancelButton.setOnClickListener {
+            editMode = false
+            setEditMode(editMode)
+            binding.cancelButton.visibility = View.GONE
+        }
+        binding.editButton.setOnClickListener {
+            if (editMode) {
+                val newJSON=buildJSON();
+                sendEdit(newJSON);
+
+            }
+            editMode = !editMode
+            binding.editButton.text = if (editMode) "Guardar" else "Editar"
+            binding.cancelButton.visibility = if (editMode) View.VISIBLE else View.GONE
+            setEditMode(editMode)
+        }
+
+        binding.deleteButton.setOnClickListener {
+            sendDelete();
+
+        }
+
+
 
     }
 
@@ -113,11 +145,10 @@ class DetallesQueja : Fragment(R.layout.fragment_detalles_queja) {
         setLabelTextViewsVisibility(binding.includeAgresor.root as ViewGroup, !enabled)
         setLabelTextViewsVisibility(binding.includeAdicionales.root as ViewGroup, !enabled)
     }
-    private fun fetchData(): JSONObject{
-        val newJSON=JSONObject()
-        //fetch y demás cosas
-        return newJSON
-    }
+
+
+
+
 
     private fun buildJSON(): JSONObject {
         val json = JSONObject()
@@ -179,7 +210,7 @@ class DetallesQueja : Fragment(R.layout.fragment_detalles_queja) {
         json.put("acompañamiento_ante_instancias_gubernamentales", binding.includeAdicionales.instanciasGubernamentalesEdit.text.toString())
         json.put("interponer_queja_al_comite_asusntos_internos_disciplinarios", binding.includeAdicionales.comiteAsuntosInternosEdit.text.toString())
         json.put("observaciones", binding.includeAdicionales.observacionesEdit.text.toString())
-        
+        Toast.makeText(requireContext(),json.optString("afectado_nombre"),Toast.LENGTH_SHORT).show()
         return json;
     }
 
@@ -309,5 +340,72 @@ class DetallesQueja : Fragment(R.layout.fragment_detalles_queja) {
         binding.includeAdicionales.instanciasGubernamentalesEdit.setText(json.optString("acompañamiento_ante_instancias_gubernamentales"))
         binding.includeAdicionales.comiteAsuntosInternosEdit.setText(json.optString("interponer_queja_al_comite_asusntos_internos_disciplinarios"))
         binding.includeAdicionales.observacionesEdit.setText(json.optString("observaciones"))
+    }
+    private fun sendEdit(json: JSONObject) {
+        CoroutineScope(Dispatchers.IO).launch {
+            try {
+                val resp = makeRequest(
+                    """${APIConstant.BACKEND_URL}api/quejas/${data.optString("id")}/""",
+                    "PUT",
+                    PrefsHelper.getDRFToken(requireContext()) ?: "",
+                    json
+                )
+
+                withContext(Dispatchers.Main) {
+                    if (resp == "error") {
+                        Toast.makeText(
+                            requireContext(),
+                            "Error al editar la queja",
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    } else {
+                        Toast.makeText(
+                            requireContext(),
+                            "Queja editada",
+                            Toast.LENGTH_SHORT
+                        ).show()
+                        setFieldsFromJSON(JSONObject(resp)) // mover aquí, en Main
+                    }
+                }
+            } catch (e: Exception) {
+                Log.e("Error", e.toString())
+                withContext(Dispatchers.Main) {
+                    Toast.makeText(
+                        requireContext(),
+                        "Error al editar la queja",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
+            }
+        }
+    }
+
+    private fun sendDelete() {
+        CoroutineScope(Dispatchers.IO).launch {
+            try {
+                val resp = makeRequest(
+                    """${APIConstant.BACKEND_URL}api/quejas/${data.optString("id")}/""",
+                    "DELETE",
+                    PrefsHelper.getDRFToken(requireContext()) ?: ""
+                )
+                if (resp == "error") {
+                    withContext(Dispatchers.Main) {
+                        Toast.makeText(requireContext(), "Error al eliminar la queja", Toast.LENGTH_SHORT).show()
+                    }
+                }else {
+                    withContext(Dispatchers.Main) {
+                        Toast.makeText(requireContext(), "Queja eliminada", Toast.LENGTH_SHORT).show()
+                    }
+                    val action = DetallesQuejaDirections.actionDetallesQuejaToQuejasFragment()
+                    findNavController().navigate(action)
+                }
+            }catch (e: Exception){
+                Log.e("Error", e.toString())
+                withContext(Dispatchers.Main) {
+                    Toast.makeText(requireContext(), "Error al eliminar la queja", Toast.LENGTH_SHORT).show()
+                }
+            }
+        }
+
     }
 }

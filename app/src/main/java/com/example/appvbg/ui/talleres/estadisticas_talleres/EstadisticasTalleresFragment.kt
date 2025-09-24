@@ -18,6 +18,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import com.example.appvbg.EstadisticasTalleresViewModel
 import com.example.appvbg.R
 
 class EstadisticasTalleresFragment: Fragment(R.layout.fragment_estadisticas_talleres) {

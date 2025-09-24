@@ -1,5 +1,6 @@
 package com.example.appvbg
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import com.google.android.material.snackbar.Snackbar
@@ -17,6 +18,14 @@ import com.example.appvbg.ui.agenda.AgendaFragment
 import com.example.appvbg.ui.quejas.QuejasFragmentDirections
 import com.example.appvbg.ui.agenda.crear_cita.CrearCita
 import com.example.appvbg.ui.agenda.crear_cita.NewEvent
+import android.util.Log
+import android.view.MenuItem
+import androidx.navigation.ui.NavigationUI
+import com.example.appvbg.splashactivity.SplashActivity
+import com.google.android.gms.auth.api.identity.ClearTokenRequest
+import com.google.android.gms.auth.api.identity.Identity
+import com.google.android.gms.auth.api.identity.RevokeAccessRequest
+import com.google.android.gms.common.api.Scope
 
 class MainActivity : AppCompatActivity() {
 
@@ -102,7 +111,41 @@ class MainActivity : AppCompatActivity() {
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
+        navView.setNavigationItemSelectedListener { menuItem ->
+            when (menuItem.itemId) {
+                R.id.logout -> {
+                    doLogout()
+                    true
+                }
+                else -> {
+                    // Deja que NavigationUI maneje los demás items
+                    NavigationUI.onNavDestinationSelected(menuItem, navController)
+                    binding.drawerLayout.closeDrawers()
+                    true
+                }
+            }
+        }
+
+
+
+    }/**
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            R.id.logout -> {
+                // Aquí haces el logout
+                // Ejemplo: limpiar token, cerrar sesión, redirigir a LoginActivity
+                Log.d("MainActivity", "Logout presionado")
+
+                // Si tienes un
+                // de logout:
+                doLogout()
+
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
     }
+    */
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -114,5 +157,36 @@ class MainActivity : AppCompatActivity() {
     override fun onSupportNavigateUp(): Boolean {
         val navController = findNavController(R.id.nav_host_fragment_content_main)
         return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
+    }
+
+
+    private fun doLogout(){
+        // Borrar todos los datos guardados en AppPrefs
+        val sharedPref = getSharedPreferences("AppPrefs", MODE_PRIVATE)
+        sharedPref.edit().clear().apply()
+
+
+        /*
+        val revokeAccessRequest = RevokeAccessRequest.builder()
+            .setAccount(account)
+            .setScopes(requestedScopes)
+            .build()
+
+        Identity.getAuthorizationClient(activity)
+            .revokeAccess(revokeAccessRequest)
+            .addOnSuccessListener {
+                Log.i(TAG, "Acceso revocado exitosamente")
+                // Aquí puedes realizar otras acciones de logout, como
+                // redirigir a la pantalla de inicio de sesión.
+            }
+            .addOnFailureListener { e ->
+                Log.e(TAG, "Fallo al revocar el acceso", e)
+            }
+        */
+        // Redirigir al LoginActivity
+        val intent = Intent(this, SplashActivity::class.java)
+        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+        startActivity(intent)
+        finish()
     }
 }
