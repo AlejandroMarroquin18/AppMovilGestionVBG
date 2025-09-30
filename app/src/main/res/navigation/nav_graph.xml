@@ -49,14 +49,35 @@
 
 
     <fragment
+        android:id="@+id/talleresMainFragment"
+        android:name="com.example.appvbg.ui.talleres.TalleresMainFragment"
+        android:label="Talleres"
+        tools:layout="@layout/fragment_talleres_main">
+
+        <action
+            android:id="@+id/action_talleresMain_to_verTalleres"
+            app:destination="@id/verTalleresFragment" />
+
+        <action
+            android:id="@+id/action_talleresMain_to_crearTaller"
+            app:destination="@id/crearTallerFragment" />
+    </fragment>
+
+    <fragment
         android:id="@+id/verTalleresFragment"
         android:name="com.example.appvbg.ui.talleres.ver_talleres.VerTalleresFragment"
-        android:label="Talleres"
+        android:label="Lista de Talleres"
         tools:layout="@layout/fragment_vertalleres">
         <action
             android:id="@+id/action_verTalleres_to_detallesTaller"
             app:destination="@id/detallesTaller" />
     </fragment>
+
+    <fragment
+        android:id="@+id/crearTallerFragment"
+        android:name="com.example.appvbg.ui.talleres.crear_taller.CrearTallerFragment"
+        android:label="Crear Taller"
+        tools:layout="@layout/fragment_crear_taller" />
 
     <fragment
         android:id="@+id/detallesTaller"
@@ -82,11 +103,7 @@
         android:name="com.example.appvbg.ui.talleres.estadisticas_talleres.EstadisticasTalleresFragment"
         android:label="Estadísticas Taller"
         tools:layout="@layout/fragment_estadisticas_talleres"/>
-    <fragment
-        android:id="@+id/crearTallerFragment"
-        android:name="com.example.appvbg.ui.talleres.crear_taller.CrearTallerFragment"
-        android:label="Crear Taller"
-        tools:layout="@layout/fragment_crear_taller"/>
+
 
     <fragment
         android:id="@+id/agendaFragment"
@@ -121,6 +138,25 @@
         android:name="com.example.appvbg.ui.agenda.estadisticas.EstadisticasAgendaFragment"
         android:label="Estadísticas Agenda"
         tools:layout="@layout/fragment_estadisticas_agenda"/>
+
+    <fragment
+        android:id="@+id/estadisticasMainFragment"
+        android:name="com.example.appvbg.ui.estadisticas.EstadisticasMainFragment"
+        android:label="Estadísticas"
+        tools:layout="@layout/fragment_estadisticas_main">
+
+        <action
+            android:id="@+id/action_estadisticasMain_to_estadisticasQuejas"
+            app:destination="@id/estadisticasQuejasFragment" />
+
+        <action
+            android:id="@+id/action_estadisticasMain_to_estadisticasAgenda"
+            app:destination="@id/estadisticasAgendaFragment" />
+
+        <action
+            android:id="@+id/action_estadisticasMain_to_estadisticasTalleres"
+            app:destination="@id/estadisticasTalleresFragment" />
+    </fragment>
 
 
 

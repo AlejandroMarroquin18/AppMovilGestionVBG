@@ -5,7 +5,6 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
@@ -21,7 +20,7 @@ class VerTalleresFragment: Fragment(R.layout.fragment_vertalleres) {
     private lateinit var viewModel: VerTalleresViewModel
     private lateinit var recyclerView: RecyclerView
     private lateinit var adapter: ItemAdapter
-    private val items = mutableListOf<ItemTalleres>() // Replace with your data source
+    private lateinit var tvTotalTalleres: TextView
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -33,85 +32,70 @@ class VerTalleresFragment: Fragment(R.layout.fragment_vertalleres) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        tvTotalTalleres = view.findViewById(R.id.tvTotalTalleres)
+
         childFragmentManager.beginTransaction()
             .replace(R.id.filter_container, FilterVerTalleresFragment())
             .commit()
 
-
-        recyclerView = view.findViewById(R.id.recyclerTallerView) // Assuming you have a RecyclerView with this ID in your layout
+        recyclerView = view.findViewById(R.id.recyclerTallerView)
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
 
-        // Initialize your data (replace with your actual data loading)
-        //items.addAll(generateDummyItems())
-
-        adapter = ItemAdapter(items,
+        adapter = ItemAdapter(mutableListOf(),
             onDetailsClicked = { item ->
-                // Handle details button click, e.g., navigate to details fragment
-                // You'll need to create a details fragment and implement navigation
                 val itemJson = item.json.toString()
-
-
-                // Dentro de QuejasFragment, cuando hagas clic en un ítem o algo que navegue a DetallesQuejaFragment
                 val action = VerTalleresFragmentDirections.actionVerTalleresToDetallesTaller(itemJson)
-                //val action = VerTalleresFragmentDirections.actionVertalleresFragmentToDetallesTallerFragment(itemJson)
-
                 findNavController().navigate(action)
             },
             onDeleteClicked = { item ->
-                // Handle delete button click
-                viewModel.removeItem(item) // Or use a more efficient way to update the adapter
+                viewModel.removeItem(item)
             }
         )
         recyclerView.adapter = adapter
 
         viewModel = ViewModelProvider(this)[VerTalleresViewModel::class.java]
 
-
-
         viewModel.filtros.observe(viewLifecycleOwner) { filtro ->
-            // Aquí ya no es necesario lógica extra; el ViewModel actualiza items
-            // Pero si necesitas UI adicional, puedes usar:
             adapter.updateItems(viewModel.items.value ?: emptyList())
         }
 
         viewModel.items.observe(viewLifecycleOwner) { itemList ->
             adapter.updateItems(itemList)
+            tvTotalTalleres.text = "Total: ${itemList.size} talleres"
         }
 
         viewModel.error.observe(viewLifecycleOwner) { errorMsg ->
             errorMsg?.let {
-                Log.e("QuejaViewModel", it)
+                Log.e("TallerViewModel", it)
                 Toast.makeText(requireContext(), it, Toast.LENGTH_LONG).show()
             }
         }
-
     }
-    private fun aplicarFiltros(filtros: com.example.appvbg.ui.talleres.ver_talleres.FiltroData) {}
 
     data class ItemTalleres(
-                    val id:Int?,
-                    val nombre: String,
-                    val fechaInicio: String,
-                    val horaInicio: String,
-                    val horaFin: String,
-                    val ubicacion: String,
-                    val modalidad: String,
-                    val beneficiarios: String,
-                    val talleristas: String,
-                    val descripcion: String,
-                    val estado: String,
-                    val json: JSONObject?
+        val id:Int?,
+        val nombre: String,
+        val fechaInicio: String,
+        val horaInicio: String,
+        val horaFin: String,
+        val ubicacion: String,
+        val modalidad: String,
+        val beneficiarios: String,
+        val talleristas: String,
+        val descripcion: String,
+        val estado: String,
+        val json: JSONObject?
     )
 
     private class ItemAdapter(
-        private val items: MutableList<ItemTalleres>,
+        private var items: MutableList<ItemTalleres>,
         private val onDetailsClicked: (ItemTalleres) -> Unit,
         private val onDeleteClicked: (ItemTalleres) -> Unit
     ) : RecyclerView.Adapter<ItemAdapter.ItemViewHolder>() {
 
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemViewHolder {
             val view = LayoutInflater.from(parent.context)
-                .inflate(R.layout.taller_item_layout, parent, false) // Create an item layout (item_layout.xml)
+                .inflate(R.layout.taller_item_layout, parent, false)
             return ItemViewHolder(view)
         }
 
@@ -121,7 +105,6 @@ class VerTalleresFragment: Fragment(R.layout.fragment_vertalleres) {
         }
 
         fun updateItems(newItems: List<ItemTalleres>) {
-
             items.clear()
             items.addAll(newItems)
             notifyDataSetChanged()
@@ -136,31 +119,31 @@ class VerTalleresFragment: Fragment(R.layout.fragment_vertalleres) {
             private val horaFinTallerTextView: TextView = itemView.findViewById(R.id.horaFinTallerTextView)
             private val ubicacionTallerTextView: TextView = itemView.findViewById(R.id.ubicacionTallerTextView)
             private val modalidadTallerTextView: TextView = itemView.findViewById(R.id.modalidadTallerTextView)
-            private val beneficiariosTallerTextView: TextView = itemView.findViewById(R.id.beneficiariosTallerTextView)
-            private val talleristasTallerTextView: TextView = itemView.findViewById(R.id.talleristasTallerTextView)
-            private val descripcionTallerTextView: TextView = itemView.findViewById(R.id.descripcionTallerTextView)
             private val estadoTallerTextView: TextView = itemView.findViewById(R.id.estadoTallerTextView)
-            private val detailsButton: Button = itemView.findViewById(R.id.detallesTallerTextView)
-            private val deleteButton: Button = itemView.findViewById(R.id.eliminarTallerTextView)
-
+            private val detailsButton: android.widget.Button = itemView.findViewById(R.id.detallesTallerTextView)
+            private val deleteButton: android.widget.Button = itemView.findViewById(R.id.eliminarTallerTextView)
 
             fun bind(item: ItemTalleres, onDetailsClicked: (ItemTalleres) -> Unit, onDeleteClicked: (ItemTalleres) -> Unit) {
-                nombreTallerTextView.text= item.nombre
-                fechaTallerTextView.text = "Fecha: ${item.fechaInicio}"
-                horaInicioTallerTextView.text = "Hora Inicio: ${item.horaInicio}"
-                horaFinTallerTextView.text = "Hora Fin: ${item.horaFin}"
-                ubicacionTallerTextView.text = "Ubicación: ${item.ubicacion}"
-                modalidadTallerTextView.text = "Modalidad: ${item.modalidad}"
-                beneficiariosTallerTextView.text = "Beneficiarios: ${item.beneficiarios}"
-                talleristasTallerTextView.text = "Talleristas: ${item.talleristas}"
-                descripcionTallerTextView.text = "Descripción: ${item.descripcion}"
-                estadoTallerTextView.text = "Estado: ${item.estado}"
+                nombreTallerTextView.text = item.nombre
+                fechaTallerTextView.text = "📅 ${item.fechaInicio}"
+                horaInicioTallerTextView.text = "⏰ Inicio: ${item.horaInicio}"
+                horaFinTallerTextView.text = "⏰ Fin: ${item.horaFin}"
+                ubicacionTallerTextView.text = "📍 ${item.ubicacion}"
+                modalidadTallerTextView.text = "📱 ${item.modalidad}"
+                estadoTallerTextView.text = item.estado
+
+                // Personalizar color del estado
+                val backgroundResource = when (item.estado.toLowerCase()) {
+                    "pendiente" -> R.drawable.badge_pending
+                    "realizado" -> R.drawable.badge_resolved
+                    "cancelado" -> R.drawable.badge_in_progress
+                    else -> R.drawable.badge_background
+                }
+                estadoTallerTextView.setBackgroundResource(backgroundResource)
 
                 detailsButton.setOnClickListener { onDetailsClicked(item) }
                 deleteButton.setOnClickListener { onDeleteClicked(item) }
             }
         }
     }
-
-
 }

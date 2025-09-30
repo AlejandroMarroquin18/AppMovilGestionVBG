@@ -12,7 +12,7 @@
 
                 <!-- Fecha de recepción -->
                 <TextView
-tools:viewBindingIgnore="true"
+                    tools:viewBindingIgnore="true"
                     android:text="Fecha de recepción"
                     android:textStyle="bold"
                     android:layout_marginTop="8dp"
@@ -31,7 +31,7 @@ tools:viewBindingIgnore="true"
 
                 <!-- Nombre -->
                 <TextView
-tools:viewBindingIgnore="true"
+                    tools:viewBindingIgnore="true"
                     android:text="Nombre"
                     android:textStyle="bold"
                     android:layout_marginTop="12dp"
@@ -50,7 +50,7 @@ tools:viewBindingIgnore="true"
 
                 <!-- Sexo -->
                 <TextView
-tools:viewBindingIgnore="true"
+                    tools:viewBindingIgnore="true"
                     android:text="Sexo"
                     android:textStyle="bold"
                     android:layout_marginTop="12dp"
@@ -64,7 +64,7 @@ tools:viewBindingIgnore="true"
 
                 <!-- Edad -->
                 <TextView
-tools:viewBindingIgnore="true"
+                    tools:viewBindingIgnore="true"
                     android:text="Edad"
                     android:textStyle="bold"
                     android:layout_marginTop="12dp"

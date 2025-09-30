@@ -49,6 +49,12 @@ class DetallesQueja : Fragment(R.layout.fragment_detalles_queja) {
         data = JSONObject(quejaJsonString)
         setFieldsFromJSON(data)
 
+        // Mostrar ID de la queja
+        binding.tvQuejaId.text = "ID: #${data.optString("id", "N/A")}"
+
+
+        setEditMode(false) // Iniciar en modo visualización
+
         // Ya puedes acceder a todos los elementos del layout, incluidos los de los includes
         binding.editButton.setOnClickListener {
             if (editMode) {
@@ -84,12 +90,17 @@ class DetallesQueja : Fragment(R.layout.fragment_detalles_queja) {
             sendDelete();
 
         }
+        binding.btnImprimir.setOnClickListener {
+            Toast.makeText(requireContext(), "Funcionalidad de impresión", Toast.LENGTH_SHORT).show()
+            // Aquí puedes implementar la funcionalidad de impresión/exportación
+        }
+
 
 
 
     }
 
-        override fun onDestroyView() {
+    override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
     }
@@ -101,49 +112,40 @@ class DetallesQueja : Fragment(R.layout.fragment_detalles_queja) {
 
     private fun setEditMode(enabled: Boolean) {
         val visibility = if (enabled) View.VISIBLE else View.GONE
+        val labelVisibility = if (enabled) View.GONE else View.VISIBLE
         val enabledAndVisible = { et: EditText ->
             et.isEnabled = enabled
             et.visibility = visibility
         }
 
-        fun applyTo(container: ViewGroup) {
+        fun applyToViewGroup(container: ViewGroup) {
             for (i in 0 until container.childCount) {
                 val child = container.getChildAt(i)
                 when (child) {
-                    is EditText -> enabledAndVisible(child)
-                    is ViewGroup -> applyTo(child)
-                }
-            }
-        }
-        applyTo(binding.includeReporta.root as ViewGroup)
-        applyTo(binding.includeAfectada.root as ViewGroup)
-        applyTo(binding.includeAgresor.root as ViewGroup)
-        applyTo(binding.includeAdicionales.root as ViewGroup)
-        fun setLabelTextViewsVisibility(container: ViewGroup, visible: Boolean) {
-            val visibility = if (visible) View.VISIBLE else View.GONE
-            for (i in 0 until container.childCount) {
-                val child = container.getChildAt(i)
-                if (child is TextView && child !is EditText) {
-                    val resId = child.id
-                    if (resId != View.NO_ID) {
-                        val name = try {
-                            resources.getResourceEntryName(resId)
-                        } catch (e: Exception) {
-                            null
-                        }
-                        if (name != null && name.endsWith("Label", ignoreCase = true)) {
-                            child.visibility = visibility
+                    is EditText -> {
+                        child.visibility = visibility
+                        child.isEnabled = enabled
+                    }
+                    is TextView -> {
+                        if (child.id != View.NO_ID) {
+                            try {
+                                val resName = resources.getResourceEntryName(child.id)
+                                if (resName.endsWith("Label", ignoreCase = true)) {
+                                    child.visibility = labelVisibility
+                                }
+                            } catch (e: Exception) {
+                                // Ignorar si no se puede obtener el nombre del recurso
+                            }
                         }
                     }
-                } else if (child is ViewGroup) {
-                    setLabelTextViewsVisibility(child, visible) // recursividad
+                    is ViewGroup -> applyToViewGroup(child)
                 }
             }
         }
-        setLabelTextViewsVisibility(binding.includeReporta.root as ViewGroup, !enabled)
-        setLabelTextViewsVisibility(binding.includeAfectada.root as ViewGroup, !enabled)
-        setLabelTextViewsVisibility(binding.includeAgresor.root as ViewGroup, !enabled)
-        setLabelTextViewsVisibility(binding.includeAdicionales.root as ViewGroup, !enabled)
+        applyToViewGroup(binding.includeReporta.root)
+        applyToViewGroup(binding.includeAfectada.root)
+        applyToViewGroup(binding.includeAgresor.root)
+        applyToViewGroup(binding.includeAdicionales.root)
     }
 
 

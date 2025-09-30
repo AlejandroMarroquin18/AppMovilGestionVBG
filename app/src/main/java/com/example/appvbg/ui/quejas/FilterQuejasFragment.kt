@@ -7,8 +7,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
+import android.widget.Button // Cambiado de ImageButton a Button
 import android.widget.EditText
-import android.widget.ImageButton
 import android.widget.Spinner
 import android.widget.Toast
 import androidx.fragment.app.Fragment
@@ -23,7 +23,7 @@ class FilterQuejasFragment : Fragment(R.layout.fragment_filter_quejas) {
     private lateinit var tipoSpinner: Spinner
     private lateinit var facultadSpinner: Spinner
     private lateinit var searchEditText: EditText
-    private lateinit var searchButton: ImageButton
+    private lateinit var searchButton: Button // Cambiado de ImageButton a Button
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -34,7 +34,7 @@ class FilterQuejasFragment : Fragment(R.layout.fragment_filter_quejas) {
         tipoSpinner = view.findViewById(R.id.tipoQuejaSpinner)
         facultadSpinner = view.findViewById(R.id.facultadQuejaSpinner)
         searchEditText = view.findViewById(R.id.searchQuejaText)
-        searchButton = view.findViewById(R.id.searchQuejaButton)
+        searchButton = view.findViewById(R.id.searchQuejaButton) // Ahora esto es un Button
 
         val sedes = listOf("Todos","Melendez","San Fernando","Santander de Quilichao","Buenaventura","Buga","Zarzal","Otra")
         val tipos = listOf("Todos", "Acompañamiento integral", "Acompañamiento psicológico")
