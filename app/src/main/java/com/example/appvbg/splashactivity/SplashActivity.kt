@@ -18,6 +18,11 @@ class SplashActivity : AppCompatActivity() {
         // Ocultar la action bar
         supportActionBar?.hide()
 
+        setContentView(R.layout.activity_splash)
+
+
+
+
         val sharedPref = getSharedPreferences("AppPrefs", MODE_PRIVATE)
         val token = sharedPref.getString("authToken", null)
 

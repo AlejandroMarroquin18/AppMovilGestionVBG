@@ -25,9 +25,7 @@
     <string name="ic_visibility">👁️</string>
     <string name="ic_delete">🗑️</string>
     <string name="server_client_id">588252644218-dt51gh548k7gtkkt7vr9o0srms640333.apps.googleusercontent.com</string>
-    <string name="ic_search">🔍</string>
-    <string name="ic_visibility">👁️</string>
-    <string name="ic_delete">🗑️</string>
+
 
     <string name="lorem_ipsum">
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam in scelerisque sem. Mauris

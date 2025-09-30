@@ -196,6 +196,29 @@
                     android:textColor="@color/white"
                     android:layout_marginEnd="8dp"
                     style="@style/Widget.Material3.Button"/>
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/cancelButton"
+                    android:layout_width="0dp"
+                    android:layout_height="48dp"
+                    android:layout_weight="1"
+                    android:text="Cancelar"
+                    android:visibility="gone"
+                    app:cornerRadius="12dp"
+                    app:backgroundTint="@color/red"
+                    android:textColor="@color/white"
+                    android:layout_marginEnd="8dp"
+                    style="@style/Widget.Material3.Button"/>
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/deleteButton"
+                    android:layout_width="0dp"
+                    android:layout_height="48dp"
+                    android:layout_weight="1"
+                    android:text="Eliminar"
+                    app:cornerRadius="12dp"
+                    app:backgroundTint="@color/red"
+                    android:textColor="@color/white"
+                    android:layout_marginEnd="8dp"
+                    style="@style/Widget.Material3.Button"/>
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/btnImprimir"
