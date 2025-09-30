@@ -122,6 +122,8 @@ class QuejaViewModel: ViewModel() {
                             detalles = obj.getString("observaciones"),
                             facultad = if (obj.isNull("afectado_facultad")) "null" else obj.getString("afectado_facultad"),
                             unidad = if (obj.isNull("unidad")) "null" else obj.getString("unidad"),
+                            facultad = if (obj.isNull("afectado_facultad")) null else obj.getString("afectado_facultad"),
+                            unidad = if (obj.isNull("unidad")) null else obj.getString("unidad"),
                             json = obj
                         )
                         lista.add(item)

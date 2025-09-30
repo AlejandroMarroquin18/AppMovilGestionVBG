@@ -15,6 +15,8 @@ import androidx.navigation.findNavController
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.example.appvbg.databinding.ActivityMainBinding
+import com.google.android.material.navigation.NavigationView
+import com.google.android.material.snackbar.Snackbar
 import com.example.appvbg.splashactivity.SplashActivity
 import com.example.appvbg.ui.agenda.AgendaFragment
 import com.example.appvbg.ui.agenda.crear_cita.CrearCita
@@ -37,6 +39,11 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
         setSupportActionBar(binding.appBarMain.toolbar)
 
+        // Configurar el Floating Action Button
+        binding.appBarMain.fab.setOnClickListener { view ->
+            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                .setAction("Action", null).show()
+        }
         //navController = findNavController(R.id.nav_host_fragment_content_main)
         // Configurar Navigation Controller
         val navHostFragment = supportFragmentManager
@@ -60,24 +67,15 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                     }
                 }
 
-                R.id.agendaFragment -> {
-                    //fab.setImageResource(R.drawable.ic_event)
-                    fab.show()
-                    // Registrar el listener aquí
-                    supportFragmentManager.setFragmentResultListener("crearCitaRequestKey", this) { _, bundle ->
-                        val nuevoEvento = bundle.getParcelable<NewEvent>("nuevo_evento")
-                        if (nuevoEvento != null) {
-                            // Buscar el fragmento actual en el NavHost
-                            val currentFragment = supportFragmentManager
-                                .findFragmentById(R.id.nav_host_fragment_content_main)
-                                ?.childFragmentManager
-                                ?.fragments
-                                ?.firstOrNull() as? AgendaFragment
+        // Configurar Navigation Controller
+        val navHostFragment = supportFragmentManager
+            .findFragmentById(R.id.nav_host_fragment_content_main) as NavHostFragment
+        navController = navHostFragment.navController
 
-                            currentFragment?.recibirNuevoEvento(nuevoEvento)
-                        }
-                    }
+        // Configurar drawer layout
+        drawerLayout = binding.drawerLayout
 
+        // Configurar AppBarConfiguration con los destinos principales
                     fab.setOnClickListener {
                         // Acción para agendaFragment
                         val bottomSheet = CrearCita()
@@ -170,6 +168,59 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
     override fun onSupportNavigateUp(): Boolean {
         return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
+    }
+
+    override fun onBackPressed() {
+        if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
+            drawerLayout.closeDrawer(GravityCompat.START)
+        } else {
+            super.onBackPressed()
+        }
+    }
+
+    override fun onNavigationItemSelected(item: MenuItem): Boolean {
+        // Manejar items de navegación manualmente si es necesario
+        when (item.itemId) {
+            R.id.logout -> {
+                // Manejar logout
+                Snackbar.make(binding.root, "Cerrar sesión", Snackbar.LENGTH_SHORT).show()
+                drawerLayout.closeDrawer(GravityCompat.START)
+                return true
+            }
+            else -> {
+                // Dejar que el NavigationController maneje la navegación normal
+                drawerLayout.closeDrawer(GravityCompat.START)
+                return false
+            }
+        }
+    }
+
+    // Función para ocultar/mostrar la bottom navigation
+    fun setBottomNavigationVisibility(visible: Boolean) {
+        if (visible) {
+            binding.bottomNavView.visibility = android.view.View.VISIBLE
+        } else {
+            binding.bottomNavView.visibility = android.view.View.GONE
+        }
+    }
+
+    // Función para ocultar/mostrar el FAB
+    fun setFabVisibility(visible: Boolean) {
+        if (visible) {
+            binding.appBarMain.fab.show()
+        } else {
+            binding.appBarMain.fab.hide()
+        }
+    }
+
+    // Función para cambiar el comportamiento del FAB
+    fun setFabOnClickListener(listener: android.view.View.OnClickListener) {
+        binding.appBarMain.fab.setOnClickListener(listener)
+    }
+
+    // Función para cambiar el icono del FAB
+    fun setFabIcon(@androidx.annotation.DrawableRes iconRes: Int) {
+        binding.appBarMain.fab.setImageResource(iconRes)
     }
 
     override fun onBackPressed() {
