@@ -1,20 +1,35 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <!-- Base application theme. -->
+    <!-- Tema principal Material Components -->
     <style name="Theme.AppVBG" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+        <!-- Primary brand color -->
         <item name="colorPrimary">@color/red</item>
-        <item name="colorPrimaryVariant">@color/red</item>
+        <item name="colorPrimaryVariant">@color/red_dark</item>
         <item name="colorOnPrimary">@color/white</item>
-        <item name="colorSecondary">@color/red</item>
+
+        <!-- Secondary brand color -->
+        <item name="colorSecondary">@color/red_light</item>
         <item name="colorSecondaryVariant">@color/red</item>
         <item name="colorOnSecondary">@color/white</item>
-        <item name="android:statusBarColor">@color/red</item>
+
+        <!-- Status bar -->
+        <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
+
+        <!-- Para botones -->
         <item name="materialButtonStyle">@style/Widget.App.Button</item>
     </style>
 
+    <!-- Estilo para botones -->
     <style name="Widget.App.Button" parent="Widget.MaterialComponents.Button">
         <item name="backgroundTint">@color/red</item>
         <item name="android:textColor">@color/white</item>
-        <item name="cornerRadius">12dp</item>
+        <item name="cornerRadius">8dp</item>
+    </style>
+
+    <style name="Widget.App.Button.Outlined" parent="Widget.MaterialComponents.Button.OutlinedButton">
+        <item name="strokeColor">@color/red</item>
+        <item name="strokeWidth">1dp</item>
+        <item name="android:textColor">@color/red</item>
+        <item name="backgroundTint">@android:color/transparent</item>
     </style>
 
     <style name="Theme.AppVBG.NoActionBar">
@@ -22,12 +37,6 @@
         <item name="windowNoTitle">true</item>
     </style>
 
-    <style name="Theme.AppVBG.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
-
-    <style name="Theme.AppVBG.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
-    <!-- Base application theme. -->
-    <style name="Base.Theme.AppVBG" parent="Theme.Material3.DayNight.NoActionBar">
-        <!-- Customize your light theme here. -->
-        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
-    </style>
+    <style name="Theme.AppVBG.AppBarOverlay" parent="ThemeOverlay.MaterialComponents.Dark.ActionBar" />
+    <style name="Theme.AppVBG.PopupOverlay" parent="ThemeOverlay.MaterialComponents.Light" />
 </resources>
