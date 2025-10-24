@@ -4,25 +4,25 @@
 
     <item
         android:id="@+id/quejasFragment"
-        android:icon="@drawable/ic_menu_slideshow"
+        android:icon="@drawable/ic_report"
         android:title="@string/quejas" />
 
     <item
         android:id="@+id/agendaFragment"
-        android:icon="@drawable/ic_menu_slideshow"
+        android:icon="@drawable/ic_calendar"
         android:title="@string/agenda" />
 
     <item
         android:id="@+id/talleresMainFragment"
-        android:icon="@drawable/ic_menu_slideshow"
+        android:icon="@drawable/ic_groups"
         android:title="Talleres" />
 
     <item
         android:id="@+id/estadisticasMainFragment"
-        android:icon="@drawable/ic_launcher"
+        android:icon="@drawable/ic_chart"
         android:title="Estadísticas" />
     <item
         android:id="@+id/opcionesMainFragment"
-        android:icon="@drawable/ic_launcher"
+        android:icon="@drawable/ic_options"
         android:title="Opciones"/>
 </menu>
