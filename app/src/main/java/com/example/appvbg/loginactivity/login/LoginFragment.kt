@@ -56,7 +56,7 @@ import kotlinx.coroutines.launch
 
 
 
-const val WEB_CLIENT_ID = "588252644218-pva31ci2b26g5doku7cb08l1tmhdpaqb.apps.googleusercontent.com"
+const val WEB_CLIENT_ID = "588252644218-dt51gh548k7gtkkt7vr9o0srms640333.apps.googleusercontent.com"
 
 class LoginFragment : Fragment() {
     private var _binding: FragmentLoginBinding? = null
