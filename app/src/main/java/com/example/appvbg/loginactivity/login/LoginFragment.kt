@@ -11,9 +11,10 @@ import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.credentials.CredentialManager
+import androidx.credentials.CredentialManager/////////////////////////////////////////
 import androidx.credentials.CustomCredential
 import androidx.credentials.GetCredentialRequest
+import androidx.credentials.GetCredentialResponse
 import androidx.credentials.exceptions.GetCredentialCancellationException
 import androidx.credentials.exceptions.GetCredentialException
 import androidx.fragment.app.Fragment
@@ -37,8 +38,25 @@ import java.io.BufferedReader
 import java.io.InputStreamReader
 import java.net.HttpURLConnection
 import java.net.URL
+import com.google.android.gms.auth.api.identity.Identity
+import com.google.android.gms.auth.api.identity.BeginSignInRequest
+import com.google.android.libraries.identity.googleid.GoogleIdTokenParsingException
+import androidx.credentials.*
+import com.google.android.libraries.identity.googleid.*
+import kotlinx.coroutines.*
 
 
+import androidx.credentials.ClearCredentialStateRequest
+import androidx.credentials.PasswordCredential
+import androidx.credentials.PublicKeyCredential
+import androidx.lifecycle.lifecycleScope
+import kotlinx.coroutines.launch
+
+
+
+
+
+const val WEB_CLIENT_ID = "588252644218-dt51gh548k7gtkkt7vr9o0srms640333.apps.googleusercontent.com"
 
 class LoginFragment : Fragment() {
     private var _binding: FragmentLoginBinding? = null
@@ -59,11 +77,13 @@ class LoginFragment : Fragment() {
     private lateinit var btnGoogle: Button
     private lateinit var loginbutton: Button
     private lateinit var forgotpassword: TextView
+    private lateinit var credentialManager: CredentialManager
     //private lateinit var progress: ProgressBar
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         //setContentView(R.layout.activity_login)
+        credentialManager = CredentialManager.create(requireActivity())
 
 
     }
@@ -91,37 +111,49 @@ class LoginFragment : Fragment() {
     // Sign in with Google
     // -------------------
     private fun signInWithGoogle() {
-        val credentialManager = CredentialManager.create(requireContext())
-        val googleIdOption = GetGoogleIdOption.Builder().setServerClientId(serverClientId) // Web client ID (del servidor)
-            .setFilterByAuthorizedAccounts(false) // true: sólo cuentas ya usadas con tu app
+        val googleIdOption = GetGoogleIdOption.Builder()
+            .setFilterByAuthorizedAccounts(true) // primero intenta con cuentas ya autorizadas
+            .setServerClientId(WEB_CLIENT_ID)
+            .setAutoSelectEnabled(true)
             .build()
-        val request = GetCredentialRequest.Builder().addCredentialOption(googleIdOption).build()
+
+        val request = GetCredentialRequest.Builder()
+            .addCredentialOption(googleIdOption)
+            .build()
+
         lifecycleScope.launch {
             try {
-                val result = credentialManager.getCredential(requireActivity(), request)
-                val credential = result.credential
-                if (credential is CustomCredential && credential.type == GoogleIdTokenCredential.TYPE_GOOGLE_ID_TOKEN_CREDENTIAL) {
-                    val googleCred = GoogleIdTokenCredential.createFrom(credential.data)
-                    val idToken = googleCred.idToken
-                    sendTokensToBackend(idToken,null)
-                }
-                else {
-                    Toast.makeText(requireContext(), "No se obtuvo credencial válida", Toast.LENGTH_SHORT).show()
-                }
+                val result = credentialManager.getCredential(
+                    request = request,
+                    context = requireContext()
+                )
+                handleSignIn(result)
             } catch (e: GetCredentialException) {
-                when (e) {
-                    is GetCredentialCancellationException -> {
-                        Log.d("Login", "Usuario canceló el login")
-                    }
-                    else -> {
-                        Log.e("Login", "Error en Credential Manager", e)
+                Log.e("Login", "Error al obtener credencial", e)
+                Toast.makeText(requireContext(), "Error al iniciar sesión", Toast.LENGTH_SHORT).show()
+            }
+        }
+    }
+
+    private fun handleSignIn(result: GetCredentialResponse) {
+        val credential = result.credential
+
+        when (credential) {
+            is CustomCredential -> {
+                if (credential.type == GoogleIdTokenCredential.TYPE_GOOGLE_ID_TOKEN_CREDENTIAL) {
+                    try {
+                        val googleIdTokenCredential = GoogleIdTokenCredential.createFrom(credential.data)
+                        val idToken = googleIdTokenCredential.idToken
+                        Log.d("Login", "ID Token: $idToken")
+
+                        // Envíalo a tu backend para validación (Django, etc.)
+                        sendTokensToBackend(idToken,null)
+                    } catch (e: GoogleIdTokenParsingException) {
+                        Log.e("Login", "Token inválido", e)
                     }
                 }
             }
-            catch (e: Exception) {
-                Log.e("Login", "Unexpected error: ${e.message}", e)
-                Toast.makeText(requireContext(), "Error inesperado", Toast.LENGTH_SHORT).show()
-            }
+            else -> Log.e("Login", "Tipo de credencial desconocido")
         }
     }
 

@@ -46,12 +46,13 @@ class OpcionesMainFragment : Fragment() {
 
         binding.cerrarSesionButton.setOnClickListener {
             CoroutineScope(Dispatchers.IO).launch {
-                try{
+                try{/*
                     val resp = makeRequest(
                         "${APIConstant.BACKEND_URL}api/logout/",
                         "POST",
                         PrefsHelper.getDRFToken(requireContext())?:""
-                    )
+                    )*/
+                    val resp="sas"
                     withContext(Dispatchers.Main) {
                         if (resp == "error") {
                             Toast.makeText(requireContext(), "Error al cerrar sesión", Toast.LENGTH_SHORT).show()
