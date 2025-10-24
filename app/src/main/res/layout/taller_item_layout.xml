@@ -119,11 +119,11 @@
                 <Button
                     android:id="@+id/detallesTallerTextView"
                     android:layout_width="match_parent"
-                    android:layout_height="48dp"
-                    android:text="Ver Detalles"
-                    android:textColor="@color/red"
+                    android:layout_height="wrap_content"
                     android:background="@android:color/white"
-                    android:textAllCaps="false"/>
+                    android:text="Ver detalles"
+                    android:textAllCaps="false"
+                    android:textColor="@color/white" />
             </com.google.android.material.card.MaterialCardView>
 
             <com.google.android.material.card.MaterialCardView
@@ -142,7 +142,7 @@
                     android:layout_height="448dp"
                     android:text="Eliminar"
                     android:textColor="@color/white"
-                    android:background="@android:color/transparent"
+                    android:background="@android:color/white"
                     android:textAllCaps="false"/>
             </com.google.android.material.card.MaterialCardView>
 
