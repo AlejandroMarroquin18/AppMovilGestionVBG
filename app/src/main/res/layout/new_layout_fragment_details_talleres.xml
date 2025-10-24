@@ -1,42 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/scrollWorkshopDetails"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="16dp">
+    tools:context=".ui.talleres.detalles.DetallesTalleres">
 
-    <LinearLayout
-        android:orientation="vertical"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent">
 
-        <TextView
-            android:id="@+id/tvWorkshopTitle"
-            android:text="Detalles del taller"
-            android:textSize="22sp"
-            android:textStyle="bold"
-            android:color="@android:color/black"
-            android:gravity="center"
-            android:layout_marginBottom="12dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
-
-        <!-- Acordeón 1: Información general -->
         <LinearLayout
-            android:id="@+id/layoutInfo"
-            android:orientation="vertical"
-            android:background="@drawable/card_background"
-            android:padding="12dp"
-            android:layout_marginBottom="16dp"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+
             <!-- Nombre -->
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="Nombre"
-                android:color="@android:color/black"
                 android:textStyle="bold" />
             <LinearLayout
                 android:layout_width="match_parent"
@@ -48,16 +32,13 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Hola"
-                    android:color="@android:color/black"
                     android:visibility="visible"/>
-                <EditText
-                    android:background="@drawable/edittext_rounded" android:id="@+id/nombreEdit"
-                    android:layout_width="match_parent"
+                <EditText android:id="@+id/nombreEdit"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:hint="Nombre"
-                    android:color="@android:color/black"
-                    android:visibility="gone"
-                    />
+                    android:background="@drawable/edittext_rounded"
+                    android:visibility="gone"/>
             </LinearLayout>
 
             <!-- Fecha de inicio -->
@@ -65,7 +46,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:color="@android:color/black"
                 android:text="Fecha de inicio"
                 android:textStyle="bold" />
             <LinearLayout
@@ -78,17 +58,15 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="2025-12-31"
-                    android:color="@android:color/black"
                     android:visibility="visible"/>
 
                 <EditText
-
-                    android:background="@drawable/edittext_rounded"
                     android:id="@+id/fechaEdit"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:hint="Nombre"
-                    android:color="@android:color/black"
+
+                    android:background="@drawable/edittext_rounded"
                     android:visibility="gone"/>
             </LinearLayout>
 
@@ -97,7 +75,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:color="@android:color/black"
                 android:text="Hora de inicio"
                 android:textStyle="bold" />
             <LinearLayout
@@ -110,16 +87,13 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="00:39"
-                    android:color="@android:color/black"
                     android:visibility="visible"/>
                 <EditText
-
-                    android:background="@drawable/edittext_rounded"
                     android:id="@+id/horaInicioEdit"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:hint="Nombre"
-                    android:color="@android:color/black"
+                    android:background="@drawable/edittext_rounded"
                     android:visibility="gone"/>
             </LinearLayout>
 
@@ -128,7 +102,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:color="@android:color/black"
                 android:text="Hora de finalización"
                 android:textStyle="bold" />
             <LinearLayout
@@ -141,16 +114,13 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="15:02"
-                    android:color="@android:color/black"
                     android:visibility="visible"/>
                 <EditText
-
-                    android:background="@drawable/edittext_rounded"
                     android:id="@+id/horaFinEdit"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:hint="Nombre"
-                    android:color="@android:color/black"
+                    android:background="@drawable/edittext_rounded"
                     android:visibility="gone"/>
             </LinearLayout>
 
@@ -160,7 +130,6 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="Lugar"
-                android:color="@android:color/black"
                 android:textStyle="bold" />
             <LinearLayout
                 android:layout_width="match_parent"
@@ -172,16 +141,13 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Aquí"
-                    android:color="@android:color/black"
                     android:visibility="visible"/>
                 <EditText
-
-                    android:background="@drawable/edittext_rounded"
                     android:id="@+id/lugarEdit"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:hint="Nombre"
-                    android:color="@android:color/black"
+                    android:background="@drawable/edittext_rounded"
                     android:visibility="gone"/>
             </LinearLayout>
 
@@ -191,7 +157,6 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="Modalidad"
-                android:color="@android:color/black"
                 android:textStyle="bold" />
             <LinearLayout
                 android:layout_width="match_parent"
@@ -200,19 +165,16 @@
 
                 <TextView
                     android:id="@+id/modalidadLabel"
-                    android:color="@android:color/black"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Presencial"
                     android:visibility="visible"/>
                 <EditText
-
-                    android:background="@drawable/edittext_rounded"
                     android:id="@+id/modalidadEdit"
-                    android:layout_width="match_parent"
-                    android:color="@android:color/black"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:hint="Nombre"
+                    android:background="@drawable/edittext_rounded"
                     android:visibility="gone"/>
             </LinearLayout>
 
@@ -221,7 +183,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:color="@android:color/black"
                 android:text="Beneficiarios"
                 android:textStyle="bold" />
             <LinearLayout
@@ -234,16 +195,13 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="34"
-                    android:color="@android:color/black"
                     android:visibility="visible"/>
                 <EditText
-
-                    android:background="@drawable/edittext_rounded"
                     android:id="@+id/beneficiariosEdit"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:color="@android:color/black"
                     android:hint="Nombre"
+                    android:background="@drawable/edittext_rounded"
                     android:visibility="gone"/>
             </LinearLayout>
 
@@ -251,7 +209,6 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:color="@android:color/black"
                 android:layout_weight="1"
                 android:text="Talleristas"
                 android:textStyle="bold" />
@@ -264,23 +221,19 @@
                     android:id="@+id/talleristasLabel"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:color="@android:color/black"
                     android:text="Pedro, María" />
                 <EditText
-
-                    android:background="@drawable/edittext_rounded"
                     android:id="@+id/talleristasEdit"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:hint="Nombre"
-                    android:color="@android:color/black"
+                    android:background="@drawable/edittext_rounded"
                     android:visibility="gone"/>
             </LinearLayout>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:color="@android:color/black"
                 android:text="Descripción"
                 android:textStyle="bold" />
 
@@ -294,30 +247,15 @@
                     android:id="@+id/descripcionLabel"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:color="@android:color/black"
                     android:text="Banco de pruebas" />
                 <EditText
-
-                    android:background="@drawable/edittext_rounded"
                     android:id="@+id/descripcionEdit"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:color="@android:color/black"
                     android:hint="Nombre"
+                    android:background="@drawable/edittext_rounded"
                     android:visibility="gone"/>
             </LinearLayout>
-
-        </LinearLayout>
-
-        <!-- Acordeón 2: Participantes -->
-        <LinearLayout
-            android:id="@+id/layoutParticipants"
-            android:orientation="vertical"
-            android:background="@drawable/card_background"
-            android:padding="12dp"
-            android:layout_marginBottom="16dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recyclerViewParticipantes"
@@ -331,57 +269,26 @@
                 android:layout_height="0dp"
                 android:layout_weight="1" />
 
-
-
-        </LinearLayout>
-
-
-    <LinearLayout
-        android:orientation="vertical"
-        android:background="@drawable/card_background"
-        android:padding="12dp"
-        android:layout_marginBottom="16dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textStyle="bold"
-            android:text="Codigo QR"/>
-    </LinearLayout>
-        <!-- Botones -->
-        <LinearLayout
-            android:gravity="center"
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
             <Button
                 android:id="@+id/editButton"
-                android:text="Editar Taller"
-                android:layout_margin="8dp"
-                android:backgroundTint="@color/red"
-                android:textColor="@android:color/white"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content"
+                android:text="Editar"/>
             <Button
                 android:id="@+id/cancelButton"
-                android:text="Cancelar"
-                android:layout_margin="8dp"
-                android:backgroundTint="@color/red"
-                android:textColor="@android:color/white"
                 android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:visibility="gone"
-                android:layout_height="wrap_content"/>
-
+                android:text="Cancelar"/>
             <Button
                 android:id="@+id/deleteButton"
-                android:text="Eliminar Taller"
-                android:layout_margin="8dp"
-                android:backgroundTint="@android:color/holo_red_dark"
-                android:textColor="@android:color/white"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content"
+                android:text="Eliminar"/>
         </LinearLayout>
-    </LinearLayout>
-</ScrollView>
+
+    </ScrollView>
+
+
+
+</FrameLayout>

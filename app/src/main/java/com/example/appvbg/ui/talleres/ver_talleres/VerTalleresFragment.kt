@@ -32,6 +32,9 @@ class VerTalleresFragment: Fragment(R.layout.fragment_vertalleres) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        viewModel = ViewModelProvider(this)[VerTalleresViewModel::class.java]
+        viewModel.cargarItems(requireContext())
+
         tvTotalTalleres = view.findViewById(R.id.tvTotalTalleres)
 
         childFragmentManager.beginTransaction()

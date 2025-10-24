@@ -119,7 +119,7 @@
                 <Button
                     android:id="@+id/detallesTallerTextView"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="48dp"
                     android:text="Ver Detalles"
                     android:textColor="@color/red"
                     android:background="@android:color/white"
@@ -139,7 +139,7 @@
                 <Button
                     android:id="@+id/eliminarTallerTextView"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="448dp"
                     android:text="Eliminar"
                     android:textColor="@color/white"
                     android:background="@android:color/transparent"

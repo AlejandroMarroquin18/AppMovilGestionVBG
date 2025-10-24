@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <EditText
+        android:background="@drawable/edittext_rounded"
+        android:id="@+id/inputNuevaContrasena"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Ingresa la nueva contraseña"
+        />
+    <EditText
+        android:background="@drawable/edittext_rounded"
+        android:id="@+id/inputConfirmarNuevaContrasena"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Confirma la nueva contraseña"
+        />
+
+
+    <Button
+        android:id="@+id/btnCambiarContrasena"
+        android:text="Cambiar contraseña"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+</LinearLayout>

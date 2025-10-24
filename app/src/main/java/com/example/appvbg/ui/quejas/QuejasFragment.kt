@@ -16,6 +16,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.appvbg.R
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import org.json.JSONObject
+import kotlin.jvm.java
 
 class QuejasFragment : Fragment(R.layout.fragment_quejas) {
     private lateinit var viewModel: QuejaViewModel
@@ -32,8 +33,12 @@ class QuejasFragment : Fragment(R.layout.fragment_quejas) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        viewModel = ViewModelProvider(this)[QuejaViewModel::class.java]
         try {
+
+
+            // Ahora sí puedes usarlo
+            viewModel.cargarItems(requireContext())
             // Inicializar vistas
             tvTotalQuejas = view.findViewById(R.id.tvTotalQuejas)
             recyclerView = view.findViewById(R.id.recyclerView)

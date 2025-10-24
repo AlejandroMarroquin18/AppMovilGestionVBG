@@ -33,8 +33,10 @@
             android:layout_height="wrap_content"
             android:text="Hola"
             android:visibility="visible"/>
-        <EditText android:id="@+id/tituloEdit"
-            android:layout_width="wrap_content"
+        <EditText
+            android:background="@drawable/edittext_rounded"
+            android:id="@+id/tituloEdit"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Nombre"
             android:visibility="gone"/>
@@ -56,8 +58,10 @@
                 android:layout_height="wrap_content"
                 android:text="Hola"
                 android:visibility="visible"/>
-            <EditText android:id="@+id/fechaEdit"
-                android:layout_width="wrap_content"
+            <EditText
+                android:background="@drawable/edittext_rounded"
+                android:id="@+id/fechaEdit"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Nombre"
                 android:visibility="gone"/>
@@ -79,8 +83,10 @@
                 android:layout_height="wrap_content"
                 android:text="Hola"
                 android:visibility="visible"/>
-            <EditText android:id="@+id/horaInicioEdit"
-                android:layout_width="wrap_content"
+            <EditText
+                android:background="@drawable/edittext_rounded"
+                android:id="@+id/horaInicioEdit"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Nombre"
                 android:visibility="gone"/>
@@ -102,8 +108,10 @@
                 android:layout_height="wrap_content"
                 android:text="Hola"
                 android:visibility="visible"/>
-            <EditText android:id="@+id/horaFinalizacionEdit"
-                android:layout_width="wrap_content"
+            <EditText
+                android:background="@drawable/edittext_rounded"
+                android:id="@+id/horaFinalizacionEdit"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Nombre"
                 android:visibility="gone"/>
@@ -125,8 +133,10 @@
                 android:layout_height="wrap_content"
                 android:text="Hola"
                 android:visibility="visible"/>
-            <EditText android:id="@+id/lugarEdit"
-                android:layout_width="wrap_content"
+            <EditText
+                android:background="@drawable/edittext_rounded"
+                android:id="@+id/lugarEdit"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Nombre"
                 android:visibility="gone"/>
@@ -148,8 +158,10 @@
                 android:layout_height="wrap_content"
                 android:text="Hola"
                 android:visibility="visible"/>
-            <EditText android:id="@+id/IDCasoEdit"
-                android:layout_width="wrap_content"
+            <EditText
+                android:background="@drawable/edittext_rounded"
+                android:id="@+id/IDCasoEdit"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Nombre"
                 android:visibility="gone"/>
@@ -171,8 +183,10 @@
                 android:layout_height="wrap_content"
                 android:text="Hola"
                 android:visibility="visible"/>
-            <EditText android:id="@+id/detallesEdit"
-                android:layout_width="wrap_content"
+            <EditText
+                android:background="@drawable/edittext_rounded"
+                android:id="@+id/detallesEdit"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Nombre"
                 android:visibility="gone"/>
@@ -194,8 +208,10 @@
                 android:layout_height="wrap_content"
                 android:text="Hola"
                 android:visibility="visible"/>
-            <EditText android:id="@+id/emailsEdit"
-                android:layout_width="wrap_content"
+            <EditText
+                android:background="@drawable/edittext_rounded"
+                android:id="@+id/emailsEdit"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Nombre"
                 android:visibility="gone"/>
@@ -217,8 +233,10 @@
                 android:layout_height="wrap_content"
                 android:text="Hola"
                 android:visibility="visible"/>
-            <EditText android:id="@+id/colorEdit"
-                android:layout_width="wrap_content"
+            <EditText
+                android:background="@drawable/edittext_rounded"
+                android:id="@+id/colorEdit"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Nombre"
                 android:visibility="gone"/>

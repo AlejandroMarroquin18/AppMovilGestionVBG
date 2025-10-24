@@ -13,6 +13,9 @@ import java.io.InputStreamReader
 import java.net.HttpURLConnection
 import java.net.URL
 import com.example.appvbg.APIConstant
+import com.example.appvbg.api.PrefsHelper
+import com.example.appvbg.api.makeRequest
+import android.content.Context
 
 class VerTalleresViewModel: ViewModel()  {
     private val _filtros = MutableLiveData<FiltroData>()
@@ -35,7 +38,7 @@ class VerTalleresViewModel: ViewModel()  {
 
     // Puedes inicializar la lista si es necesario
     init {
-        cargarItems()
+        //cargarItems()
         //_items.value = cargarItems()
     }
 
@@ -89,22 +92,16 @@ class VerTalleresViewModel: ViewModel()  {
         _items.postValue(filtered)
     }
 
-    fun cargarItems() {
+    fun cargarItems(context: Context) {
         viewModelScope.launch(Dispatchers.IO) {
             try {
-                val url = URL(APIConstant.BACKEND_URL+"api/talleres/")
-                val connection = url.openConnection() as HttpURLConnection
-                connection.requestMethod = "GET"
-                connection.connectTimeout = 5000
-                connection.readTimeout = 5000
 
-                val responseCode = connection.responseCode
-                if (responseCode == HttpURLConnection.HTTP_OK) {
-                    val inputStream = connection.inputStream
-                    val reader = BufferedReader(InputStreamReader(inputStream))
-                    val response = reader.readText()
-                    reader.close()
-
+                val response = makeRequest(
+                    """${APIConstant.BACKEND_URL}api/talleres/""",
+                    "GET",
+                    PrefsHelper.getDRFToken(context)?:""
+                )
+                if (response != "error") {
                     val jsonArray = JSONArray(response)
                     val lista = mutableListOf<ItemTalleres>()
 
@@ -134,10 +131,8 @@ class VerTalleresViewModel: ViewModel()  {
                     originalItems = lista
                     _items.postValue(lista)
                 } else {
-                    _error.postValue("Error de conexión: $responseCode")
+                    _error.postValue("Error de conexión")
                 }
-
-                connection.disconnect()
             } catch (e: Exception) {
                 _error.postValue("Error: ${e.localizedMessage}")
             }

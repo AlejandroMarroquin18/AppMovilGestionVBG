@@ -19,11 +19,14 @@ import java.net.URL
 import java.util.Calendar
 import android.app.DatePickerDialog
 import android.app.TimePickerDialog
+import android.content.Context
 import android. util. Log
 
 import android.widget.Toast
 import androidx.lifecycle.lifecycleScope
 import com.example.appvbg.APIConstant
+import com.example.appvbg.api.PrefsHelper
+import com.example.appvbg.api.makeRequest
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -98,7 +101,7 @@ class CrearTallerFragment: Fragment(R.layout.fragment_crear_taller) {
             val jsonData = buildJSON()
             lifecycleScope.launch {
                 val respuesta = withContext(Dispatchers.IO) {
-                    enviarWorkshopJson(APIConstant.BACKEND_URL+"api/talleres/", jsonData)
+                    enviarWorkshopJson(APIConstant.BACKEND_URL+"api/talleres/", jsonData, requireContext())
                 }
                 Toast.makeText(requireContext(), respuesta, Toast.LENGTH_LONG).show()
                 clearFields()
@@ -155,34 +158,15 @@ class CrearTallerFragment: Fragment(R.layout.fragment_crear_taller) {
 
     }
 
-    fun enviarWorkshopJson(apiUrl: String, jsonData: JSONObject): String {
+    fun enviarWorkshopJson(apiUrl: String, jsonData: JSONObject, context: Context): String {
         try {
-            val url = URL(apiUrl)
-            val conn = url.openConnection() as HttpURLConnection
+            val response = makeRequest(
+                apiUrl,
+                "POST",
+                PrefsHelper.getDRFToken(context).toString(),
+                jsonData
+            )
 
-            conn.requestMethod = "POST"
-            conn.setRequestProperty("Content-Type", "application/json; utf-8")
-            conn.setRequestProperty("Accept", "application/json")
-            conn.doOutput = true
-            conn.doInput = true
-
-            // Escribir el JSON en el cuerpo de la solicitud
-            val outputWriter = OutputStreamWriter(conn.outputStream, "UTF-8")
-            outputWriter.write(jsonData.toString())
-            outputWriter.flush()
-            outputWriter.close()
-
-            // Leer la respuesta
-            val responseCode = conn.responseCode
-            val inputStream = if (responseCode in 200..299) {
-                conn.inputStream
-            } else {
-                conn.errorStream
-            }
-
-            val response = inputStream.bufferedReader().use { it.readText() }
-            Log.e("WorkshopError", response)
-            conn.disconnect()
 
             return response
         } catch (e: Exception) {

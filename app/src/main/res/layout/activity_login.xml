@@ -1,126 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:fillViewport="true"
-        android:background="#F5F5F5">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:gravity="center"
-            android:padding="24dp">
-
-            <!-- Card -->
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:background="@android:color/white"
-                android:padding="24dp"
-                android:elevation="4dp"
-                android:gravity="center"
-                android:layout_margin="16dp">
-
-                <!-- Título -->
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Iniciar Sesión"
-                    android:textSize="22sp"
-                    android:textStyle="bold"
-                    android:textColor="@android:color/black"
-                    android:layout_marginBottom="24dp" />
-
-                <!-- Correo -->
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Correo Electrónico"
-                    android:textStyle="bold"
-                    android:textColor="#333333"
-                    android:layout_marginBottom="4dp"/>
-
-                <EditText
-                    android:id="@+id/emailEditText"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="Ingresa tu correo"
-                    android:inputType="textEmailAddress"
-                    android:background="@android:drawable/edit_text"
-                    android:textColor="@android:color/black"
-                    android:padding="10dp"
-                    android:layout_marginBottom="16dp"/>
-
-                <!-- Contraseña -->
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Contraseña"
-                    android:textStyle="bold"
-                    android:textColor="#333333"
-                    android:layout_marginBottom="4dp"/>
-
-                <EditText
-                    android:id="@+id/passwordEditText"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="Ingresa tu contraseña"
-                    android:inputType="textPassword"
-                    android:textColor="@android:color/black"
-                    android:background="@android:drawable/edit_text"
-                    android:padding="10dp"
-                    android:layout_marginBottom="16dp"/>
-
-                <!-- Botón Iniciar Sesión -->
-                <Button
-                    android:id="@+id/loginButton"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Iniciar Sesión"
-                    android:backgroundTint="#D32F2F"
-                    android:textColor="@android:color/white"
-                    android:textStyle="bold"
-                    android:layout_marginBottom="20dp"/>
-
-                <!-- Texto Iniciar sesión con Google -->
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Iniciar Sesión Con Google"
-                    android:textColor="#333333"
-                    android:layout_marginBottom="8dp"/>
-
-                <!-- Botón Google -->
-                <Button
-                    android:id="@+id/googleSignInButton"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Iniciar con Google"
-                    android:backgroundTint="#FF0000"
-                    android:textColor="@android:color/white"
-                    android:paddingLeft="24dp"
-                    android:paddingRight="24dp"
-                    android:layout_marginBottom="16dp"/>
-
-                <!-- Olvidé mi contraseña -->
-                <TextView
-                    android:id="@+id/forgottenPassword"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Olvidé mi contraseña"
-                    android:textColor="#333333"
-                    android:textStyle="italic"/>
-
-            </LinearLayout>
-
-        </LinearLayout>
-    </ScrollView>
-
+    <!-- Contenedor principal donde cambiaremos entre el login y los fragments -->
+    <FrameLayout
+        android:id="@+id/fragmentContainer"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

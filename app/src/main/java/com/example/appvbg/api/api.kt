@@ -1,6 +1,7 @@
 package com.example.appvbg.api
 // ApiService.kt
 import android.content.Context
+import android.util.Log
 import retrofit2.Call
 import retrofit2.http.Body
 import retrofit2.http.POST
@@ -143,11 +144,13 @@ fun makeRequest(
     token: String,
     body: JSONObject? = null
 ): String {
+    Log.d("TOKEN_DEBUG", "Token actual: ${token} ${urlString}")
     val url = URL(urlString)
     val conn = url.openConnection() as HttpURLConnection
     conn.requestMethod = method
     conn.setRequestProperty("Authorization", "Token $token")
     conn.setRequestProperty("Content-Type", "application/json")
+
 
     if (method == "POST" || method == "PUT"||method=="PATCH") {
         conn.doOutput = true

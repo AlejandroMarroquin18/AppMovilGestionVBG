@@ -158,6 +158,12 @@
             app:destination="@id/estadisticasTalleresFragment" />
     </fragment>
 
+    <fragment
+        android:id="@+id/opcionesMainFragment"
+        android:name="com.example.appvbg.ui.opciones.OpcionesMainFragment"
+        android:label="Opciones"
+        tools:layout="@layout/fragment_opciones_main"/>
+
 
 
 </navigation>

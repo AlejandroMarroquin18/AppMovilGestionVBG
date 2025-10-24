@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="8dp"
+    app:cardCornerRadius="8dp"
+    app:cardElevation="4dp">
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="12dp">
+
+        <!-- Contenedor de los textos -->
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/idTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="ID: 0"
+                android:textStyle="bold"
+                android:textSize="14sp" />
+            <TextView
+                android:id="@+id/numeroTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Numero: 1"
+                android:textStyle="bold"
+                android:textSize="14sp" />
+
+            <!-- Fecha -->
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Fecha"
+                android:textStyle="bold"
+                android:textSize="14sp" />
+            <TextView
+                android:id="@+id/fechaTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="30/9/2025"
+                android:textSize="14sp" />
+
+            <!-- Tipo -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Tipo:"
+                android:textStyle="bold"
+                android:textSize="14sp" />
+            <TextView
+                android:id="@+id/tipoTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Tipo: holaaa, descc"
+
+                android:textSize="14sp" />
+            <EditText
+                android:id="@+id/tipoEditText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="14sp"
+                android:text=""
+                android:visibility="gone" />
+
+            <!-- Descripción -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Descripción:"
+                android:textStyle="bold"
+                android:textSize="14sp" />
+
+
+            <TextView
+                android:id="@+id/descripcionTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="holaaas, desc"
+                android:textSize="14sp" />
+            <EditText
+                android:id="@+id/descripcionEditText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="14sp"
+                android:text=""
+                android:visibility="gone" />
+
+        </LinearLayout>
+
+        <!-- Botones a la derecha -->
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentEnd="true"
+            android:orientation="vertical"
+            android:gravity="center">
+
+            <!-- Botón editar -->
+            <ImageButton
+                android:id="@+id/editButton"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:backgroundTint="@android:color/holo_orange_light"
+                android:background="@drawable/rounded_button"
+                android:src="@android:drawable/ic_menu_edit"
+                android:contentDescription="Editar"
+                android:scaleType="centerInside" />
+            <Button
+                android:id="@+id/sendEditButton"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:backgroundTint="@android:color/holo_orange_light"
+                android:background="@drawable/rounded_button"
+                android:text="Guardar"
+                android:contentDescription="Guardar"
+                android:scaleType="centerInside"
+                android:visibility="gone" />
+            <Button
+                android:id="@+id/cancelEditButton"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:backgroundTint="@android:color/holo_orange_light"
+                android:background="@drawable/rounded_button"
+                android:text="Guardar"
+                android:contentDescription="Guardar"
+                android:scaleType="centerInside"
+                android:visibility="gone"/>
+
+            <!-- Espacio -->
+            <Space
+                android:layout_width="0dp"
+                android:layout_height="8dp" />
+s
+            <!-- Botón eliminar -->
+            <ImageButton
+                android:id="@+id/deleteButton"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:backgroundTint="@android:color/holo_red_dark"
+                android:background="@drawable/rounded_button"
+                android:src="@android:drawable/ic_menu_delete"
+                android:contentDescription="Eliminar"
+                android:scaleType="centerInside" />
+
+        </LinearLayout>
+
+    </RelativeLayout>
+</androidx.cardview.widget.CardView>

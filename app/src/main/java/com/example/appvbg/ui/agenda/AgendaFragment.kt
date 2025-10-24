@@ -76,7 +76,7 @@ class AgendaFragment : Fragment() {
 
         //askForGoogleScopes()
         requestCalendarAuthorization()
-        agendaViewModel.fetchEvents(requireContext())
+
         super.onCreate(savedInstanceState)
     }
 
@@ -101,6 +101,7 @@ class AgendaFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        agendaViewModel.fetchEvents(requireContext())
 
         val currentMonth = YearMonth.now()
 
@@ -268,10 +269,13 @@ class AgendaFragment : Fragment() {
         Log.d("CalendarAuth", "Token directo: $accessToken")
         Log.d("CalendarAuth", "Token directo: $authCode")
         lifecycleScope.launch {
+
+            val ctx = context ?: return@launch
+
             val result = updateGoogleAcces(
                 accessToken = accessToken, // o tu access_token
                 serverAuthCode = authCode,
-                context = requireContext() // tu DRF token real
+                context = ctx // tu DRF token real
             )
 
             if (result != null) {

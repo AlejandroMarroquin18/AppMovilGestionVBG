@@ -1,5 +1,6 @@
 package com.example.appvbg.ui.agenda.crear_queja
 
+import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -9,7 +10,10 @@ import com.example.appvbg.R
 import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.viewModelScope
 import com.example.appvbg.APIConstant
+import com.example.appvbg.api.PrefsHelper
+import com.example.appvbg.api.makeRequest
 
 import com.example.appvbg.databinding.FragmentCrearQuejaBinding
 import kotlinx.coroutines.Dispatchers
@@ -117,7 +121,7 @@ class CrearQueja : Fragment(R.layout.fragment_crear_queja) {
             val jsonData = buildJSON()
             lifecycleScope.launch {
                 val respuesta = withContext(Dispatchers.IO) {
-                    enviarQuejaJson(APIConstant.BACKEND_URL + "api/quejas/", jsonData)
+                    enviarQuejaJson(APIConstant.BACKEND_URL + "api/quejas/", jsonData, requireContext())
                 }
                 //Toast.makeText(requireContext(), respuesta, Toast.LENGTH_LONG).show()
                 //clearFields()
@@ -221,39 +225,23 @@ class CrearQueja : Fragment(R.layout.fragment_crear_queja) {
 
         return json;
     }
-    fun enviarQuejaJson(apiUrl: String, jsonData: JSONObject): String {
-        try {
-            val url = URL(apiUrl)
-            val conn = url.openConnection() as HttpURLConnection
+    fun enviarQuejaJson(apiUrl: String, jsonData: JSONObject, context: Context): String {
 
-            conn.requestMethod = "POST"
-            conn.setRequestProperty("Content-Type", "application/json; utf-8")
-            conn.setRequestProperty("Accept", "application/json")
-            conn.doOutput = true
-            conn.doInput = true
+            try {
+                val response = makeRequest(
+                    apiUrl,
+                    "POST",
+                    PrefsHelper.getDRFToken(context).toString(),
+                    jsonData
+                )
 
-            // Escribir el JSON en el cuerpo de la solicitud
-            val outputWriter = OutputStreamWriter(conn.outputStream, "UTF-8")
-            outputWriter.write(jsonData.toString())
-            outputWriter.flush()
-            outputWriter.close()
 
-            // Leer la respuesta
-            val responseCode = conn.responseCode
-            val inputStream = if (responseCode in 200..299) {
-                conn.inputStream
-            } else {
-                conn.errorStream
+                return response
+            } catch (e: Exception) {
+                e.printStackTrace()
+                return "Error: ${e.message}"
             }
 
-            val response = inputStream.bufferedReader().use { it.readText() }
-            conn.disconnect()
-
-            return response
-        } catch (e: Exception) {
-            e.printStackTrace()
-            return "Error: ${e.message}"
-        }
     }
 
 

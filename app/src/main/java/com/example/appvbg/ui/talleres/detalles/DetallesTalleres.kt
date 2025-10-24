@@ -11,6 +11,8 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.appvbg.APIConstant
 import com.example.appvbg.R
 import com.example.appvbg.api.CalendarApi
@@ -55,9 +57,22 @@ class DetallesTalleres : Fragment() {
         setFieldsFromJSON(data)
         // Ya puedes acceder a todos los elementos del layout, incluidos los de los includes
 
+
+
+        binding.recyclerViewAsistentes.layoutManager = LinearLayoutManager(requireContext())
+
+        val lista: List<String> = List(data.optJSONArray("participants").length()) { i ->
+            data.optJSONArray("participants").getString(i)
+        }
+
+
+        binding.recyclerViewAsistentes.adapter = TextAdapter(lista)
+
+
         binding.cancelButton.setOnClickListener {
             editMode = false
             setEditMode(editMode)
+            binding.editButton.text ="Editar"
             binding.cancelButton.visibility = View.GONE
         }
         binding.editButton.setOnClickListener {
@@ -65,7 +80,7 @@ class DetallesTalleres : Fragment() {
                 sendEdit(buildJSON());
             }
             editMode = !editMode
-            binding.editButton.text = if (editMode) "Guardar" else "Editar"
+            binding.editButton.text = "Guardar"
             binding.cancelButton.visibility = if (editMode) View.VISIBLE else View.GONE
             setEditMode(editMode)
         }
@@ -234,6 +249,27 @@ class DetallesTalleres : Fragment() {
             }
         }
 
+    }
+
+
+    class TextAdapter(private val items: List<String>) :
+        RecyclerView.Adapter<TextAdapter.ViewHolder>() {
+
+        class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+            val tvItem: TextView = itemView.findViewById(R.id.participanteTextView)
+        }
+
+        override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+            val view = LayoutInflater.from(parent.context)
+                .inflate(R.layout.taller_participante_item, parent, false)
+            return ViewHolder(view)
+        }
+
+        override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+            holder.tvItem.text = items[position]
+        }
+
+        override fun getItemCount(): Int = items.size
     }
 
 

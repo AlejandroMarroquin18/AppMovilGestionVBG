@@ -94,7 +94,7 @@
         <Button
             android:id="@+id/detailsButton"
             android:layout_width="0dp"
-            android:layout_height="40dp"
+            android:layout_height="48dp"
             android:layout_weight="1"
             android:text="Ver Detalles"
             android:background="@drawable/button_rounded_red"
@@ -105,7 +105,7 @@
         <Button
             android:id="@+id/deleteButton"
             android:layout_width="0dp"
-            android:layout_height="40dp"
+            android:layout_height="48dp"
             android:layout_weight="1"
             android:text="Eliminar"
             android:background="@drawable/button_rounded_white"

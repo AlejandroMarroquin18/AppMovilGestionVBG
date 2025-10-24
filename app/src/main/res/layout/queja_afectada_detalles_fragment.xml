@@ -23,6 +23,7 @@
             android:text="Hola"
             android:visibility="visible"/>
         <EditText
+                            android:background="@drawable/edittext_rounded"
             android:id="@+id/nombreAfectadaEdit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -50,6 +51,7 @@
             android:text="Hola"
             android:visibility="visible"/>
         <EditText
+                            android:background="@drawable/edittext_rounded"
             android:id="@+id/sexoAfectadaEdit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -77,6 +79,7 @@
             android:text="Hola"
             android:visibility="visible"/>
         <EditText
+                            android:background="@drawable/edittext_rounded"
             android:id="@+id/edadAfectadaEdit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -104,6 +107,7 @@
             android:text="Hola"
             android:visibility="visible"/>
         <EditText
+                            android:background="@drawable/edittext_rounded"
             android:id="@+id/comunaAfectadaEdit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -130,6 +134,7 @@
             android:text="Hola"
             android:visibility="visible"/>
         <EditText
+                            android:background="@drawable/edittext_rounded"
             android:id="@+id/estratoAfectadaEdit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -157,6 +162,7 @@
             android:text="Hola"
             android:visibility="visible"/>
         <EditText
+                            android:background="@drawable/edittext_rounded"
             android:id="@+id/etniaAfectadaEdit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -183,6 +189,7 @@
             android:text="Hola"
             android:visibility="visible"/>
         <EditText
+                            android:background="@drawable/edittext_rounded"
             android:id="@+id/discapacidadAfectadaEdit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -209,6 +216,7 @@
             android:text="Hola"
             android:visibility="visible"/>
         <EditText
+                            android:background="@drawable/edittext_rounded"
             android:id="@+id/tipoDiscapacidadAfectadaEdit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -235,6 +243,7 @@
             android:text="Hola"
             android:visibility="visible"/>
         <EditText
+                            android:background="@drawable/edittext_rounded"
             android:id="@+id/identidadGeneroAfectadaEdit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -261,6 +270,7 @@
             android:text="Hola"
             android:visibility="visible"/>
         <EditText
+                            android:background="@drawable/edittext_rounded"
             android:id="@+id/orientacionSexualAfectadaEdit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -289,6 +299,7 @@
             android:text="Hola"
             android:visibility="visible"/>
         <EditText
+                            android:background="@drawable/edittext_rounded"
             android:id="@+id/estamentoAfectadaEdit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -316,6 +327,7 @@
             android:text="Hola"
             android:visibility="visible"/>
         <EditText
+                            android:background="@drawable/edittext_rounded"
             android:id="@+id/viceAfectadaEdit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -343,6 +355,7 @@
             android:text="Hola"
             android:visibility="visible"/>
         <EditText
+                            android:background="@drawable/edittext_rounded"
             android:id="@+id/dependenciaAfectadaEdit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -370,6 +383,7 @@
             android:text="Hola"
             android:visibility="visible"/>
         <EditText
+                            android:background="@drawable/edittext_rounded"
             android:id="@+id/programaAfectadaEdit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -397,6 +411,7 @@
             android:text="Hola"
             android:visibility="visible"/>
         <EditText
+                            android:background="@drawable/edittext_rounded"
             android:id="@+id/facultadAfectadaEdit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -424,6 +439,7 @@
             android:text="Hola"
             android:visibility="visible"/>
         <EditText
+                            android:background="@drawable/edittext_rounded"
             android:id="@+id/sedeAfectadaEdit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -451,6 +467,7 @@
             android:text="Hola"
             android:visibility="visible"/>
         <EditText
+                            android:background="@drawable/edittext_rounded"
             android:id="@+id/celularAfectadaEdit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -478,6 +495,7 @@
             android:text="Hola"
             android:visibility="visible"/>
         <EditText
+                            android:background="@drawable/edittext_rounded"
             android:id="@+id/correoAfectadaEdit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -504,6 +522,7 @@
             android:text="Hola"
             android:visibility="visible"/>
         <EditText
+                            android:background="@drawable/edittext_rounded"
             android:id="@+id/tipoVBGAfectadaEdit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
