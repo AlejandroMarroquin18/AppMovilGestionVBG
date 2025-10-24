@@ -111,49 +111,56 @@ class LoginFragment : Fragment() {
     // Sign in with Google
     // -------------------
     private fun signInWithGoogle() {
-        val googleIdOption = GetGoogleIdOption.Builder()
-            .setFilterByAuthorizedAccounts(true) // primero intenta con cuentas ya autorizadas
-            .setServerClientId(WEB_CLIENT_ID)
-            .setAutoSelectEnabled(true)
+        // Crea un nonce aleatorio para seguridad
+        val nonce = java.util.UUID.randomUUID().toString()
+
+        // Opción de inicio de sesión con Google
+        val signInOption = GetSignInWithGoogleOption.Builder(serverClientId = WEB_CLIENT_ID)
+            .setNonce(nonce)
             .build()
 
+        // Prepara la solicitud de CredentialManager
         val request = GetCredentialRequest.Builder()
-            .addCredentialOption(googleIdOption)
+            .addCredentialOption(signInOption)
             .build()
 
+        // Ejecuta el flujo usando coroutines
         lifecycleScope.launch {
             try {
                 val result = credentialManager.getCredential(
                     request = request,
                     context = requireContext()
                 )
-                handleSignIn(result)
+                handleSignInWithGoogle(result)
             } catch (e: GetCredentialException) {
+                // Aquí manejas el error (por ejemplo usuario canceló)
                 Log.e("Login", "Error al obtener credencial", e)
                 Toast.makeText(requireContext(), "Error al iniciar sesión", Toast.LENGTH_SHORT).show()
             }
         }
     }
 
-    private fun handleSignIn(result: GetCredentialResponse) {
+
+    private fun handleSignInWithGoogle(result: GetCredentialResponse) {
         val credential = result.credential
 
-        when (credential) {
-            is CustomCredential -> {
-                if (credential.type == GoogleIdTokenCredential.TYPE_GOOGLE_ID_TOKEN_CREDENTIAL) {
-                    try {
-                        val googleIdTokenCredential = GoogleIdTokenCredential.createFrom(credential.data)
-                        val idToken = googleIdTokenCredential.idToken
-                        Log.d("Login", "ID Token: $idToken")
+        if (credential is CustomCredential &&
+            credential.type == GoogleIdTokenCredential.TYPE_GOOGLE_ID_TOKEN_CREDENTIAL) {
+            try {
+                val googleIdTokenCredential = GoogleIdTokenCredential.createFrom(credential.data)
+                val idToken = googleIdTokenCredential.idToken
 
-                        // Envíalo a tu backend para validación (Django, etc.)
-                        sendTokensToBackend(idToken,null)
-                    } catch (e: GoogleIdTokenParsingException) {
-                        Log.e("Login", "Token inválido", e)
-                    }
-                }
+                Log.d("Login", "ID Token: $idToken")
+
+                // Envíalo a tu backend Django para validar
+                sendTokensToBackend(idToken,null)
+
+            } catch (e: GoogleIdTokenParsingException) {
+                Log.e("Login", "Token inválido", e)
+                Toast.makeText(requireContext(), "Error en token de Google", Toast.LENGTH_SHORT).show()
             }
-            else -> Log.e("Login", "Tipo de credencial desconocido")
+        } else {
+            Log.e("Login", "Tipo de credencial inesperado")
         }
     }
 
