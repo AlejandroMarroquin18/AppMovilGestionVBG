@@ -114,28 +114,22 @@ class LoginFragment : Fragment() {
         // Crea un nonce aleatorio para seguridad
         val nonce = java.util.UUID.randomUUID().toString()
 
-        // Opción de inicio de sesión con Google
         val signInOption = GetSignInWithGoogleOption.Builder(serverClientId = WEB_CLIENT_ID)
             .setNonce(nonce)
             .build()
 
-        // Prepara la solicitud de CredentialManager
         val request = GetCredentialRequest.Builder()
             .addCredentialOption(signInOption)
             .build()
 
-        // Ejecuta el flujo usando coroutines
         lifecycleScope.launch {
             try {
-                val result = credentialManager.getCredential(
-                    request = request,
-                    context = requireContext()
-                )
+                val result = credentialManager.getCredential(requireContext(),request)
                 handleSignInWithGoogle(result)
+            } catch (e: GetCredentialCancellationException) {
+                Log.e("Login", "Usuario canceló o requiere reauth", e)
             } catch (e: GetCredentialException) {
-                // Aquí manejas el error (por ejemplo usuario canceló)
                 Log.e("Login", "Error al obtener credencial", e)
-                Toast.makeText(requireContext(), "Error al iniciar sesión", Toast.LENGTH_SHORT).show()
             }
         }
     }
