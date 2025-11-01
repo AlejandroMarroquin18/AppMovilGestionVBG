@@ -43,14 +43,9 @@ import com.google.android.gms.auth.api.identity.BeginSignInRequest
 import com.google.android.libraries.identity.googleid.GoogleIdTokenParsingException
 import androidx.credentials.*
 import com.google.android.libraries.identity.googleid.*
-import kotlinx.coroutines.*
 
 
-import androidx.credentials.ClearCredentialStateRequest
-import androidx.credentials.PasswordCredential
-import androidx.credentials.PublicKeyCredential
-import androidx.lifecycle.lifecycleScope
-import kotlinx.coroutines.launch
+
 
 
 
