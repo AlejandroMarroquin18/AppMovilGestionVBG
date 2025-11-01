@@ -87,8 +87,85 @@
             android:visibility="gone"/>
     </LinearLayout>
     <!--holaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa--><!-- Nombre -->
-    
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginHorizontal="16dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Semestre"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:id="@+id/semestreAgresorLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Semestre"
+            android:visibility="visible"/>
+        <EditText
+            android:background="@drawable/edittext_rounded"
+            android:id="@+id/semestreAgresorEdit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="Semestre"
+            android:visibility="gone"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginHorizontal="16dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Barrio"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:id="@+id/barrioAgresorLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Barrio"
+            android:visibility="visible"/>
+        <EditText
+            android:background="@drawable/edittext_rounded"
+            android:id="@+id/barrioAgresorEdit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="Barrio"
+            android:visibility="gone"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginHorizontal="16dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Ciudad de origen"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:id="@+id/ciudadOrigenAgresorLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Ciudad de origen"
+            android:visibility="visible"/>
+        <EditText
+            android:background="@drawable/edittext_rounded"
+            android:id="@+id/ciudadOrigenAgresorEdit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="Ciudad de origen"
+            android:visibility="gone"/>
+    </LinearLayout>
 
     <!-- Nombre -->
     <LinearLayout
@@ -395,6 +472,84 @@
             android:visibility="gone"/>
     </LinearLayout>
     <!--holaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginHorizontal="16dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Factores de riesgo"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:id="@+id/factoresRiesgoAgresorLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Factores de riesgo"
+            android:visibility="visible"/>
+        <EditText
+            android:background="@drawable/edittext_rounded"
+            android:id="@+id/factoresRiesgoAgresorEdit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="Factores de riesgo"
+            android:visibility="gone"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginHorizontal="16dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="¿Tiene denuncias previas?"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:id="@+id/tieneDenunciasAgresorLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Tiene denuncias?"
+            android:visibility="visible"/>
+        <EditText
+            android:background="@drawable/edittext_rounded"
+            android:id="@+id/tieneDenunciasAgresorEdit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="Tiene denuncias?"
+            android:visibility="gone"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginHorizontal="16dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Detalles de denuncias"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:id="@+id/detallesDenunciasAgresorLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Detalles"
+            android:visibility="visible"/>
+        <EditText
+            android:background="@drawable/edittext_rounded"
+            android:id="@+id/detallesDenunciasAgresorEdit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="Detalles"
+            android:visibility="gone"/>
+    </LinearLayout>
     
 
 </LinearLayout>

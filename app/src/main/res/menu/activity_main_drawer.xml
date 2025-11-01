@@ -13,7 +13,7 @@
 
     <group android:checkableBehavior="single">
         <item
-            android:title="Quejas"
+            android:title="Atenciones"
             android:enabled="false"/>
         <item
             android:id="@+id/estadisticasQuejasFragment"

@@ -177,24 +177,79 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="¿Requiere interponer una queja formal al Comité de Asuntos Internos Disciplinarios?"
+            android:text="¿Requiere interponer una queja formal al Comité de Asuntos Disciplinarios Estudiantiles (CADE)?"
             android:textStyle="bold" />
 
         <TextView
-            android:id="@+id/comiteAsuntosInternosLabel"
+            android:id="@+id/quejaCADELabel"
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="wrap_content"
             android:text="Hola"
             android:visibility="visible"/>
         <EditText 
-            android:id="@+id/comiteAsuntosInternosEdit"
+            android:id="@+id/quejaCADEEdit"
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="wrap_content"
             android:hint="Fecha"
             android:visibility="gone"/>
     </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginHorizontal="16dp">
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="¿Requiere interponer queja ante la oficina de control interno?"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/quejaControlInternoLabel"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:text="Hola"
+            android:visibility="visible"/>
+        <EditText
+            android:id="@+id/quejaControlInternoEdit"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:hint="Fecha"
+            android:visibility="gone"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginHorizontal="16dp">
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="¿Requiere interpones queja ante la Rectoría?"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/quejaRectoriaLabel"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:text="Hola"
+            android:visibility="visible"/>
+        <EditText
+            android:id="@+id/quejaRectoriaEdit"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:hint="Fecha"
+            android:visibility="gone"/>
+    </LinearLayout>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

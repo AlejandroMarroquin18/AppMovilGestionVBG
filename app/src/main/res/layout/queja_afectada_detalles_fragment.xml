@@ -86,6 +86,139 @@
             android:hint="Nombre"
             android:visibility="gone"/>
     </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginHorizontal="16dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Tipo de documento de identidad"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tipoDocumentoAfectadaLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Tipo de documento"
+            android:visibility="visible"/>
+        <EditText
+            android:background="@drawable/edittext_rounded"
+            android:id="@+id/tipoDocumentoAfectadaEdit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="Tipo de documento"
+            android:visibility="gone"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginHorizontal="16dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Número de documento de identidad"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/documentoIdentidadAfectadaLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Hola"
+            android:visibility="visible"/>
+        <EditText
+            android:background="@drawable/edittext_rounded"
+            android:id="@+id/documentoIdentidadAfectadaEdit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="Nombre"
+            android:visibility="gone"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginHorizontal="16dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Redes de apoyo"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/redesApoyoAfectadaLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Redes de apoyo"
+            android:visibility="visible"/>
+        <EditText
+            android:background="@drawable/edittext_rounded"
+            android:id="@+id/redesApoyoAfectadaEdit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="Redes"
+            android:visibility="gone"/>
+    </LinearLayout>
+    <LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:layout_marginHorizontal="16dp">
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="Codigo"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/codigoAfectadaLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Codigo"
+        android:visibility="visible"/>
+    <EditText
+        android:background="@drawable/edittext_rounded"
+        android:id="@+id/codigoAfectadaEdit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="Codigo"
+        android:visibility="gone"/>
+</LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginHorizontal="16dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Semestre"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/semestreAfectadaLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Semestre"
+            android:visibility="visible"/>
+        <EditText
+            android:background="@drawable/edittext_rounded"
+            android:id="@+id/semestreAfectadaEdit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="Semestre"
+            android:visibility="gone"/>
+    </LinearLayout>
+
+
     <!--holaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa--><!-- Nombre -->
     <!-- Nombre -->
     <LinearLayout
@@ -112,6 +245,84 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:hint="Nombre"
+            android:visibility="gone"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginHorizontal="16dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Dirección"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/direccionAfectadaLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Direccion"
+            android:visibility="visible"/>
+        <EditText
+            android:background="@drawable/edittext_rounded"
+            android:id="@+id/direccionAfectadaEdit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="Nombre"
+            android:visibility="gone"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginHorizontal="16dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Barrio"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/barrioAfectadaLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Barrio"
+            android:visibility="visible"/>
+        <EditText
+            android:background="@drawable/edittext_rounded"
+            android:id="@+id/barrioAfectadaEdit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="Barrio"
+            android:visibility="gone"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginHorizontal="16dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Ciudad de origen"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/ciudadOrigenAfectadaLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Ciudad"
+            android:visibility="visible"/>
+        <EditText
+            android:background="@drawable/edittext_rounded"
+            android:id="@+id/ciudadOrigenAfectadaEdit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="Ciudad"
             android:visibility="gone"/>
     </LinearLayout>
     <!-- Nombre -->
@@ -524,6 +735,84 @@
         <EditText
                             android:background="@drawable/edittext_rounded"
             android:id="@+id/tipoVBGAfectadaEdit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="Nombre"
+            android:visibility="gone"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginHorizontal="16dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Detalles del caso"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/detallesCasoAfectadaLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="detalles"
+            android:visibility="visible"/>
+        <EditText
+            android:background="@drawable/edittext_rounded"
+            android:id="@+id/detallesCasoAfectadaEdit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="Detalles"
+            android:visibility="gone"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginHorizontal="16dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="¿Ha hecho denuncias previamente?"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/haHechoDenunciaAfectadaLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:visibility="visible"/>
+        <EditText
+            android:background="@drawable/edittext_rounded"
+            android:id="@+id/haHechoDenunciaAfectadaEdit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="Nombre"
+            android:visibility="gone"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginHorizontal="16dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Denuncias previas"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/denunciasPreviasAfectadaLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Hola"
+            android:visibility="visible"/>
+        <EditText
+            android:background="@drawable/edittext_rounded"
+            android:id="@+id/denunciasPreviasAfectadaEdit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:hint="Nombre"

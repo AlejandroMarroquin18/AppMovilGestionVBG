@@ -27,7 +27,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="LISTA DE QUEJAS"
+                android:text="LISTA DE ATENCIONES"
                 android:textColor="@color/white"
                 android:textSize="20sp"
                 android:textStyle="bold"/>
@@ -39,7 +39,7 @@
                 android:textColor="@color/white"
                 android:textSize="14sp"
                 android:layout_marginTop="4dp"
-                android:text="Total: 0 quejas"/>
+                android:text="Total: 0 atenciones"/>
         </LinearLayout>
     </com.google.android.material.card.MaterialCardView>
 

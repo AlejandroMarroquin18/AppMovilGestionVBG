@@ -45,6 +45,8 @@ class DetallesQueja : Fragment(R.layout.fragment_detalles_queja) {
     private lateinit var recyclerView: RecyclerView
     private lateinit var viewModel: DetallesAgendaViewModel
     private val estadosQueja = listOf("Pendiente", "Aprobado", "En Proceso", "Finalizado", "Remitido")
+    private val prioridades = listOf("Pendiente", "Baja", "Media", "Alta", "Crítica")
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -53,6 +55,8 @@ class DetallesQueja : Fragment(R.layout.fragment_detalles_queja) {
         _binding = FragmentDetallesQuejaBinding.inflate(inflater, container, false)
         binding.cambioEstadoTextView.visibility = View.GONE
         binding.opcionesEstadosContainer.visibility = View.GONE
+        binding.cambioPrioridadTextView.visibility = View.GONE
+        binding.opcionesPrioridadContainer.visibility = View.GONE
         return binding.root
     }
 
@@ -77,6 +81,10 @@ class DetallesQueja : Fragment(R.layout.fragment_detalles_queja) {
         val spinnerEstadoAdapter = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_item, estadosQueja)
         spinnerEstadoAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         binding.spinnerEstado.adapter = spinnerEstadoAdapter
+
+        val spinnerPrioridadAdapter= ArrayAdapter(requireContext(), android.R.layout.simple_spinner_item, prioridades)
+        spinnerPrioridadAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        binding.spinnerPrioridad.adapter = spinnerPrioridadAdapter
 
         // Variable para guardar el estado anterior
         var estadoAnterior: String? = null
@@ -121,6 +129,52 @@ class DetallesQueja : Fragment(R.layout.fragment_detalles_queja) {
             binding.opcionesEstadosContainer.visibility = View.GONE
             //binding.estadoActualTextView.setText(newEstado)
         }
+        ///////////////////////////////Prioridad////////////////////////////////
+
+        // Variable para guardar el prioridad anterior
+        var prioridadAnterior: String? = null
+
+        binding.spinnerPrioridad.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(
+                parent: AdapterView<*>,
+                view: View?,
+                position: Int,
+                id: Long
+            ) {
+                val prioridadActual = parent.getItemAtPosition(position).toString()
+
+                // Evita ejecutar la función al cargar por primera vez
+                if (prioridadAnterior != null && prioridadActual != prioridadAnterior) {
+                    binding.cambioPrioridadTextView.visibility = View.VISIBLE
+                    binding.opcionesPrioridadContainer.visibility = View.VISIBLE
+                }
+
+                // Actualiza el prioridad anterior
+                prioridadAnterior = prioridadActual
+            }
+
+            override fun onNothingSelected(parent: AdapterView<*>) {
+                // No hace nada
+            }
+        }
+        binding.prioridadActualTextView.setText(data.optString("prioridad"))
+        binding.spinnerPrioridad.setSelection(prioridades.indexOf(data.optString("prioridad")))
+        binding.cancelarPrioridadButton.setOnClickListener {
+            binding.cambioPrioridadTextView.visibility = View.GONE
+            binding.opcionesPrioridadContainer.visibility = View.GONE
+            binding.spinnerPrioridad.setSelection(prioridades.indexOf(data.optString("prioridad")))
+
+        }
+        binding.guardarPrioridadButton.setOnClickListener {
+            val newPrioridad= binding.spinnerPrioridad.selectedItem.toString()
+            //enviar al backend
+            val newQueja = buildJSON()
+            sendEdit(newQueja)
+            binding.cambioPrioridadTextView.visibility = View.GONE
+            binding.opcionesPrioridadContainer.visibility = View.GONE
+        }
+
+        ////////////////////////////////////////////////////////////////////////
 
 
         //seteo historial

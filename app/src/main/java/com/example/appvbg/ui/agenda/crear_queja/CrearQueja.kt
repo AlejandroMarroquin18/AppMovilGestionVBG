@@ -107,8 +107,9 @@ class CrearQueja : Fragment(R.layout.fragment_crear_queja) {
         binding.includeAdicional.asistenciaJuridicaEdit.adapter = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_dropdown_item, sino)
         binding.includeAdicional.medidasProteccionEdit.adapter = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_dropdown_item, sino)
         binding.includeAdicional.instanciasGubernamentalesEdit.adapter = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_dropdown_item, sino)
-        binding.includeAdicional.comiteAsuntosInternosEdit.adapter = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_dropdown_item, sino)
-        //binding.includeAdicional.observacionesEdit.adapter = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_dropdown_item, sino)
+        binding.includeAdicional.quejaCADEEdit.adapter = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_dropdown_item, sino)
+        binding.includeAdicional.quejaControlInternoEdit.adapter = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_dropdown_item, sino)
+        binding.includeAdicional.quejaRectoriaEdit.adapter = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_dropdown_item, sino)
 
 
         return binding.root
@@ -163,7 +164,15 @@ class CrearQueja : Fragment(R.layout.fragment_crear_queja) {
         json.put("afectado_nombre", binding.includeAfectada.nombreAfectadaEdit.text.toString())
         json.put("afectado_sexo", binding.includeAfectada.sexoAfectadaEdit.selectedItem as String)
         json.put("afectado_edad", binding.includeAfectada.edadAfectadaEdit.text.toString())
+        json.put("afectado_tipo_documento_identidad",binding.includeAfectada.tipoDocumentoAfectadaEdit.text.toString())
+        json.put("afectado_documento_identidad",binding.includeAfectada.documentoIdentidadAfectadaEdit.text.toString())
+        json.put("afectado_redes_apoyo", binding.includeAfectada.redesApoyoAfectadaEdit.text.toString())
+        json.put("afectado_codigo", binding.includeAfectada.codigoAfectadaEdit.text.toString())
+        json.put("afectado_semestre", binding.includeAfectada.semestreAfectadaEdit.text.toString())
         json.put("afectado_comuna", binding.includeAfectada.comunaAfectadaEdit.text.toString())
+        json.put("afectado_direccion", binding.includeAfectada.direccionAfectadaEdit.text.toString())
+        json.put("afectado_barrio", binding.includeAfectada.barrioAfectadaEdit.text.toString())
+        json.put("afectado_ciudad_origen", binding.includeAfectada.ciudadOrigenAfectadaEdit.text.toString())
         json.put("afectado_estrato_socioeconomico", binding.includeAfectada.estratoAfectadaEdit.text.toString())
         json.put("afectado_condicion_etnico_racial", binding.includeAfectada.etniaAfectadaEdit.selectedItem as String)
         json.put("afectado_tiene_discapacidad", binding.includeAfectada.discapacidadAfectadaEdit.selectedItem as String)
@@ -174,18 +183,22 @@ class CrearQueja : Fragment(R.layout.fragment_crear_queja) {
         json.put("afectado_vicerrectoria_adscrito", binding.includeAfectada.viceAfectadaEdit.text.toString())
         json.put("afectado_dependencia", binding.includeAfectada.dependenciaAfectadaEdit.text.toString())
         json.put("afectado_programa_academico", binding.includeAfectada.programaAfectadaEdit.text.toString())
-
         json.put("afectado_facultad", binding.includeAfectada.facultadAfectadaEdit.selectedItem as String)
-
-        //json.put("afectado_sede", binding.includeAfectada.sedeAfectadaEdit.selectedItem as String)
         json.put("afectado_celular", binding.includeAfectada.celularAfectadaEdit.text.toString())
         json.put("afectado_correo", binding.includeAfectada.correoAfectadaEdit.text.toString())
         json.put("afectado_tipo_vbg_os", binding.includeAfectada.tipoVBGAfectadaEdit.selectedItem as String)
-        //falta detalles
-        //21
+        json.put("afectado_detalles_caso", binding.includeAfectada.detallesCasoAfectadaEdit.text.toString())
+        json.put("afectado_ha_hecho_denuncia", binding.includeAfectada.haHechoDenunciaAfectadaEdit.text.toString())
+        json.put("afectado_denuncias_previas", binding.includeAfectada.denunciasPreviasAfectadaEdit.text.toString())
+
+
+        //agresor
         json.put("agresor_nombre", binding.includeAgresor.nombreAgresorEdit.text.toString())
         json.put("agresor_sexo", binding.includeAgresor.sexoAgresorEdit.selectedItem as String)
         json.put("agresor_edad", binding.includeAgresor.edadAgresorEdit.text.toString())
+        json.put("agresor_semestre", binding.includeAgresor.semestreAgresorEdit.text.toString())
+        json.put("agresor_barrio", binding.includeAgresor.barrioAgresorEdit.text.toString())
+        json.put("agresor_ciudad_origen", binding.includeAgresor.ciudadOrigenAgresorEdit.text.toString())
         json.put("agresor_condicion_etnico_racial", binding.includeAgresor.etniaAgresorEdit.selectedItem as String)
         json.put("agresor_tiene_discapacidad", binding.includeAgresor.discapacidadAgresorEdit.selectedItem as String)
         json.put("agresor_tipo_discapacidad", binding.includeAgresor.tipoDiscapacidadAgresorEdit.text.toString())
@@ -197,28 +210,25 @@ class CrearQueja : Fragment(R.layout.fragment_crear_queja) {
         json.put("agresor_programa_academico", binding.includeAgresor.programaAgresorEdit.text.toString())
         json.put("agresor_facultad", binding.includeAgresor.facultadAgresorEdit.selectedItem as String)
         json.put("agresor_sede", binding.includeAgresor.sedeAgresorEdit.selectedItem as String)
+        json.put("agresor_factores_riesgo", binding.includeAgresor.factoresRiesgoAgresorEdit.text.toString())
+        json.put("agresor_tiene_denuncias", binding.includeAgresor.tieneDenunciasAgresorEdit.text.toString())
+        json.put("agresor_detalles_denuncias", binding.includeAgresor.detallesDenunciasAgresorEdit.text.toString())
 
-
+        //
         json.put("desea_activar_ruta_atencion_integral", binding.includeAdicional.rutaIntegralEdit.selectedItem as String)
         json.put("recibir_asesoria_orientacion_sociopedagogica", binding.includeAdicional.asesoriaEdit.selectedItem as String)
         json.put("orientacion_psicologica", binding.includeAdicional.orientacionEdit.selectedItem as String)
         json.put("asistencia_juridica", binding.includeAdicional.asistenciaJuridicaEdit.selectedItem as String)
         json.put("acompañamiento_solicitud_medidas_proteccion_inicial", binding.includeAdicional.medidasProteccionEdit.selectedItem as String)
         json.put("acompañamiento_ante_instancias_gubernamentales", binding.includeAdicional.instanciasGubernamentalesEdit.selectedItem as String)
-        json.put("interponer_queja_al_comite_asusntos_internos_disciplinarios", binding.includeAdicional.comiteAsuntosInternosEdit.selectedItem as String)
+        json.put("interponer_queja_al_cade", binding.includeAdicional.quejaCADEEdit.selectedItem as String)
+        json.put("interponer_queja_oficina_control_interno", binding.includeAdicional.quejaControlInternoEdit.selectedItem as String)
+        json.put("interponer_queja_a_rectoria", binding.includeAdicional.quejaRectoriaEdit.selectedItem as String)
         json.put("observaciones", binding.includeAdicional.observacionesEdit.text.toString())
 
 
         //relleno
-        json.put("nombre","1")
-        json.put("sede","2")
-        json.put("codigo","3")
         json.put("tipo_de_acompanamiento","4")
-        json.put("fecha","3")
-        json.put("estado","1")
-        json.put("detalles","no se")
-        json.put("facultad", "5")
-        json.put("unidad", "6")
 
 
 

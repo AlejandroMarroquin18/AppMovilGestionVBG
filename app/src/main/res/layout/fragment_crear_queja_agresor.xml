@@ -24,7 +24,7 @@
 
                 <!-- Sexo -->
                 <TextView
-tools:viewBindingIgnore="true"
+                    tools:viewBindingIgnore="true"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:text="Sexo"
@@ -49,9 +49,47 @@ tools:viewBindingIgnore="true"
                             android:inputType="number" />
                 </com.google.android.material.textfield.TextInputLayout>
 
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:hint="Semestre"
+            android:layout_marginTop="12dp">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/semestreAgresorEdit"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:inputType="number" />
+        </com.google.android.material.textfield.TextInputLayout>
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:hint="Barrio"
+            android:layout_marginTop="12dp">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/barrioAgresorEdit"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:inputType="number" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:hint="Ciudad de origen"
+            android:layout_marginTop="12dp">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/ciudadOrigenAgresorEdit"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:inputType="number" />
+        </com.google.android.material.textfield.TextInputLayout>
+
                 <!-- Condición étnico racial -->
                 <TextView
-tools:viewBindingIgnore="true" android:layout_width="match_parent"
+                    tools:viewBindingIgnore="true" android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:text="Condición étnico racial"
                     android:textStyle="bold"
@@ -184,6 +222,42 @@ tools:viewBindingIgnore="true" android:layout_width="match_parent"
                     android:id="@+id/sedeAgresorEdit"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"/>
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:hint="Factores de riesgo"
+            android:layout_marginTop="12dp">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/factoresRiesgoAgresorEdit"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:inputType="number" />
+        </com.google.android.material.textfield.TextInputLayout>
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:hint="¿Tiene denuncias previas?"
+            android:layout_marginTop="12dp">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/tieneDenunciasAgresorEdit"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:inputType="number" />
+        </com.google.android.material.textfield.TextInputLayout>
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:hint="Antecedentes previos"
+            android:layout_marginTop="12dp">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/detallesDenunciasAgresorEdit"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:inputType="number" />
+        </com.google.android.material.textfield.TextInputLayout>
 
         </LinearLayout>
 

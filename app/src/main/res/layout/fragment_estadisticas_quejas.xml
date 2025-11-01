@@ -22,7 +22,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Quejas recibidas en el último año"
+                android:text="Atenciones recibidas en el último año"
                 android:textSize="18sp"
                 android:textColor="#000000" />
 
@@ -58,7 +58,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Quejas de estudiantes"
+                    android:text="Atenciones de estudiantes"
                     android:textColor="#000000" />
 
                 <TextView
@@ -83,7 +83,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Quejas de profesores"
+                    android:text="Atenciones de profesores"
                     android:textColor="#000000" />
 
                 <TextView
@@ -108,7 +108,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Quejas de funcionarios"
+                    android:text="Atenciones de funcionarios"
                     android:textColor="#000000" />
 
                 <TextView
@@ -134,7 +134,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Quejas remitidas en el último año"
+                android:text="Atenciones remitidas en el último año"
                 android:textSize="18sp"
                 android:textColor="#000000" />
 
