@@ -76,7 +76,7 @@
             android:layout_margin="8dp"
             android:text="Cerrar sesión"
             android:textSize="16sp"
-            app:icon="@drawable/ic_menu_slideshow"
+            app:icon="@drawable/ic_logout"
             app:iconGravity="textStart"
             app:iconPadding="8dp"
             style="@style/Widget.Material3.Button" />

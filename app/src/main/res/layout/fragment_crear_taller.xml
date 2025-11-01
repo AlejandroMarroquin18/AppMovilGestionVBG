@@ -375,7 +375,9 @@
                     app:strokeWidth="1dp"
                     app:backgroundTint="@android:color/transparent"
                     android:textColor="@color/red"
-                    android:layout_marginEnd="8dp"/>
+                    android:layout_marginEnd="8dp"
+                    app:elevation="0dp"
+                    android:stateListAnimator="@null" />
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/btnCrear"
