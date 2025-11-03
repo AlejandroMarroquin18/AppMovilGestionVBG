@@ -13,6 +13,7 @@ import com.github.mikephil.charting.formatter.IndexAxisValueFormatter
 import com. github. mikephil. charting. utils. ColorTemplate
 import android.graphics.Color
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -23,9 +24,12 @@ import com.example.appvbg.R
 
 class EstadisticasTalleresFragment: Fragment(R.layout.fragment_estadisticas_talleres) {
 
-    private lateinit var modalidadesChart:BarChart
+    private lateinit var modalidadesChart:PieChart
     private lateinit var generoChart: PieChart
     private lateinit var departamentoChart: BarChart
+    private lateinit var sedeChart: BarChart
+    private lateinit var discapacidadChart: BarChart
+
     private val viewModel: EstadisticasTalleresViewModel by viewModels()
 
     override fun onCreateView(
@@ -41,45 +45,32 @@ class EstadisticasTalleresFragment: Fragment(R.layout.fragment_estadisticas_tall
 
 
 
-        setUpModalidades()
-        setUpGenero()
-        setUpDepartamento()
+        sedeChart = view.findViewById(R.id.graficoTalleresSede)
+        discapacidadChart = view.findViewById(R.id.graficoTalleresDiscapacidad)
 
+        viewModel.fetchEstadisticasTalleres(requireContext())
+
+        viewModel.conteoSedes.observe(viewLifecycleOwner){ (entries, labels) ->
+            setUpBarChart(entries, labels, "Talleres por sedes", sedeChart)
+        }
+
+        viewModel.conteoDiscapacidades.observe(viewLifecycleOwner){ (entries, labels)->
+            setUpBarChart(entries, labels, "Participantes por tipo de discapacidad", discapacidadChart)
+        }
+
+        viewModel.conteoGenero.observe (viewLifecycleOwner){ entries ->
+            setUpPieChart(entries, "Participantes por género", generoChart)
+
+        }
+
+        viewModel.conteoModalidades.observe (viewLifecycleOwner){ entries ->
+            setUpPieChart(entries, "Talleres por modalidad", modalidadesChart)
+        }
 
         return view
     }
 
-    private fun setUpModalidades(){
-        val entries = arrayListOf(
-            BarEntry(0f, 20f),
-            BarEntry(1f, 10f)
-        )
 
-        val labels = listOf("Talleres Virtuales", "Talleres Presenciales")
-
-        val dataSet = BarDataSet(entries, "Distribución de talleres virtuales vs presenciales")
-        dataSet.color = resources.getColor(R.color.red, null)
-
-        val barData = BarData(dataSet)
-        barData.barWidth = 0.9f
-
-        modalidadesChart.data = barData
-        modalidadesChart.setFitBars(true)
-        modalidadesChart.description.isEnabled = false
-        modalidadesChart.animateY(1000)
-
-        val xAxis = modalidadesChart.xAxis
-        xAxis.valueFormatter = IndexAxisValueFormatter(labels)
-        xAxis.position = XAxis.XAxisPosition.BOTTOM
-        xAxis.setDrawGridLines(false)
-        xAxis.granularity = 1f
-        xAxis.labelCount = labels.size
-
-        modalidadesChart.axisRight.isEnabled = false // desactiva eje derecho si no lo usas
-
-        modalidadesChart.invalidate()
-
-    }
     private fun setUpGenero(){
         val entries = listOf(
             PieEntry(70f, "Masculino"),
@@ -218,5 +209,50 @@ class EstadisticasTalleresFragment: Fragment(R.layout.fragment_estadisticas_tall
     }*/
 
 
+    private fun setUpBarChart(entries: List<BarEntry>, labels: List<String>, title: String, chart: BarChart){
 
+        val dataSet = BarDataSet(entries, "Quejas por año")
+        dataSet.color = resources.getColor(R.color.purple_500, null)
+
+        val barData = BarData(dataSet)
+        barData.barWidth = 0.9f
+
+        chart.data = barData
+        chart.setFitBars(true)
+        chart.description.isEnabled = false
+        chart.animateY(1000)
+
+        val xAxis = chart.xAxis
+        xAxis.valueFormatter = IndexAxisValueFormatter(labels)
+        xAxis.position = XAxis.XAxisPosition.BOTTOM
+        xAxis.setDrawGridLines(false)
+        xAxis.granularity = 1f
+        xAxis.labelCount = labels.size
+
+        chart.axisRight.isEnabled = false // desactiva eje derecho si no lo usas
+
+        chart.invalidate()
+    }
+    private fun setUpPieChart(entries: List<PieEntry>, title: String, chart: PieChart){
+
+
+        val dataSet = PieDataSet(entries, title)
+        dataSet.colors = ColorTemplate.MATERIAL_COLORS.toList()
+        dataSet.sliceSpace = 3f
+        dataSet.selectionShift = 5f
+
+        val pieData = PieData(dataSet)
+        pieData.setValueTextSize(12f)
+        pieData.setValueTextColor(Color.WHITE)
+
+        chart.data = pieData
+        chart.setUsePercentValues(true)
+        chart.description.isEnabled = false
+        chart.centerText = title
+        chart.setCenterTextSize(18f)
+        chart.animateY(1000)
+
+        chart.invalidate() // refrescar gráfico
+
+    }
 }

@@ -18,6 +18,8 @@ import java.io.BufferedReader
 import java.io.InputStreamReader
 import java.net.HttpURLConnection
 import java.net.URL
+import android.util.Log
+import org.json.JSONObject
 
 class QuejaViewModel: ViewModel() {
     private val _filtros = MutableLiveData<FiltroData>()
@@ -99,6 +101,8 @@ class QuejaViewModel: ViewModel() {
                     "GET",
                     PrefsHelper.getDRFToken(context)?:""
                 )
+                Log.d("QuejaViewModel", "Response: $response")
+
 
                 if (response != "error") {
 
@@ -108,20 +112,24 @@ class QuejaViewModel: ViewModel() {
 
                     //Inserta todos los arrays en la variable
                     JSONDataQuejas.put(jsonArray)
-
+                    
 
                     for (i in 0 until jsonArray.length()) {
+                        
                         val obj = jsonArray.getJSONObject(i)
+                        val afectadoObj = obj.getJSONObject("persona_afectada")
+                        val reportaObj = obj.getJSONObject("persona_reporta")
+                        
                         val item = Item(
                             id = obj.getInt("id"),
-                            nombre = obj.getString("afectado_nombre"),
-                            sede = obj.getString("afectado_sede"),
-                            codigo = obj.getString("afectado_codigo"),
+                            nombre = afectadoObj.getString("nombre"),
+                            sede = afectadoObj.getString("sede"),
+                            codigo = afectadoObj.getString("codigo"),
                             tipo_de_acompanamiento = obj.getString("tipo_de_acompanamiento"),
-                            fecha = obj.getString("fecha_recepcion"),
+                            fecha = reportaObj.getString("fecha_recepcion"),
                             estado = obj.getString("estado"),
-                            detalles = obj.getString("observaciones"),
-                            facultad = if (obj.isNull("afectado_facultad")) "null" else obj.getString("afectado_facultad"),
+                            detalles = "",
+                            facultad = if (afectadoObj.isNull("facultad")) "null" else afectadoObj.getString("facultad"),
                             unidad = if (obj.isNull("unidad")) "null" else obj.getString("unidad"),
                             json = obj
                         )

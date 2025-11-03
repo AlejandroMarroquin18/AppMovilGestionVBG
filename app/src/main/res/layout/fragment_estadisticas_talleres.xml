@@ -127,7 +127,7 @@
                 android:textAlignment="center" />
         </LinearLayout>
     </GridLayout>
-        <com.github.mikephil.charting.charts.BarChart
+        <com.github.mikephil.charting.charts.PieChart
             android:id="@+id/graficoTalleresModalidades"
             android:layout_width="match_parent"
             android:layout_height="300dp" />
@@ -137,6 +137,14 @@
             android:layout_height="300dp" />
         <com.github.mikephil.charting.charts.BarChart
             android:id="@+id/graficoTalleresDepartamento"
+            android:layout_width="match_parent"
+            android:layout_height="300dp" />
+        <com.github.mikephil.charting.charts.BarChart
+            android:id="@+id/graficoTalleresDiscapacidad"
+            android:layout_width="match_parent"
+            android:layout_height="300dp" />
+        <com.github.mikephil.charting.charts.BarChart
+            android:id="@+id/graficoTalleresSede"
             android:layout_width="match_parent"
             android:layout_height="300dp" />
 

@@ -45,6 +45,18 @@ class EstadisticasQuejasViewModel : ViewModel() {
 
     private val _conteoGenero = MutableLiveData<List<PieEntry>>()
     val conteoGenero: LiveData<List<PieEntry>> = _conteoGenero
+    /////news
+    private val _ConteoEdades = MutableLiveData<Pair<List<BarEntry>, List<String>>>()
+    val ConteoEdades: LiveData<Pair<List<BarEntry>, List<String>>> = _ConteoEdades
+
+    private val _conteoComunas = MutableLiveData<Pair<List<BarEntry>, List<String>>>()
+    val conteoComunas: LiveData<Pair<List<BarEntry>, List<String>>> = _conteoComunas
+
+    private val _conteoTipoVBG = MutableLiveData<Pair<List<BarEntry>, List<String>>>()
+    val conteoTipoVBG: LiveData<Pair<List<BarEntry>, List<String>>> = _conteoTipoVBG
+
+    private val _conteoFactores = MutableLiveData<Pair<List<BarEntry>, List<String>>>()
+    val conteoFactores: LiveData<Pair<List<BarEntry>, List<String>>> = _conteoFactores
 
 
     /**
@@ -70,18 +82,51 @@ class EstadisticasQuejasViewModel : ViewModel() {
                 _conteoQuejaAnio.postValue(transformarJSONAEntries(json.getJSONObject("conteo_por_anio")))
                 //_conteoQuejaMes.postValue(transformarJSONAEntries(json.getJSONObject("conteo_por_mes")))
                 _conteoQuejasFacultad.postValue(
-                    transformarABarEntries(json.getJSONArray("conteo_por_facultad_afectado"), "afectado_facultad", "total")
+                    transformarABarEntries(
+                        json.getJSONArray("conteo_por_facultad_afectado"),
+                        "persona_afectada__facultad",
+                        "total"
+                    )
                 )
                 _conteoQuejasSede.postValue(
-                    transformarABarEntries(json.getJSONArray("conteo_por_sede_afectado"), "afectado_sede", "total")
-                )
-                _conteoVice.postValue(
-                    transformarAPieEntries(json.getJSONArray("conteo_por_vicerrectoria_adscrita_afectado"), "afectado_vicerrectoria_adscrito", "total")
-                )
-                _conteoGenero.postValue(
-                    transformarAPieEntries(json.getJSONArray("conteo_por_genero_afectado"), "afectado_identidad_genero", "total")
+                    transformarABarEntries(
+                        json.getJSONArray("conteo_por_sede_afectado"),
+                        "persona_afectada__sede",
+                        "total"
+                    )
                 )
 
+                _conteoVice.postValue(
+                    transformarAPieEntries(
+                        json.getJSONArray("conteo_por_vicerrectoria_adscrita_afectado"),
+                        "persona_afectada__vicerrectoria_adscrito",
+                        "total"
+                    )
+                )
+
+                _conteoGenero.postValue(
+                    transformarAPieEntries(
+                        json.getJSONArray("conteo_por_genero_afectado"),
+                        "persona_afectada__identidad_genero",
+                        "total"
+                    )
+                )
+                _ConteoEdades.postValue(
+                    transformarABarEntries(json.getJSONArray("edades"),"persona_afectada__edad", "total")
+                )
+                _conteoComunas.postValue(
+                    transformarABarEntries(
+                        json.getJSONArray("comunas"),
+                        "persona_afectada__comuna",
+                        "total"
+                    )
+                )
+                _conteoTipoVBG.postValue(
+                    transformarJSONAEntries(json.getJSONObject("tipo_vbg"))
+                )
+                _conteoFactores.postValue(
+                    transformarJSONAEntries(json.getJSONObject("factores_riesgo"))
+                )
             } catch (e: Exception) {
                 e.printStackTrace()
             }
@@ -153,4 +198,7 @@ class EstadisticasQuejasViewModel : ViewModel() {
         }
         return Pair(entries, labels)
     }
+
+
+
 }

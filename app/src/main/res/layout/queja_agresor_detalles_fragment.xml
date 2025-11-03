@@ -20,7 +20,7 @@
             android:id="@+id/nombreAgresorLabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Hola"
+            android:text="N/A"
             android:visibility="visible"/>
         <EditText
                             android:background="@drawable/edittext_rounded"
@@ -30,7 +30,7 @@
             android:hint="Nombre"
             android:visibility="gone"/>
     </LinearLayout>
-    <!--holaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa-->
+    <!--N/Aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa-->
     <!-- Nombre -->
     <LinearLayout
         android:layout_width="match_parent"
@@ -48,7 +48,7 @@
             android:id="@+id/sexoAgresorLabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Hola"
+            android:text="N/A"
             android:visibility="visible"/>
         <EditText
                             android:background="@drawable/edittext_rounded"
@@ -58,7 +58,7 @@
             android:hint="Nombre"
             android:visibility="gone"/>
     </LinearLayout>
-    <!--holaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa-->
+    <!--N/Aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa-->
     <!-- Nombre -->
     <LinearLayout
         android:layout_width="match_parent"
@@ -76,7 +76,7 @@
             android:id="@+id/edadAgresorLabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Hola"
+            android:text="N/A"
             android:visibility="visible"/>
         <EditText
                             android:background="@drawable/edittext_rounded"
@@ -86,7 +86,7 @@
             android:hint="Nombre"
             android:visibility="gone"/>
     </LinearLayout>
-    <!--holaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa--><!-- Nombre -->
+    <!--N/Aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa--><!-- Nombre -->
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -104,7 +104,7 @@
             android:id="@+id/semestreAgresorLabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Semestre"
+            android:text="N/A"
             android:visibility="visible"/>
         <EditText
             android:background="@drawable/edittext_rounded"
@@ -130,7 +130,7 @@
             android:id="@+id/barrioAgresorLabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Barrio"
+            android:text="N/A"
             android:visibility="visible"/>
         <EditText
             android:background="@drawable/edittext_rounded"
@@ -156,7 +156,7 @@
             android:id="@+id/ciudadOrigenAgresorLabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Ciudad de origen"
+            android:text="N/A"
             android:visibility="visible"/>
         <EditText
             android:background="@drawable/edittext_rounded"
@@ -184,7 +184,7 @@
             android:id="@+id/etniaAgresorLabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Hola"
+            android:text="N/A"
             android:visibility="visible"/>
         <EditText
                             android:background="@drawable/edittext_rounded"
@@ -211,7 +211,7 @@
             android:id="@+id/discapacidadAgresorLabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Hola"
+            android:text="N/A"
             android:visibility="visible"/>
         <EditText
                             android:background="@drawable/edittext_rounded"
@@ -238,7 +238,7 @@
             android:id="@+id/tipoDiscapacidadAgresorLabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Hola"
+            android:text="N/A"
             android:visibility="visible"/>
         <EditText
                             android:background="@drawable/edittext_rounded"
@@ -265,7 +265,7 @@
             android:id="@+id/identidadGeneroAgresorLabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Hola"
+            android:text="N/A"
             android:visibility="visible"/>
         <EditText
                             android:background="@drawable/edittext_rounded"
@@ -292,7 +292,7 @@
             android:id="@+id/orientacionSexualAgresorLabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Hola"
+            android:text="N/A"
             android:visibility="visible"/>
         <EditText
                             android:background="@drawable/edittext_rounded"
@@ -321,7 +321,7 @@
             android:id="@+id/estamentoAgresorLabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Hola"
+            android:text="N/A"
             android:visibility="visible"/>
         <EditText
                             android:background="@drawable/edittext_rounded"
@@ -331,7 +331,7 @@
             android:hint="Nombre"
             android:visibility="gone"/>
     </LinearLayout>
-    <!--holaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa-->
+    <!--N/Aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa-->
     <!-- Nombre -->
     <LinearLayout
         android:layout_width="match_parent"
@@ -349,7 +349,7 @@
             android:id="@+id/viceAgresorLabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Hola"
+            android:text="N/A"
             android:visibility="visible"/>
         <EditText
                             android:background="@drawable/edittext_rounded"
@@ -359,7 +359,7 @@
             android:hint="Nombre"
             android:visibility="gone"/>
     </LinearLayout>
-    <!--holaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa-->
+    <!--N/Aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa-->
     <!-- Nombre -->
     <LinearLayout
         android:layout_width="match_parent"
@@ -377,7 +377,7 @@
             android:id="@+id/dependenciaAgresorLabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Hola"
+            android:text="N/A"
             android:visibility="visible"/>
         <EditText
                             android:background="@drawable/edittext_rounded"
@@ -387,7 +387,7 @@
             android:hint="Nombre"
             android:visibility="gone"/>
     </LinearLayout>
-    <!--holaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa-->
+    <!--N/Aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa-->
     <!-- Nombre -->
     <LinearLayout
         android:layout_width="match_parent"
@@ -405,7 +405,7 @@
             android:id="@+id/programaAgresorLabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Hola"
+            android:text="N/A"
             android:visibility="visible"/>
         <EditText
                             android:background="@drawable/edittext_rounded"
@@ -415,7 +415,7 @@
             android:hint="Nombre"
             android:visibility="gone"/>
     </LinearLayout>
-    <!--holaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa-->
+    <!--N/Aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa-->
     <!-- Nombre -->
     <LinearLayout
         android:layout_width="match_parent"
@@ -433,7 +433,7 @@
             android:id="@+id/facultadAgresorLabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Hola"
+            android:text="N/A"
             android:visibility="visible"/>
         <EditText
                             android:background="@drawable/edittext_rounded"
@@ -443,7 +443,7 @@
             android:hint="Facultad"
             android:visibility="gone"/>
     </LinearLayout>
-    <!--holaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa-->
+    <!--N/Aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa-->
     <!-- Nombre -->
     <LinearLayout
         android:layout_width="match_parent"
@@ -461,7 +461,7 @@
             android:id="@+id/sedeAgresorLabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Hola"
+            android:text="N/A"
             android:visibility="visible"/>
         <EditText
                             android:background="@drawable/edittext_rounded"
@@ -471,24 +471,25 @@
             android:hint="Nombre"
             android:visibility="gone"/>
     </LinearLayout>
-    <!--holaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa-->
+    <!--N/Aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa-->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:layout_marginHorizontal="16dp">
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="Factores de riesgo"
             android:textStyle="bold"/>
 
+
         <TextView
             android:id="@+id/factoresRiesgoAgresorLabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Factores de riesgo"
+            android:text="N/A"
             android:visibility="visible"/>
         <EditText
             android:background="@drawable/edittext_rounded"
@@ -514,7 +515,7 @@
             android:id="@+id/tieneDenunciasAgresorLabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Tiene denuncias?"
+            android:text="N/A"
             android:visibility="visible"/>
         <EditText
             android:background="@drawable/edittext_rounded"
@@ -540,7 +541,7 @@
             android:id="@+id/detallesDenunciasAgresorLabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Detalles"
+            android:text="N/A"
             android:visibility="visible"/>
         <EditText
             android:background="@drawable/edittext_rounded"

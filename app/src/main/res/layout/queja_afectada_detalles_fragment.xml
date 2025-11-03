@@ -20,7 +20,7 @@
             android:id="@+id/nombreAfectadaLabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Hola"
+            android:text="N/A"
             android:visibility="visible"/>
         <EditText
                             android:background="@drawable/edittext_rounded"
@@ -30,7 +30,7 @@
             android:hint="Nombre"
             android:visibility="gone"/>
     </LinearLayout>
-    <!--holaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa-->
+    <!--N/Aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa-->
     <!-- Nombre -->
     <LinearLayout
         android:layout_width="match_parent"
@@ -48,7 +48,7 @@
             android:id="@+id/sexoAfectadaLabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Hola"
+            android:text="N/A"
             android:visibility="visible"/>
         <EditText
                             android:background="@drawable/edittext_rounded"
@@ -58,7 +58,7 @@
             android:hint="Nombre"
             android:visibility="gone"/>
     </LinearLayout>
-    <!--holaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa-->
+    <!--N/Aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa-->
     <!-- Nombre -->
     <LinearLayout
         android:layout_width="match_parent"
@@ -76,7 +76,7 @@
             android:id="@+id/edadAfectadaLabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Hola"
+            android:text="N/A"
             android:visibility="visible"/>
         <EditText
                             android:background="@drawable/edittext_rounded"
@@ -103,7 +103,7 @@
             android:id="@+id/tipoDocumentoAfectadaLabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Tipo de documento"
+            android:text="N/A"
             android:visibility="visible"/>
         <EditText
             android:background="@drawable/edittext_rounded"
@@ -129,7 +129,7 @@
             android:id="@+id/documentoIdentidadAfectadaLabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Hola"
+            android:text="N/A"
             android:visibility="visible"/>
         <EditText
             android:background="@drawable/edittext_rounded"
@@ -155,7 +155,7 @@
             android:id="@+id/redesApoyoAfectadaLabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Redes de apoyo"
+            android:text="N/A"
             android:visibility="visible"/>
         <EditText
             android:background="@drawable/edittext_rounded"
@@ -181,7 +181,7 @@
         android:id="@+id/codigoAfectadaLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Codigo"
+        android:text="N/A"
         android:visibility="visible"/>
     <EditText
         android:background="@drawable/edittext_rounded"
@@ -207,7 +207,7 @@
             android:id="@+id/semestreAfectadaLabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Semestre"
+            android:text="N/A"
             android:visibility="visible"/>
         <EditText
             android:background="@drawable/edittext_rounded"
@@ -219,7 +219,7 @@
     </LinearLayout>
 
 
-    <!--holaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa--><!-- Nombre -->
+    <!--N/Aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa--><!-- Nombre -->
     <!-- Nombre -->
     <LinearLayout
         android:layout_width="match_parent"
@@ -237,7 +237,7 @@
             android:id="@+id/comunaAfectadaLabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Hola"
+            android:text="N/A"
             android:visibility="visible"/>
         <EditText
                             android:background="@drawable/edittext_rounded"
@@ -263,7 +263,7 @@
             android:id="@+id/direccionAfectadaLabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Direccion"
+            android:text="N/A"
             android:visibility="visible"/>
         <EditText
             android:background="@drawable/edittext_rounded"
@@ -289,7 +289,7 @@
             android:id="@+id/barrioAfectadaLabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Barrio"
+            android:text="N/A"
             android:visibility="visible"/>
         <EditText
             android:background="@drawable/edittext_rounded"
@@ -315,7 +315,7 @@
             android:id="@+id/ciudadOrigenAfectadaLabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Ciudad"
+            android:text="N/A"
             android:visibility="visible"/>
         <EditText
             android:background="@drawable/edittext_rounded"
@@ -342,7 +342,7 @@
             android:id="@+id/estratoAfectadaLabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Hola"
+            android:text="N/A"
             android:visibility="visible"/>
         <EditText
                             android:background="@drawable/edittext_rounded"
@@ -370,7 +370,7 @@
             android:id="@+id/etniaAfectadaLabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Hola"
+            android:text="N/A"
             android:visibility="visible"/>
         <EditText
                             android:background="@drawable/edittext_rounded"
@@ -397,7 +397,7 @@
             android:id="@+id/discapacidadAfectadaLabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Hola"
+            android:text="N/A"
             android:visibility="visible"/>
         <EditText
                             android:background="@drawable/edittext_rounded"
@@ -424,7 +424,7 @@
             android:id="@+id/tipoDiscapacidadAfectadaLabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Hola"
+            android:text="N/A"
             android:visibility="visible"/>
         <EditText
                             android:background="@drawable/edittext_rounded"
@@ -451,7 +451,7 @@
             android:id="@+id/identidadGeneroAfectadaLabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Hola"
+            android:text="N/A"
             android:visibility="visible"/>
         <EditText
                             android:background="@drawable/edittext_rounded"
@@ -478,7 +478,7 @@
             android:id="@+id/orientacionSexualAfectadaLabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Hola"
+            android:text="N/A"
             android:visibility="visible"/>
         <EditText
                             android:background="@drawable/edittext_rounded"
@@ -507,7 +507,7 @@
             android:id="@+id/estamentoAfectadaLabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Hola"
+            android:text="N/A"
             android:visibility="visible"/>
         <EditText
                             android:background="@drawable/edittext_rounded"
@@ -517,7 +517,7 @@
             android:hint="Nombre"
             android:visibility="gone"/>
     </LinearLayout>
-    <!--holaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa-->
+    <!--N/Aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa-->
     <!-- Nombre -->
     <LinearLayout
         android:layout_width="match_parent"
@@ -535,7 +535,7 @@
             android:id="@+id/viceAfectadaLabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Hola"
+            android:text="N/A"
             android:visibility="visible"/>
         <EditText
                             android:background="@drawable/edittext_rounded"
@@ -545,7 +545,7 @@
             android:hint="Nombre"
             android:visibility="gone"/>
     </LinearLayout>
-    <!--holaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa-->
+    <!--N/Aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa-->
     <!-- Nombre -->
     <LinearLayout
         android:layout_width="match_parent"
@@ -563,7 +563,7 @@
             android:id="@+id/dependenciaAfectadaLabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Hola"
+            android:text="N/A"
             android:visibility="visible"/>
         <EditText
                             android:background="@drawable/edittext_rounded"
@@ -573,7 +573,7 @@
             android:hint="Nombre"
             android:visibility="gone"/>
     </LinearLayout>
-    <!--holaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa-->
+    <!--N/Aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa-->
     <!-- Nombre -->
     <LinearLayout
         android:layout_width="match_parent"
@@ -591,7 +591,7 @@
             android:id="@+id/programaAfectadaLabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Hola"
+            android:text="N/A"
             android:visibility="visible"/>
         <EditText
                             android:background="@drawable/edittext_rounded"
@@ -601,7 +601,7 @@
             android:hint="Nombre"
             android:visibility="gone"/>
     </LinearLayout>
-    <!--holaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa-->
+    <!--N/Aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa-->
     <!-- Nombre -->
     <LinearLayout
         android:layout_width="match_parent"
@@ -619,7 +619,7 @@
             android:id="@+id/facultadAfectadaLabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Hola"
+            android:text="N/A"
             android:visibility="visible"/>
         <EditText
                             android:background="@drawable/edittext_rounded"
@@ -629,7 +629,7 @@
             android:hint="Facultad"
             android:visibility="gone"/>
     </LinearLayout>
-    <!--holaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa-->
+    <!--N/Aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa-->
     <!-- Nombre -->
     <LinearLayout
         android:layout_width="match_parent"
@@ -647,7 +647,7 @@
             android:id="@+id/sedeAfectadaLabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Hola"
+            android:text="N/A"
             android:visibility="visible"/>
         <EditText
                             android:background="@drawable/edittext_rounded"
@@ -657,7 +657,7 @@
             android:hint="Nombre"
             android:visibility="gone"/>
     </LinearLayout>
-    <!--holaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa-->
+    <!--N/Aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa-->
     <!-- Celular -->
     <LinearLayout
         android:layout_width="match_parent"
@@ -675,7 +675,7 @@
             android:id="@+id/celularAfectadaLabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Hola"
+            android:text="N/A"
             android:visibility="visible"/>
         <EditText
                             android:background="@drawable/edittext_rounded"
@@ -685,7 +685,7 @@
             android:hint="Nombre"
             android:visibility="gone"/>
     </LinearLayout>
-    <!--holaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa-->
+    <!--N/Aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa-->
     <!-- Correo electrónico -->
     <LinearLayout
         android:layout_width="match_parent"
@@ -703,7 +703,7 @@
             android:id="@+id/correoAfectadaLabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Hola"
+            android:text="N/A"
             android:visibility="visible"/>
         <EditText
                             android:background="@drawable/edittext_rounded"
@@ -730,7 +730,7 @@
             android:id="@+id/tipoVBGAfectadaLabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Hola"
+            android:text="N/A"
             android:visibility="visible"/>
         <EditText
                             android:background="@drawable/edittext_rounded"
@@ -756,7 +756,7 @@
             android:id="@+id/detallesCasoAfectadaLabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="detalles"
+            android:text="N/A"
             android:visibility="visible"/>
         <EditText
             android:background="@drawable/edittext_rounded"
@@ -782,7 +782,7 @@
             android:id="@+id/haHechoDenunciaAfectadaLabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text=""
+            android:text="N/A"
             android:visibility="visible"/>
         <EditText
             android:background="@drawable/edittext_rounded"
@@ -808,7 +808,7 @@
             android:id="@+id/denunciasPreviasAfectadaLabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Hola"
+            android:text="N/A"
             android:visibility="visible"/>
         <EditText
             android:background="@drawable/edittext_rounded"

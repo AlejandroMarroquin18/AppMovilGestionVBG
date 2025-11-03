@@ -24,6 +24,7 @@ import com.example.appvbg.EstadisticasQuejasViewModel
 import androidx.fragment.app.viewModels
 
 import com.example.appvbg.R
+import com.github.mikephil.charting.charts.Chart
 import com.github.mikephil.charting.formatter.ValueFormatter
 
 class EstadisticasQuejasFragment: Fragment(R.layout.fragment_estadisticas_quejas) {
@@ -32,6 +33,10 @@ class EstadisticasQuejasFragment: Fragment(R.layout.fragment_estadisticas_quejas
     private lateinit var anioChart: BarChart
     private lateinit var departamentoChart: PieChart
     private lateinit var generoChart: PieChart
+    private lateinit var edadesChart: BarChart
+    private lateinit var comunaChart: BarChart
+    private lateinit var tipoVBGChart: BarChart
+    private lateinit var factoresChart: BarChart
     private val viewModel: EstadisticasQuejasViewModel by viewModels()
 
     override fun onCreateView(
@@ -50,6 +55,11 @@ class EstadisticasQuejasFragment: Fragment(R.layout.fragment_estadisticas_quejas
         departamentoChart = view.findViewById(R.id.graficoQuejaDepartamento)
         generoChart = view.findViewById(R.id.graficoQuejaXGenero)
 
+        edadesChart = view.findViewById(R.id.graficoQuejaEdad)
+        comunaChart = view.findViewById(R.id.graficoQuejaComuna)
+        tipoVBGChart = view.findViewById(R.id.graficoQuejaTipoVBG)
+        factoresChart = view.findViewById(R.id.graficoQuejaFactores)
+
         viewModel.fetchEstadisticasQuejas(requireContext())
 
         viewModel.conteoQuejaEstudiantes.observe(viewLifecycleOwner) { value ->
@@ -61,7 +71,6 @@ class EstadisticasQuejasFragment: Fragment(R.layout.fragment_estadisticas_quejas
         viewModel.conteoQuejaFuncionarios.observe(viewLifecycleOwner) { value ->
             setUpNumbers(view.findViewById(R.id.quejasFuncionarios), value)
         }
-
 
         viewModel.conteoQuejasFacultad.observe(viewLifecycleOwner) { (entries, labels) ->
             setupBarChart(entries, labels)
@@ -82,6 +91,20 @@ class EstadisticasQuejasFragment: Fragment(R.layout.fragment_estadisticas_quejas
         viewModel.conteoGenero.observe(viewLifecycleOwner) { entries ->
             setUpGenero(entries)
         }
+
+        viewModel.ConteoEdades.observe(viewLifecycleOwner) { (entries, labels) ->
+            setUpBarChart(entries, labels, "Atenciones por edad", edadesChart)
+        }
+        viewModel.conteoComunas.observe(viewLifecycleOwner){ (entries, labels) ->
+            setUpBarChart(entries, labels, "Atenciones por comuna",comunaChart)
+        }
+        viewModel.conteoTipoVBG.observe(viewLifecycleOwner){ (entries, labels) ->
+            setUpBarChart(entries, labels, "Atenciones por tipo de VBG", tipoVBGChart)
+        }
+        viewModel.conteoFactores.observe(viewLifecycleOwner){(entries, labels) ->
+            setUpBarChart(entries, labels, "Atenciones por factores de riesgo",factoresChart)
+        }
+
 
         return view
     }
@@ -160,15 +183,7 @@ class EstadisticasQuejasFragment: Fragment(R.layout.fragment_estadisticas_quejas
         sedeChart.invalidate()
     }
     private fun setUpAnio(entries: List<BarEntry>, labels: List<String>){
-        /**
-        val entries = arrayListOf(
-            BarEntry(0f, 30f),
-            BarEntry(1f, 38f),
-            BarEntry(2f, 32f)
-        )
 
-        val labels = listOf("2023", "2024", "2025")
-        */
         val dataSet = BarDataSet(entries, "Quejas por año")
         dataSet.color = resources.getColor(R.color.purple_500, null)
 
@@ -204,8 +219,6 @@ class EstadisticasQuejasFragment: Fragment(R.layout.fragment_estadisticas_quejas
         dataSet.colors = ColorTemplate.MATERIAL_COLORS.toList()
         dataSet.sliceSpace = 3f
         dataSet.selectionShift = 5f
-
-
 
 
         val pieData = PieData(dataSet)
@@ -253,6 +266,32 @@ class EstadisticasQuejasFragment: Fragment(R.layout.fragment_estadisticas_quejas
 
     private fun setUpNumbers(textView: TextView, value: Int){
         textView.setText(value.toString())
+    }
+
+
+    private fun setUpBarChart(entries: List<BarEntry>, labels: List<String>, title: String,chart: BarChart){
+
+        val dataSet = BarDataSet(entries, "Quejas por año")
+        dataSet.color = resources.getColor(R.color.purple_500, null)
+
+        val barData = BarData(dataSet)
+        barData.barWidth = 0.9f
+
+        chart.data = barData
+        chart.setFitBars(true)
+        chart.description.isEnabled = false
+        chart.animateY(1000)
+
+        val xAxis = chart.xAxis
+        xAxis.valueFormatter = IndexAxisValueFormatter(labels)
+        xAxis.position = XAxis.XAxisPosition.BOTTOM
+        xAxis.setDrawGridLines(false)
+        xAxis.granularity = 1f
+        xAxis.labelCount = labels.size
+
+        chart.axisRight.isEnabled = false // desactiva eje derecho si no lo usas
+
+        chart.invalidate()
     }
 
 

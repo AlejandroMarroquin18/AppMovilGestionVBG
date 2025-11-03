@@ -172,7 +172,7 @@ class QuejasFragment : Fragment(R.layout.fragment_quejas) {
                 codeTextView.text = "Código: ${item.codigo}"
                 facultadTextView.text = "Facultad: ${item.facultad ?: "No especificado"}"
                 sedeTextView.text = "Sede: ${item.sede}"
-                estadoTextView.text = item.estado
+                estadoTextView.text = "Estado: ${item.estado}"
                 fechaTextView.text = "Fecha: ${item.fecha}"
 
                 detailsButton.setOnClickListener { onDetailsClicked(item) }

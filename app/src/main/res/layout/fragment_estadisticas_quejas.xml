@@ -259,5 +259,30 @@
             android:layout_width="match_parent"
             android:layout_height="300dp" />
 
+        <com.github.mikephil.charting.charts.BarChart
+            android:id="@+id/graficoQuejaEdad"
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            android:layout_margin="16dp"
+            />
+        <com.github.mikephil.charting.charts.BarChart
+            android:id="@+id/graficoQuejaComuna"
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            android:layout_margin="16dp"
+            />
+        <com.github.mikephil.charting.charts.BarChart
+            android:id="@+id/graficoQuejaTipoVBG"
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            android:layout_margin="16dp"
+            />
+        <com.github.mikephil.charting.charts.BarChart
+            android:id="@+id/graficoQuejaFactores"
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            android:layout_margin="16dp"
+            />
+
     </LinearLayout>
 </ScrollView>

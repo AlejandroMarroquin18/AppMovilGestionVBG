@@ -137,17 +137,13 @@ class CrearTallerFragment: Fragment(R.layout.fragment_crear_taller) {
         json.put("date", binding.textViewFecha.text.toString())
         json.put("start_time", binding.textViewHoraInicio.text.toString())
         json.put("end_time", binding.textViewHoraFinalizacion.text.toString())
+        json.put("details", binding.editDetalles.text.toString())
         json.put("location", binding.editUbicacion.text.toString())
-
-
-
-
         //json.put("modality", editModalidad.selectedItem as String)
         json.put("slots", binding.editCupos.text.toString())
         //val facilitatorsArray = JSONArray().put(1)  // idDelTallerista debe ser un Int
         //json.put("facilitators", facilitatorsArray)
-        json.put("details", binding.editDetalles.text.toString())
-        json.put("participants", JSONArray())
+        json.put("sede",binding.editSede.text.toString())
 
 
 // Facilitators (debe ser un ID válido)
@@ -166,8 +162,6 @@ class CrearTallerFragment: Fragment(R.layout.fragment_crear_taller) {
                 PrefsHelper.getDRFToken(context).toString(),
                 jsonData
             )
-
-
             return response
         } catch (e: Exception) {
             e.printStackTrace()
