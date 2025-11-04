@@ -31,15 +31,18 @@ class EstadisticasMainFragment : Fragment() {
 
     private fun setupClickListeners() {
         binding.btnEstadisticasQuejas.setOnClickListener {
-            findNavController().navigate(R.id.estadisticasQuejasFragment)
+            val action = EstadisticasMainFragmentDirections.actionEstadisticasMainToEstadisticasQuejas()
+            findNavController().navigate(action)
         }
 
         binding.btnEstadisticasAgenda.setOnClickListener {
-            findNavController().navigate(R.id.estadisticasAgendaFragment)
+            val action = EstadisticasMainFragmentDirections.actionEstadisticasMainToEstadisticasAgenda()
+            findNavController().navigate(action)
         }
 
         binding.btnEstadisticasTalleres.setOnClickListener {
-            findNavController().navigate(R.id.estadisticasTalleresFragment)
+            val action = EstadisticasMainFragmentDirections.actionEstadisticasMainToEstadisticasTalleres()
+            findNavController().navigate(action)
         }
     }
 

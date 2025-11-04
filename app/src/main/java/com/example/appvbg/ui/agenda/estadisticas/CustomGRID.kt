@@ -45,6 +45,7 @@ class CustomGRID (context: Context, attrs: AttributeSet?) : ViewGroup(context, a
     private var animatedOffsetX = 0f
     private var animating = false
     private val animationDuration = 300L // milisegundos
+    private val topHeaderHeight = 90f // Ajusta según tu diseño
 
 
     var currentWeek: DateRange // Corrected declaration
@@ -137,7 +138,7 @@ class CustomGRID (context: Context, attrs: AttributeSet?) : ViewGroup(context, a
         val viewWidth = width
         val viewHeight = height
         val boxWidth = viewWidth / 7f
-        val hourHeight = viewHeight / 24f
+        val hourHeight = (viewHeight - topHeaderHeight) / 24f
 
         val zoneId = java.time.ZoneId.systemDefault()
 
@@ -158,7 +159,9 @@ class CustomGRID (context: Context, attrs: AttributeSet?) : ViewGroup(context, a
             // Texto de la fecha
             paint.color = Color.BLACK
             paint.textSize = 26f
-            canvas.drawText(label, x + 10f, 40f, paint)
+            // Texto de la fecha
+            canvas.drawText(label, x + 10f, topHeaderHeight / 2f, paint)
+
         }
 
         // Línea vertical al final de la semana
@@ -175,11 +178,13 @@ class CustomGRID (context: Context, attrs: AttributeSet?) : ViewGroup(context, a
 
         //  Dibuja las líneas horizontales de horas
         for (h in 0..24) {
-            val y = h * hourHeight
+            val y = topHeaderHeight + h * hourHeight
+
+            // Línea de hora
             paint.color = Color.LTGRAY
             canvas.drawLine(0f, y, viewWidth.toFloat(), y, paint)
 
-            // Etiqueta de hora
+            // Texto "hh:00"
             paint.color = Color.DKGRAY
             paint.textSize = 22f
             canvas.drawText("${h}:00", 10f, y - 5f, paint)
@@ -191,23 +196,35 @@ class CustomGRID (context: Context, attrs: AttributeSet?) : ViewGroup(context, a
             val partesStartHour = event.startHour.split(":")
             val horasStartHour = partesStartHour[0].toInt()
             val minutosStartHour = ((partesStartHour[1].toInt()) / 60)
-            val startHourHeigth = (horasStartHour + minutosStartHour) * hourHeight
+            val startY = topHeaderHeight + (horasStartHour + minutosStartHour) * hourHeight
 
             val partesEndHour = event.endHour.split(":")
             val horasEndHour = partesEndHour[0].toInt()
             val minutosEndHour = ((partesEndHour[1].toInt()) / 60)
-            val endHourHeigth = (horasEndHour + (minutosEndHour)) * hourHeight
+            val endY = topHeaderHeight + (horasEndHour + minutosEndHour) * hourHeight
 
             val dayIndex = event.date.dayOfWeek.value - 1
 
 
             val left = dayIndex * boxWidth - animatedOffsetX
             val right = (dayIndex + 1) * boxWidth - animatedOffsetX
-            val rect = RectF(left, startHourHeigth, right, endHourHeigth)
+            val rect = RectF(left, startY, right, endY)
             eventRects.add(rect to event)  // Guardamos el área clickeable y el evento asociado
 
             //val rect = RectF((dayIndex)-animatedOffsetX, startHourHeigth, (dayIndex+1)-animatedOffsetX, endHourHeigth)
+
             // Dibujar fondo negro con esquinas redondeadas
+            // Si event.color es un hex (#FF5733), lo parseamos:
+            event.color?.let { colorHex ->
+                try {
+                    paint.color = Color.parseColor(colorHex)
+                } catch (e: Exception) {
+                    paint.color = Color.BLACK // Default si hay error
+                }
+            } ?: run {
+                paint.color = Color.BLACK // Default si es null
+            }
+
             canvas.drawRoundRect(rect, cornerRadius, cornerRadius, paint)
             // Dibujar borde azul con las mismas esquinas redondeadas
             canvas.drawRoundRect(rect, cornerRadius, cornerRadius, borderPaint)

@@ -184,7 +184,7 @@ class EstadisticasQuejasFragment: Fragment(R.layout.fragment_estadisticas_quejas
     }
     private fun setUpAnio(entries: List<BarEntry>, labels: List<String>){
 
-        val dataSet = BarDataSet(entries, "Quejas por año")
+        val dataSet = BarDataSet(entries, "Atenciones por año")
         dataSet.color = resources.getColor(R.color.purple_500, null)
 
         val barData = BarData(dataSet)
@@ -215,7 +215,7 @@ class EstadisticasQuejasFragment: Fragment(R.layout.fragment_estadisticas_quejas
             PieEntry(10f, "Investigaciones")
         )*/
 
-        val dataSet = PieDataSet(entries, "Quejas por departamentos")
+        val dataSet = PieDataSet(entries, "Atenciones por departamentos")
         dataSet.colors = ColorTemplate.MATERIAL_COLORS.toList()
         dataSet.sliceSpace = 3f
         dataSet.selectionShift = 5f
@@ -229,7 +229,7 @@ class EstadisticasQuejasFragment: Fragment(R.layout.fragment_estadisticas_quejas
         departamentoChart.data = pieData
         departamentoChart.setUsePercentValues(true)
         departamentoChart.description.isEnabled = false
-        departamentoChart.centerText = "Quejas por departamento"
+        departamentoChart.centerText = "Atenciones por departamento"
         departamentoChart.setCenterTextSize(18f)
         departamentoChart.animateY(1000)
 
@@ -245,7 +245,7 @@ class EstadisticasQuejasFragment: Fragment(R.layout.fragment_estadisticas_quejas
             PieEntry(40f, "No binario")
         )*/
 
-        val dataSet = PieDataSet(entries, "Distribución de quejas por género")
+        val dataSet = PieDataSet(entries, "Distribución de atenciones por género")
         dataSet.colors = ColorTemplate.MATERIAL_COLORS.toList()
         dataSet.sliceSpace = 3f
         dataSet.selectionShift = 5f
@@ -257,7 +257,7 @@ class EstadisticasQuejasFragment: Fragment(R.layout.fragment_estadisticas_quejas
         generoChart.data = pieData
         generoChart.setUsePercentValues(true)
         generoChart.description.isEnabled = false
-        generoChart.centerText = "Distribución de quejas por género"
+        generoChart.centerText = "Distribución de atenciones por género"
         generoChart.setCenterTextSize(18f)
         generoChart.animateY(1000)
 
@@ -271,7 +271,7 @@ class EstadisticasQuejasFragment: Fragment(R.layout.fragment_estadisticas_quejas
 
     private fun setUpBarChart(entries: List<BarEntry>, labels: List<String>, title: String,chart: BarChart){
 
-        val dataSet = BarDataSet(entries, "Quejas por año")
+        val dataSet = BarDataSet(entries, title)
         dataSet.color = resources.getColor(R.color.purple_500, null)
 
         val barData = BarData(dataSet)

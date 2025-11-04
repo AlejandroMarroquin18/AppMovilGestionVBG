@@ -42,7 +42,7 @@
     <fragment
         android:id="@+id/estadisticasQuejasFragment"
         android:name="com.example.appvbg.ui.quejas.estadisticas.EstadisticasQuejasFragment"
-        android:label="Estadísticas Quejas"
+        android:label="Estadística de atenciones"
         tools:layout="@layout/fragment_estadisticas_quejas"/>
 
 

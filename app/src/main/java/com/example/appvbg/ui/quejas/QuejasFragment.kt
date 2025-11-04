@@ -89,6 +89,7 @@ class QuejasFragment : Fragment(R.layout.fragment_quejas) {
             val fab = activity?.findViewById<FloatingActionButton>(R.id.fab)
             fab?.setOnClickListener {
                 try {
+
                     val actionCrearQueja = QuejasFragmentDirections.actionQuejasFragmentToCrearQueja()
                     findNavController().navigate(actionCrearQueja)
                 } catch (e: Exception) {

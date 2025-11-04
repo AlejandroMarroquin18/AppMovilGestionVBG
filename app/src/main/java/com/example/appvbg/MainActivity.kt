@@ -41,12 +41,14 @@ class MainActivity : AppCompatActivity() {
                 R.id.nav_home,
                 R.id.quejasFragment,
                 R.id.agendaFragment,
-                R.id.verTalleresFragment,
                 R.id.estadisticasMainFragment,
-                R.id.estadisticasQuejasFragment,
-                R.id.estadisticasAgendaFragment,
-                R.id.estadisticasTalleresFragment,
-                R.id.crearTallerFragment
+                R.id.opcionesMainFragment,
+                R.id.talleresMainFragment
+                //R.id.estadisticasQuejasFragment,
+                //R.id.estadisticasAgendaFragment,
+                //R.id.estadisticasTalleresFragment,
+                //R.id.crearTallerFragment
+                //R.id.verTalleresFragment,
             )
         )
 

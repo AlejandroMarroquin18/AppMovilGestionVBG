@@ -135,7 +135,7 @@ class AgendaViewModel : ViewModel() {
 
                 //se convierten a json
 
-                transformJSONtoEvent(json,eventColors[json.optString("color", "9")])
+                transformJSONtoEvent(json,eventColors[json.optString("colorId", "9")])
 
             }.toMutableList()
 
