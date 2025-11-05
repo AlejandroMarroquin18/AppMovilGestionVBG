@@ -242,12 +242,6 @@
             android:layout_margin="16dp"
             />
 
-        <com.github.mikephil.charting.charts.BarChart
-            android:id="@+id/graficoCitasCumplimiento"
-            android:layout_width="match_parent"
-            android:layout_height="300dp"
-            android:layout_margin="16dp"
-            />
 
         <com.github.mikephil.charting.charts.BarChart
             android:id="@+id/graficoCitasFacultad"
@@ -256,11 +250,6 @@
             android:layout_margin="16dp"
             />
 
-
-        <com.github.mikephil.charting.charts.PieChart
-            android:id="@+id/graficoCitasDepartamento"
-            android:layout_width="match_parent"
-            android:layout_height="300dp" />
 
         <com.github.mikephil.charting.charts.PieChart
             android:id="@+id/graficoCitasRazones"

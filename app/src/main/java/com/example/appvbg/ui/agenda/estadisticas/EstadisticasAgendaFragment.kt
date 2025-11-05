@@ -17,8 +17,17 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-
+import android.util.Log
+import android.widget.TextView
+import androidx.lifecycle.ViewModelProvider
+import com.example.appvbg.EstadisticasAgendaViewModel
+import androidx.fragment.app.viewModels
 import com.example.appvbg.R
+import com.example.appvbg.databinding.FragmentDetallesAgendaBinding
+import com.example.appvbg.databinding.FragmentEstadisticasAgendaBinding
+import com.github.mikephil.charting.charts.Chart
+import com.github.mikephil.charting.formatter.ValueFormatter
+
 
 class EstadisticasAgendaFragment: Fragment(R.layout.fragment_estadisticas_agenda) {
     private lateinit var citasAnio: BarChart
@@ -28,31 +37,58 @@ class EstadisticasAgendaFragment: Fragment(R.layout.fragment_estadisticas_agenda
     private lateinit var razonesChart: PieChart
     private lateinit var frecuenciaChart: BarChart
     private lateinit var generoChart: PieChart
+    private var _binding: FragmentEstadisticasAgendaBinding?=null
+    private val binding get() = _binding!!
+    private val viewModel: EstadisticasAgendaViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val view = inflater.inflate(R.layout.fragment_estadisticas_agenda, container, false)
+        //val view = inflater.inflate(R.layout.fragment_estadisticas_agenda, container, false)
+        _binding= FragmentEstadisticasAgendaBinding.inflate(inflater, container, false)
+        citasAnio = binding.graficoCitasAnio
+        citasFacultad = binding.graficoCitasFacultad
+        razonesChart = binding.graficoCitasRazones
+        frecuenciaChart = binding.graficoCitasFrecuencia
+        generoChart = binding.graficoCitasGenero
         
-        citasAnio = view.findViewById(R.id.graficoCitasAnio)
-        citasCumplimiento = view.findViewById(R.id.graficoCitasCumplimiento)
-        citasFacultad = view.findViewById(R.id.graficoCitasFacultad)
-        departamentoChart = view.findViewById(R.id.graficoCitasDepartamento)
-        razonesChart = view.findViewById(R.id.graficoCitasRazones)
-        frecuenciaChart = view.findViewById(R.id.graficoCitasFrecuencia)
-        generoChart = view.findViewById(R.id.graficoCitasGenero)
-        
-        
-        setUpCitasAnio()
-        setUpCitasCumplimiento()
-        setUpCitasFacultad()
-        setUpDepartamento()
-        setUpRazones()
-        setUpFrecuencia()
-        setUpGenero()
-        return view
+        viewModel.fetchEstadisticasAgenda(requireContext())
+
+        viewModel.totalEventosCreados.observe(viewLifecycleOwner){ number->
+                binding.citasPedidas.setText(number.toString())
+        }
+        viewModel.totalEventosRealizados.observe(viewLifecycleOwner){number->
+            binding.citasAtendidas.setText(number.toString())
+        }
+        viewModel.totalEstudiantes.observe(viewLifecycleOwner){number->
+            binding.citasEstudiantes.setText(number.toString())
+        }
+        viewModel.totalFuncionarios.observe(viewLifecycleOwner){number->
+            binding.citasProfesores.setText(number.toString())
+        }
+        viewModel.totalProfesores.observe(viewLifecycleOwner){number->
+            binding.citasFuncionarios.setText(number.toString())
+        }
+        viewModel.conteoFacultad.observe(viewLifecycleOwner){(entries,labels)->
+            setUpBarChart(entries,labels,"Citas por facultad",citasFacultad)
+        }
+        viewModel.conteoAnio.observe(viewLifecycleOwner){(entries,labels)->
+            setUpBarChart(entries,labels,"Citas por año",citasAnio)
+        }
+        viewModel.conteoMes.observe(viewLifecycleOwner){(entries,labels)->
+            setUpBarChart(entries,labels,"Citas por mes",frecuenciaChart)
+        }
+        viewModel.conteoGenero.observe(viewLifecycleOwner){ entries->
+            setUpPieChart(entries,"Citas por género",generoChart)
+        }
+        viewModel.conteoTipo.observe(viewLifecycleOwner){ entries->
+            setUpPieChart(entries,"Citas por tipo de orientación",razonesChart)
+        }
+
+
+        return binding.root
     }
     
     private fun setUpCitasAnio() {
@@ -273,5 +309,55 @@ class EstadisticasAgendaFragment: Fragment(R.layout.fragment_estadisticas_agenda
         generoChart.invalidate() // refrescar gráfico
 
     }
+    private fun setUpPieChart(entries:List<PieEntry>, title: String,chart: PieChart) {
+        /*val entries = listOf(
+            PieEntry(70f, "Masculino"),
+            PieEntry(300f, "Femenino")
+        )*/
+
+        val dataSet = PieDataSet(entries, title)
+        dataSet.colors = com.github.mikephil.charting.utils.ColorTemplate.MATERIAL_COLORS.toList()
+        dataSet.sliceSpace = 3f
+        dataSet.selectionShift = 5f
+
+        val pieData = PieData(dataSet)
+        pieData.setValueTextSize(12f)
+        pieData.setValueTextColor(Color.WHITE)
+
+        chart.data = pieData
+        chart.setUsePercentValues(true)
+        chart.description.isEnabled = false
+        chart.centerText = title
+        chart.setCenterTextSize(18f)
+        chart.animateY(1000)
+
+        chart.invalidate() // refrescar gráfico
+
+    }
+    private fun setUpBarChart(entries: List<BarEntry>, labels: List<String>, title: String,chart: BarChart){
+
+        val dataSet = BarDataSet(entries, title)
+        dataSet.color = resources.getColor(R.color.purple_500, null)
+
+        val barData = BarData(dataSet)
+        barData.barWidth = 0.9f
+
+        chart.data = barData
+        chart.setFitBars(true)
+        chart.description.isEnabled = false
+        chart.animateY(1000)
+
+        val xAxis = chart.xAxis
+        xAxis.valueFormatter = IndexAxisValueFormatter(labels)
+        xAxis.position = XAxis.XAxisPosition.BOTTOM
+        xAxis.setDrawGridLines(false)
+        xAxis.granularity = 1f
+        xAxis.labelCount = labels.size
+
+        chart.axisRight.isEnabled = false // desactiva eje derecho si no lo usas
+
+        chart.invalidate()
+    }
+
 
 }

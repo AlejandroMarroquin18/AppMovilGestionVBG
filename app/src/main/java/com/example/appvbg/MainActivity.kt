@@ -61,15 +61,28 @@ class MainActivity : AppCompatActivity() {
             when (destination.id) {
                 R.id.quejasFragment -> {
                     fab.show()
+                    fab.isEnabled = true
                     fab.setOnClickListener {
-                        navController.navigate(R.id.action_quejasFragment_to_crearQueja)
+                        fab.isEnabled = false
+                        try {
+                            navController.navigate(R.id.action_quejasFragment_to_crearQueja)
+                        } catch (e: Exception) {
+                            fab.isEnabled = true
+                        }
                     }
                 }
                 R.id.agendaFragment -> {
                     fab.show()
+                    fab.isEnabled = true
                     fab.setOnClickListener {
-                        val bottomSheet = CrearCita()
-                        bottomSheet.show(supportFragmentManager, bottomSheet.tag)
+                        fab.isEnabled = false
+                        try{
+                            val bottomSheet = CrearCita()
+                            bottomSheet.show(supportFragmentManager, bottomSheet.tag)
+                        } catch (e: Exception) {
+                            fab.isEnabled=true
+                        }
+
                     }
                 }
                 else -> fab.hide()

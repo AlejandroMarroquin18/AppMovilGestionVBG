@@ -21,6 +21,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.example.appvbg.EstadisticasTalleresViewModel
 import com.example.appvbg.R
+import com.example.appvbg.databinding.FragmentEstadisticasTalleresBinding
 
 class EstadisticasTalleresFragment: Fragment(R.layout.fragment_estadisticas_talleres) {
 
@@ -29,6 +30,8 @@ class EstadisticasTalleresFragment: Fragment(R.layout.fragment_estadisticas_tall
     private lateinit var departamentoChart: BarChart
     private lateinit var sedeChart: BarChart
     private lateinit var discapacidadChart: BarChart
+    private var _binding: FragmentEstadisticasTalleresBinding?=null
+    private val binding get() = _binding!!
 
     private val viewModel: EstadisticasTalleresViewModel by viewModels()
 
@@ -37,18 +40,32 @@ class EstadisticasTalleresFragment: Fragment(R.layout.fragment_estadisticas_tall
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val view = inflater.inflate(R.layout.fragment_estadisticas_talleres, container, false)
-
-        modalidadesChart = view.findViewById(R.id.graficoTalleresModalidades)
-        generoChart = view.findViewById(R.id.graficoTalleresGenero)
-        departamentoChart = view.findViewById(R.id.graficoTalleresDepartamento)
-
-
-
-        sedeChart = view.findViewById(R.id.graficoTalleresSede)
-        discapacidadChart = view.findViewById(R.id.graficoTalleresDiscapacidad)
+        //val view = inflater.inflate(R.layout.fragment_estadisticas_talleres, container, false)
+        _binding= FragmentEstadisticasTalleresBinding.inflate(inflater, container, false)
+        modalidadesChart =binding.graficoTalleresModalidades
+        generoChart =binding.graficoTalleresGenero
+        departamentoChart =binding.graficoTalleresDepartamento
+        sedeChart =binding.graficoTalleresSede
+        discapacidadChart =binding.graficoTalleresDiscapacidad
 
         viewModel.fetchEstadisticasTalleres(requireContext())
+
+        viewModel.totalTalleres.observe(viewLifecycleOwner){ number->
+            binding.talleresRealizados.setText(number.toString())
+        }
+        viewModel.totalVirtuales.observe(viewLifecycleOwner){number->
+            binding.talleresVirtuales.setText(number.toString())
+
+        }
+        viewModel.totalPresenciales.observe(viewLifecycleOwner){number->
+            binding.talleresPresenciales.setText(number.toString())
+        }
+        viewModel.totalParticipantes.observe(viewLifecycleOwner){number->
+            binding.participantes.setText(number.toString())
+        }
+        viewModel.conteoPrograma.observe(viewLifecycleOwner){ (entries, labels) ->
+            setUpBarChart(entries, labels, "Talleres por programa", departamentoChart)
+        }
 
         viewModel.conteoSedes.observe(viewLifecycleOwner){ (entries, labels) ->
             setUpBarChart(entries, labels, "Talleres por sedes", sedeChart)
@@ -67,7 +84,7 @@ class EstadisticasTalleresFragment: Fragment(R.layout.fragment_estadisticas_tall
             setUpPieChart(entries, "Talleres por modalidad", modalidadesChart)
         }
 
-        return view
+        return binding.root
     }
 
 
@@ -211,7 +228,7 @@ class EstadisticasTalleresFragment: Fragment(R.layout.fragment_estadisticas_tall
 
     private fun setUpBarChart(entries: List<BarEntry>, labels: List<String>, title: String, chart: BarChart){
 
-        val dataSet = BarDataSet(entries, "Quejas por año")
+        val dataSet = BarDataSet(entries, title)
         dataSet.color = resources.getColor(R.color.purple_500, null)
 
         val barData = BarData(dataSet)

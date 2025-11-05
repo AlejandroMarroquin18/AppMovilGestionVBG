@@ -101,8 +101,6 @@ class EstadisticasTalleresViewModel : ViewModel() {
                 _total_talleres.postValue(json.getInt("total_workshops"))
                 _conteoVirtuales.postValue(json.getInt("virtual_workshops"))
 
-
-
                 _conteoDiscapacidades.postValue(
                     transformarABarEntries(json.getJSONArray("disability_stats"), "disability", "count")
                 )
@@ -110,12 +108,6 @@ class EstadisticasTalleresViewModel : ViewModel() {
                 _conteoSedes.postValue(
                     transformarABarEntries(json.getJSONArray("sede_stats"), "sede", "count")
                 )
-
-
-
-
-
-
 
 
             } catch (e: Exception) {
