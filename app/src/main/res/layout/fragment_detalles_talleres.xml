@@ -322,21 +322,20 @@
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recyclerViewParticipantes"
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1" />
+                android:layout_height="wrap_content"
+                android:nestedScrollingEnabled="false" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recyclerViewAsistentes"
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1" />
-
-
+                android:layout_height="wrap_content"
+                android:nestedScrollingEnabled="false" />
 
         </LinearLayout>
 
 
-    <LinearLayout
+
+        <LinearLayout
         android:orientation="vertical"
         android:background="@drawable/card_background"
         android:padding="12dp"

@@ -7,7 +7,7 @@
     <fragment
         android:id="@+id/quejasFragment"
         android:name="com.example.appvbg.ui.quejas.QuejasFragment"
-        android:label="Quejas"
+        android:label="Lista de atenciones"
         tools:layout="@layout/fragment_quejas">
         <action
             android:id="@+id/action_quejasFragment_to_detallesQueja"
@@ -21,7 +21,7 @@
     <fragment
         android:id="@+id/detallesQueja"
         android:name="com.example.appvbg.ui.quejas.detalles.DetallesQueja"
-        android:label="Detalles de la Queja"
+        android:label="Detalles de la atención"
         tools:layout="@layout/fragment_detalles_queja">
 
         <argument

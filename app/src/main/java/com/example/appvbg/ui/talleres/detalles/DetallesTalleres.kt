@@ -56,7 +56,11 @@ class DetallesTalleres : Fragment() {
         data = JSONObject(tallerJsonString)
         setFieldsFromJSON(data)
         // Ya puedes acceder a todos los elementos del layout, incluidos los de los includes
+        binding.recyclerViewParticipantes.isNestedScrollingEnabled = false
+        binding.recyclerViewAsistentes.isNestedScrollingEnabled = false
 
+        binding.recyclerViewParticipantes.setHasFixedSize(false)
+        binding.recyclerViewAsistentes.setHasFixedSize(false)
 
 
         binding.recyclerViewAsistentes.layoutManager = LinearLayoutManager(requireContext())
@@ -256,7 +260,9 @@ class DetallesTalleres : Fragment() {
         RecyclerView.Adapter<TextAdapter.ViewHolder>() {
 
         class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-            val tvItem: TextView = itemView.findViewById(R.id.participanteTextView)
+            val numberTextView : TextView = itemView.findViewById(R.id.numberTextView)
+            val nombreTextView: TextView = itemView.findViewById(R.id.participanteTextView)
+            val correoTextView: TextView = itemView.findViewById(R.id.correoParticipanteTextView)
         }
 
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -266,7 +272,10 @@ class DetallesTalleres : Fragment() {
         }
 
         override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-            holder.tvItem.text = items[position]
+            val json = JSONObject(items[position])
+            holder.numberTextView.text = (position + 1).toString()
+            holder.nombreTextView.text = json.optString("full_name")
+            holder.correoTextView.text = json.optString("email")
         }
 
         override fun getItemCount(): Int = items.size

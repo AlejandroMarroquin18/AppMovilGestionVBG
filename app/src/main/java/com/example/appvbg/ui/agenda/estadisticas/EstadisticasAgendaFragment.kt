@@ -72,6 +72,9 @@ class EstadisticasAgendaFragment: Fragment(R.layout.fragment_estadisticas_agenda
             binding.citasFuncionarios.setText(number.toString())
         }
         viewModel.conteoFacultad.observe(viewLifecycleOwner){(entries,labels)->
+
+
+
             setUpBarChart(entries,labels,"Citas por facultad",citasFacultad)
         }
         viewModel.conteoAnio.observe(viewLifecycleOwner){(entries,labels)->
@@ -335,6 +338,8 @@ class EstadisticasAgendaFragment: Fragment(R.layout.fragment_estadisticas_agenda
 
     }
     private fun setUpBarChart(entries: List<BarEntry>, labels: List<String>, title: String,chart: BarChart){
+
+
 
         val dataSet = BarDataSet(entries, title)
         dataSet.color = resources.getColor(R.color.purple_500, null)
